@@ -1,0 +1,49 @@
+          <div class="page-sidebar" id="sidebar">
+                <!-- Page Sidebar Header-->
+                <div class="sidebar-header-wrapper">
+                    <input class="searchinput" type="text">
+                    <i class="searchicon fa fa-search"></i>
+                    <div class="searchhelper">没啥用啊</div>
+                </div>
+                <!-- /Page Sidebar Header -->
+                <!-- Sidebar Menu -->
+                <ul class="nav sidebar-menu">
+                    
+                    <!--Dashboard-->
+                    {if condition="isset($leftMenus)"}
+                    <!-- 第一层 -->
+                    {volist name="leftMenus" id="one"}
+                    <!-- 第二层 -->
+                        {volist name="one.child" id="two"}
+                        {if condition="$two.access eq 1 && $two.status eq 1"}
+                            <li>
+                                <a href="{:url($two.name)}" class="menu-dropdown">
+                                    <i class="menu-icon fa {$two.icon}"></i>
+                                    <span class="menu-text">{$two.title}</span>
+                                    <i class="menu-expand"></i>
+                                </a>
+                                {if condition="isset($two.child)"}
+                                <!-- 第三层 -->
+                                <ul class="submenu">
+                                    {volist name="two.child" id="three"}
+                                    {if condition="$three.access eq 1 && $three.status eq 1"}
+                                    <li>
+                                        <a href="{:url($three.name)}">
+                                            <i class="menu-icon fa {$three.icon}"></i>
+                                            <span class="menu-text">{$three.title}</span>
+                                            <i class="menu-expand"></i>
+                                        </a>
+                                    </li>
+                                    {/if}
+                                    {/volist}
+                                </ul> 
+                                {/if}
+                            </li>
+                        {/if}
+                        {/volist}
+                    {/volist}
+                    {/if}
+                   
+                </ul>
+                <!-- /Sidebar Menu -->
+            </div>
