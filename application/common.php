@@ -20,6 +20,29 @@ function obj_to_arr($res){
 }
 
 
+/**
+ * 新浪接口，通过ip获取所在城市
+ * @return [type] [description]
+ */
+function getIpAddress(){  
+    $ipContent   = file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js");  
+    $jsonData = explode("=",$ipContent);    
+    $jsonAddress = substr($jsonData[1], 0, -1);  
+    return json_decode($jsonAddress,true);  
+}
+
+/**
+ * 获取周几
+ * @return [type] [description]
+ */
+function getWeek($date=null){
+    if(!$date){
+        return '星期'. mb_substr( "日一二三四五六",date("w"),1,"utf-8" ); 
+    }
+    $week = date("w",strtotime($date));
+    return '星期'. mb_substr( "日一二三四五六",$week,1,"utf-8" );
+}
+
 
 /**
  * 缩略图生成

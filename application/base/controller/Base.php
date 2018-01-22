@@ -35,6 +35,12 @@ class Base extends Controller
 
         //左侧菜单显示
         $this->leftMenu();
+
+        //农历日期
+        $this->getLunar();
+
+        //天气信息
+        $this->getWeather();
     }
 
 
@@ -117,7 +123,27 @@ class Base extends Controller
     }
 
 
+    /**
+     * 获取农历日期
+     * @return [type] [description]
+     */
+    public function getLunar(){
+        $lunar=new \org\Lunar;//实例化农历类
+        $data=$lunar->convertSolarToLunar(date('Y'),date('m'),date('d'));
+        $date[] = getWeek();
+        $nongli = date('Y-m-d') . ' ' . $data[3] . '年 ' . $data[1] . $data[2] . ' ' .getWeek();
+        $this->assign(['nongli'=> $nongli]);
+    }
 
+
+    //获取天气信息
+    public function getWeather(){
+        //百度地图api的密钥
+        $weather=new \org\Weather(config('baidu.ak'));
+        $res = $weather->weatherInfo();
+        //dump($res['result']);die;
+        $this->assign(['weather'=> $res['result']]);
+    }
 
 
     /**

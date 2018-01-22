@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\index\index.html";i:1516525630;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516526039;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\index\index.html";i:1516609172;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -11,15 +11,9 @@
     <!--Basic Styles-->
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
     <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
 
     <!--Beyond styles-->
     <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
-    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
-    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
-    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    <!-- 万年历 -->
-    <script type="text/javascript" charset="utf-8" src="__ADMIN__/style/clock.js"></script>
 </head>
 <body>
   <!-- 头部 -->
@@ -40,49 +34,58 @@
                 <i class="collapse-icon fa fa-bars"></i>
             </div>
             <!-- /Sidebar Collapse -->
+
+            <div style="height: 45px;line-height: 45px;width: 70%;float: left;margin: 0 50px;">
+                <!-- 天气信息 -->
+                <div style="float: left;color: #fff;margin: 0 50px;">
+                    <?php echo $weather['city']; ?>  <?php echo $weather['weather']; ?>  <?php echo $weather['temp']; ?>°
+                </div>
+
+                <!-- 农历日期 -->
+                <div style="float: left;color: #fff;margin: 0 50px;">
+                     <?php echo $nongli; ?>
+                </div>
+            
+            </div>
              <!-- 登录开始-->
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
-                    <ul class="account-area">
-                        <li>
+                    
+                   <ul class="account-area">
+                       <li>
+                               
+                           <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                               <div class="avatar" title="View your public profile">
+                                   <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
+                               </div>
+                               <section>
+                                   <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
+                               </section>
+                           </a>
 
-                                <script type="text/javascript">showcal();</script>
+                           <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                           退出登录
+                                       </a>
+                               </li>
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
+                                           修改密码
+                                       </a>
+                               </li>
+                           </ul>
 
-                                
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile">
-                                    <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
-                                </div>
-                                <section>
-                                    <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/loginout'); ?>">
-                                            退出登录
-                                        </a>
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
-                                            修改密码
-                                        </a>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                        <!-- /Account Area -->
-                        <!--Note: notice that setting div must start right after account area list.
-                            no space must be between these elements-->
-                        <!-- Settings -->
-                    </ul>
+                       </li>
+                   </ul>
                 </div>
             </div>
            <!-- 登录结束-->
         </div>
     </div>
 </div>
+
+
   <!-- /头部 -->
 
 	
@@ -138,127 +141,414 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                                        <li class="active">控制面板</li>
-                                        </ul>
+                        <li class="active">控制面板</li>
+                    </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
 
                 <!-- Page Body -->
                 <div class="page-body">
-                    
-				<div style="text-align:center;" class="col-xs-12 col-md-6">
-                <table class="table table-bordered table-hover">
-                        <thead class="">
-                            <tr>
-                                <th class="text-center" colspan="2"><script type="text/javascript">showcal();</script></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                            <tr>
-                                <td align="center" style="width: 30%;">管理员</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['username']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">登录时间</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['logintime']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">登录IP</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['loginip']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">登录地址</td>
-                                <td align="left" style="width: 70%;" id='getip'></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">登陆次数</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['num']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">操作系统</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['os']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">运行环境</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['huanjing']; ?></td>
-                            </tr>
-                             <tr>
-                                <td align="center" style="width: 30%;">当前主机名</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['pc']; ?></td>
-                            </tr>
-                             <tr>
-                                <td align="center" style="width: 30%;">获取服务器语言</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['language']; ?></td>
-                            </tr>
-                             <tr>
-                                <td align="center" style="width: 30%;">端口</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['port']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">PHP版本</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['php']; ?></td>
-                            </tr>
+            <div class="col-md-12">
+                            <div class="profile-container">
+                                <div class="profile-header row">
+                                    <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+                                        <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>" alt="" class="header-avatar">
+                                    </div>
+                                    <div class="col-lg-5 col-md-8 col-sm-12 profile-info">
+                                        <div class="header-fullname"><?php echo \think\Session::get('admin_info.username'); ?></div>
+                                        <a href="#" class="btn btn-palegreen btn-sm  btn-follow">
+                                            <i class="fa fa-check"></i>
+                                            超级管理员
+                                        </a>
+                                        <div class="header-information">
+                                            我是个人简介
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 profile-stats">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 stats-col">
+                                                <div class="stats-value pink">284</div>
+                                                <div class="stats-title">文章总数</div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 stats-col">
+                                                <div class="stats-value pink">803</div>
+                                                <div class="stats-title">图片总数</div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 stats-col">
+                                                <div class="stats-value pink">1207</div>
+                                                <div class="stats-title">点击总数</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                                                <i class="glyphicon glyphicon-map-marker"></i><?php echo $data['admin'][0]['address']; ?>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                                                余额: <strong>$250</strong>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                                                年龄: <strong>24</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-body">
+                                    <div class="col-lg-12">
+                                        <div class="tabbable">
+                                            <ul class="nav nav-tabs tabs-flat  nav-justified" id="myTab11">
+                                                <li class="active">
+                                                    <a data-toggle="tab" href="#overview">
+                                                        网站信息
+                                                    </a>
+                                                </li>
+                                                <li class="tab-red">
+                                                    <a data-toggle="tab" href="#timeline">
+                                                        消息管理
+                                                    </a>
+                                                </li>
+                                                <li class="tab-palegreen">
+                                                    <a data-toggle="tab" id="contacttab" href="#contacts">
+                                                        最新文章
+                                                    </a>
+                                                </li>
+                                                <li class="tab-yellow">
+                                                    <a data-toggle="tab" href="#settings">
+                                                        最新评论
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content tabs-flat">
+                                                <!-- 网站信息 -->
+                                                <div id="overview" class="tab-pane active">
+                                                    <div class="row profile-overview">
+                                                        <div class="col-md-6">
 
-                            <tr>
-                                <td align="center" style="width: 30%;">MYSQL版本</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['mysql']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">数据库大小</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['mysql_size']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">PHP运行方式</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['run']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">ThinkPHP版本</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['think']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">上传附件限制</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['upload']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">执行时间限制</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['gotime']; ?></td>
-                            </tr>
+                                                            <!-- 左表 -->
+                                                            <div class="col-xs-12 col-md-12">
+                                                                <div class="well with-header with-footer">
+                                                                    <div class="header bg-blue text-center">
+                                                                        网站信息
+                                                                    </div>
+                                                                    <table class="table table-hover table-striped table-bordered">
+                                                                        <thead class="bordered-blueberry">
+                                                                            <tr>
+                                                                                
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php if(is_array($data['site']) || $data['site'] instanceof \think\Collection || $data['site'] instanceof \think\Paginator): $i = 0; $__LIST__ = $data['site'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">操作系统</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['os']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">运行环境</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['huanjing']; ?></td>
+                                                                            </tr>
+                                                                             <tr>
+                                                                                <td align="center" style="width: 30%;">当前主机名</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['pc']; ?></td>
+                                                                            </tr>
+                                                                             <tr>
+                                                                                <td align="center" style="width: 30%;">获取服务器语言</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['language']; ?></td>
+                                                                            </tr>
+                                                                             <tr>
+                                                                                <td align="center" style="width: 30%;">端口</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['port']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">PHP版本</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['php']; ?></td>
+                                                                            </tr>
 
-                            <tr>
-                                <td align="center" style="width: 30%;">服务器时间</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['ostime']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">北京时间</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['bjtime']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">服务器域名/IP</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['os_do_ip']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">剩余空间</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['kongjian']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">register_globals</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['register_globals']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">magic_quotes_gpc</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['magic_quotes_gpc']; ?></td>
-                            </tr>
-                            <tr>
-                                <td align="center" style="width: 30%;">magic_quotes_runtime</td>
-                                <td align="left" style="width: 70%;"><?php echo $vo['magic_quotes_runtime']; ?></td>
-                            </tr>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-                
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">MYSQL版本</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['mysql']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">数据库大小</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['mysql_size']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">PHP运行方式</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['run']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">ThinkPHP版本</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['think']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">上传附件限制</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['upload']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">执行时间限制</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['gotime']; ?></td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">服务器时间</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['ostime']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">北京时间</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['bjtime']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">服务器域名/IP</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['os_do_ip']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">剩余空间</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['kongjian']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">register_globals</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['register_globals']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">magic_quotes_gpc</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['magic_quotes_gpc']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">magic_quotes_runtime</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['magic_quotes_runtime']; ?></td>
+                                                                            </tr>
+                                                                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <div class="footer">
+                                                                        <code></code>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                            <!-- 右表 -->
+                                                            <div class="col-xs-12 col-md-12">
+                                                                <div class="well with-header with-footer">
+                                                                    <div class="header bg-blue text-center">
+                                                                        管理员信息
+                                                                    </div>
+                                                                    <table class="table table-hover table-striped table-bordered">
+                                                                        <thead class="bordered-blueberry">
+                                                                            <tr>
+                                                                                
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php if(is_array($data['admin']) || $data['admin'] instanceof \think\Collection || $data['admin'] instanceof \think\Paginator): $i = 0; $__LIST__ = $data['admin'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">管理员</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['username']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">最近登录时间</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['logintime']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">最近登录IP</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['loginip']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">登录地址</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['address']; ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;">登陆次数</td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['num']; ?></td>
+                                                                            </tr>
+                                                                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 右下表 -->
+                                                            <div class="col-xs-12 col-md-12">
+                                                                <div class="well with-header with-footer">
+                                                                    <div class="header bg-blue text-center">
+                                                                        开发者信息
+                                                                    </div>
+                                                                    <table class="table table-hover table-striped table-bordered">
+                                                                        <thead class="bordered-blueberry">
+                                                                            <tr>
+                                                                                
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php if(is_array($data['developer']) || $data['developer'] instanceof \think\Collection || $data['developer'] instanceof \think\Paginator): $i = 0; $__LIST__ = $data['developer'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                                                            <tr>
+                                                                                <td align="center" style="width: 30%;"><?php echo $vo['cnname']; ?></td>
+                                                                                <td align="left" style="width: 70%;"><?php echo $vo['value']; ?></td>
+                                                                            </tr>
+                                                                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- 消息管理 左侧-->
+                                                <div id="timeline" class="tab-pane">
+                                                    <ul class="timeline animated fadeInDown">
+                                                        <li>
+                                                            <!-- 时间 -->
+                                                            <div class="timeline-datetime">
+                                                                <span class="timeline-time">
+                                                                    8:19
+                                                                </span><span class="timeline-date">Today</span>
+                                                            </div>
+                                                            <!-- 图标 -->
+                                                            <div class="timeline-badge blue">
+                                                                <i class="fa fa-tag"></i>
+                                                            </div>
+                                                            <!-- 内容 -->
+                                                            <div class="timeline-panel">
+                                                                <div class="timeline-header bordered-bottom bordered-blue">
+                                                                    <span class="timeline-title">
+                                                                        标题
+                                                                    </span>
+                                                                    <!-- 消息右上角时间 -->
+                                                                    <p class="timeline-datetime" style="display: block;">
+                                                                        <small class="text-muted">
+                                                                            <i class="glyphicon glyphicon-time">
+                                                                            </i>
+                                                                            <span class="timeline-date">Today</span>
+                                                                            -
+                                                                            <span class="timeline-time">8:19</span>
+                                                                        </small>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="timeline-body">
+                                                                    <p>内容简介</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <!-- 消息管理 右侧-->
+                                                        <li class="timeline-inverted">
+                                                             <!-- 时间 -->
+                                                            <div class="timeline-datetime">
+                                                                <span class="timeline-time">
+                                                                    3:10
+                                                                </span><span class="timeline-date">Today</span>
+                                                            </div>
+                                                             <!-- 图标 -->
+                                                            <div class="timeline-badge darkorange">
+                                                                <i class="fa fa-map-marker font-120"></i>
+                                                            </div>
+                                                            <!-- 内容 -->
+                                                            <div class="timeline-panel bordered-right-3 bordered-orange">
+                                                                <div class="timeline-header bordered-bottom bordered-blue">
+                                                                    <span class="timeline-title">
+                                                                        标题
+                                                                    </span>
+                                                                    <!-- 消息右上角时间 -->
+                                                                    <p class="timeline-datetime">
+                                                                        <small class="text-muted">
+                                                                            <i class="glyphicon glyphicon-time">
+                                                                            </i>
+                                                                            <span class="timeline-date">Today</span>
+                                                                            -
+                                                                            <span class="timeline-time">3:10</span>
+                                                                        </small>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="timeline-body">
+                                                                    <p>内容简介</p>
+                                                                    <p>
+                                                                        <i class="orange fa fa-exclamation"></i>内容简介 <span><a href="#" class="info">内容简介</a></span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="timeline-node">
+                                                            <a class="btn btn-success">加载更多</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- 最新文章 -->
+                                                <div id="contacts" class="tab-pane">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-12">
+                                                            <div class="well with-header  with-footer">
+                                                                <div class="header bg-blue">
+                                                                    最新文章
+                                                                </div>
+                                                                <table class="table table-hover">
+                                                                    <thead class="bordered-darkorange">
+                                                                        <tr></tr>
+                                                                        <tr></tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" style="width: 70%;">xxxxxxxxxxxxxx</td>
+                                                                            <td align="center" style="width: 30%;">2018-11-2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="left" style="width: 70%;">xxxxxxxxxxxxxx</td>
+                                                                            <td align="center" style="width: 30%;">2018-11-2</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <div class="footer">
+                                                                    <code>我是页脚</code>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- 最新留言 -->
+                                                <div id="settings" class="tab-pane">
+                                                    <div class="row">
+                                                    <div class="col-xs-12 col-md-12">
+                                                            <div class="well with-header  with-footer">
+                                                                <div class="header bg-blue">
+                                                                    最新留言
+                                                                </div>
+                                                                <table class="table table-hover">
+                                                                    <thead class="bordered-darkorange">
+                                                                        <tr></tr>
+                                                                        <tr></tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" style="width: 70%;">xxxxxxxxxxxxxx</td>
+                                                                            <td align="center" style="width: 30%;">2018-11-2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="left" style="width: 70%;">xxxxxxxxxxxxxx</td>
+                                                                            <td align="center" style="width: 30%;">2018-11-2</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <div class="footer">
+                                                                    <code>我是页脚</code>
+                                                                </div>
+                                                            </div>
+
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                 </div>
                 <!-- /Page Body -->
@@ -270,41 +560,8 @@
 	    <!--Basic Scripts-->
     <script src="__ADMIN__/style/jquery_002.js"></script>
     <script src="__ADMIN__/style/bootstrap.js"></script>
-    <script src="__ADMIN__/style/jquery.js"></script>
     <!--Beyond Scripts-->
     <script src="__ADMIN__/style/beyond.js"></script>
-    
-    
-    
-<script type="text/javascript">
 
-    get_client_location(function (info) {
-        $('#getip').html('你的ip所在地为:' + info.country + info.province + info.city);
-    });
-
-    /**
-     * 获得ip所在地址
-     * @param  {Function} cb [回调函数]
-     * @return {[type]}      [description]
-     */
-    function get_client_location(cb){
-        var script = document.createElement("script"),
-        s = document.getElementsByTagName("script")[0];
-        script.src = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=jsonp";
-        s.parentNode.insertBefore(script, s);
-        var it = setInterval(
-                function(){
-                    //console.log(remote_ip_info)
-                    if(remote_ip_info){
-                        cb(remote_ip_info);
-                        remote_ip_info = null;
-                         clearInterval(it);
-                         it = null;
-                    }
-                },100);
-    } 
-
-   
-</script>
-
-</body></html>
+</body>
+</html>

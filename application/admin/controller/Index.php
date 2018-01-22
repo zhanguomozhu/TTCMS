@@ -15,8 +15,10 @@ class Index extends Base
 	public function index()
 	{
 		$data = array();
-		$data = [0=>[
-            'pc'        => $_SERVER['SERVER_NAME'], //当前主机名
+
+		//网站信息
+		$data['site'][] =[
+			'pc'        => $_SERVER['SERVER_NAME'], //当前主机名
             'language'  => $_SERVER['HTTP_ACCEPT_LANGUAGE'], //获取服务器语言
             'port'      => $_SERVER['SERVER_PORT'], //获取服务器Web端口
 			//'os'		=> PHP_OS,
@@ -33,15 +35,24 @@ class Index extends Base
 			'bjtime'	=> gmdate("Y年n月j日 H:i:s",time()+8*3600),
 			'os_do_ip'	=> $_SERVER['SERVER_NAME'].' [ '.gethostbyname($_SERVER['SERVER_NAME']).' ]',
 			'kongjian'	=> round((disk_free_space(".")/(1024*1024)),2).'M',
-			'username'	=> session('admin_info.username'),
-			'logintime'	=> date('Y-m-d H:i:s',session('admin_info.logintime')),
-			'loginip'	=> session('admin_info.loginip'),
-			'num'		=> session('admin_info.num'),
 			'register_globals'		=>get_cfg_var("register_globals")=="1" ? "ON" : "OFF",
 			'magic_quotes_gpc'		=>(1===get_magic_quotes_gpc())?'YES':'NO',
 			'magic_quotes_runtime'	=>(1===get_magic_quotes_runtime())?'YES':'NO',
+		];
+		//管理员信息
+		$address = getIpAddress();
+		$data['admin'][] =[
+			'username'	=> session('admin_info.username'),
+			'logintime'	=> date('Y-m-d H:i:s',session('admin_info.logintime')),
+			'loginip'	=> session('admin_info.loginip'),
+			'address'	=> $address['country'].' '.$address['province'].' '.$address['city'],
+			'num'		=> session('admin_info.num'),
+		];
+		//开发者细信息
+		$data['developer'] = obj_to_arr(model('Conf')->field('cnname,value')->where('conf_cate_id',6)->select());
 
-		]];
+
+
 		return $this->fetch('',['data'=>$data]);
 	}
 

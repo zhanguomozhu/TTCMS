@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\edit.html";i:1516264407;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1515826148;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\edit.html";i:1516264407;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609252;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
         <meta charset="utf-8">
@@ -39,45 +39,58 @@
                 <i class="collapse-icon fa fa-bars"></i>
             </div>
             <!-- /Sidebar Collapse -->
+
+            <div style="height: 45px;line-height: 45px;width: 70%;float: left;margin: 0 50px;">
+                <!-- 天气信息 -->
+                <div style="float: left;color: #fff;margin: 0 50px;">
+                    <?php echo $weather['city']; ?>  <?php echo $weather['weather']; ?>  <?php echo $weather['temp']; ?>°
+                </div>
+
+                <!-- 农历日期 -->
+                <div style="float: left;color: #fff;margin: 0 50px;">
+                     <?php echo $nongli; ?>
+                </div>
+            
+            </div>
              <!-- 登录开始-->
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
-                    <ul class="account-area">
-                        <li>
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile">
-                                    <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
-                                </div>
-                                <section>
-                                    <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/loginout'); ?>">
-                                            退出登录
-                                        </a>
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
-                                            修改密码
-                                        </a>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                        <!-- /Account Area -->
-                        <!--Note: notice that setting div must start right after account area list.
-                            no space must be between these elements-->
-                        <!-- Settings -->
-                    </ul>
+                    
+                   <ul class="account-area">
+                       <li>
+                               
+                           <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                               <div class="avatar" title="View your public profile">
+                                   <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
+                               </div>
+                               <section>
+                                   <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
+                               </section>
+                           </a>
+
+                           <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                           退出登录
+                                       </a>
+                               </li>
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
+                                           修改密码
+                                       </a>
+                               </li>
+                           </ul>
+
+                       </li>
+                   </ul>
                 </div>
             </div>
            <!-- 登录结束-->
         </div>
     </div>
 </div>
+
+
     <!-- /头部 -->
     
     <div class="main-container container-fluid">

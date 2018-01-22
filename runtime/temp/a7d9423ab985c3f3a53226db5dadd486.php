@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:68:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\conf\lst.html";i:1516518713;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1515826148;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:68:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\conf\lst.html";i:1516600188;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516593725;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -46,11 +46,38 @@
                 <i class="collapse-icon fa fa-bars"></i>
             </div>
             <!-- /Sidebar Collapse -->
+            <div style="height: 45px;text-align: center;line-height: 45px;width: 70%;float: left;margin: 0 50px;border: 1px solid red;">
+                <div style="width: 50%;border: 1px solid red;float: left;">
+                    <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+                    <script>
+                        tpwidget("init", {
+                            "flavor": "slim",
+                            "location": "WX4FBXXFKE4F",
+                            "geolocation": "enabled",
+                            "language": "zh-chs",
+                            "unit": "c",
+                            "theme": "chameleon",
+                            "container": "tp-weather-widget",
+                            "bubble": "disabled",
+                            "alarmType": "badge",
+                            "color": "#FFFFFF",
+                            "uid": "U9EC08A15F",
+                            "hash": "039da28f5581f4bcb5c799fb4cdfb673"
+                        });
+                    tpwidget("show");
+                </script>
+                </div>
+                <div style="width: 50%;float: left;color: #fff;">
+                     <script type="text/javascript">showcal();</script>
+                </div>
+            
+            </div>
              <!-- 登录开始-->
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
                     <ul class="account-area">
                         <li>
+                                
                             <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                 <div class="avatar" title="View your public profile">
                                     <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
@@ -74,10 +101,6 @@
                             </ul>
                             <!--/Login Area Dropdown-->
                         </li>
-                        <!-- /Account Area -->
-                        <!--Note: notice that setting div must start right after account area list.
-                            no space must be between these elements-->
-                        <!-- Settings -->
                     </ul>
                 </div>
             </div>
@@ -200,7 +223,7 @@
                                 <td style="text-align: center;">
                                     <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
                                 </td>
-                                <td colspan="5"></td>
+                                <td colspan="6"></td>
                             </tr>                        
                         </tbody>
                     </table>

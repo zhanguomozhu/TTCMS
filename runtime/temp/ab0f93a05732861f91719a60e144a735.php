@@ -1,8 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\sqlbak\index.html";i:1516521512;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516593725;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1516610854;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
-    <title>数据库备份下载</title>
+    <title>菜单列表</title>
 
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,12 +18,18 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-
-    
+    <style type="text/css">
+        tr td{
+            vertical-align: middle!important;
+        }
+        tr th{
+            vertical-align: middle!important;
+        }
+    </style>
 </head>
 <body>
 	<!-- 头部 -->
-	    <div class="navbar">
+        <div class="navbar">
     <div class="navbar-inner">
         <div class="navbar-container">
             <!-- Navbar Barnd -->
@@ -40,68 +46,58 @@
                 <i class="collapse-icon fa fa-bars"></i>
             </div>
             <!-- /Sidebar Collapse -->
-            <div style="height: 45px;text-align: center;line-height: 45px;width: 70%;float: left;margin: 0 50px;border: 1px solid red;">
-                <div style="width: 50%;border: 1px solid red;float: left;">
-                    <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
-                    <script>
-                        tpwidget("init", {
-                            "flavor": "slim",
-                            "location": "WX4FBXXFKE4F",
-                            "geolocation": "enabled",
-                            "language": "zh-chs",
-                            "unit": "c",
-                            "theme": "chameleon",
-                            "container": "tp-weather-widget",
-                            "bubble": "disabled",
-                            "alarmType": "badge",
-                            "color": "#FFFFFF",
-                            "uid": "U9EC08A15F",
-                            "hash": "039da28f5581f4bcb5c799fb4cdfb673"
-                        });
-                    tpwidget("show");
-                </script>
+
+            <div style="height: 45px;line-height: 45px;width: 70%;float: left;margin: 0 50px;">
+                <!-- 天气信息 -->
+                <div style="float: left;color: #fff;margin: 0 50px;">
+                    <?php echo $weather['city']; ?>  <?php echo $weather['weather']; ?>  <?php echo $weather['temp']; ?>°
                 </div>
-                <div style="width: 50%;float: left;color: #fff;">
-                     <script type="text/javascript">showcal();</script>
+
+                <!-- 农历日期 -->
+                <div style="float: left;color: #fff;margin: 0 50px;">
+                     <?php echo $nongli; ?>
                 </div>
             
             </div>
              <!-- 登录开始-->
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
-                    <ul class="account-area">
-                        <li>
-                                
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile">
-                                    <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
-                                </div>
-                                <section>
-                                    <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/loginout'); ?>">
-                                            退出登录
-                                        </a>
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
-                                            修改密码
-                                        </a>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                    </ul>
+                    
+                   <ul class="account-area">
+                       <li>
+                               
+                           <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                               <div class="avatar" title="View your public profile">
+                                   <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
+                               </div>
+                               <section>
+                                   <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
+                               </section>
+                           </a>
+
+                           <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                           退出登录
+                                       </a>
+                               </li>
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
+                                           修改密码
+                                       </a>
+                               </li>
+                           </ul>
+
+                       </li>
+                   </ul>
                 </div>
             </div>
            <!-- 登录结束-->
         </div>
     </div>
 </div>
+
+
 	<!-- /头部 -->
 	
 	<div class="main-container container-fluid">
@@ -156,61 +152,73 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                                        <li>
-                        <a href="<?php echo url('Index/index'); ?>">系统</a>
-                    </li>
-                                        <li class="active">数据库</li>
-                                        </ul>
+                        <li>
+                            <a href="<?php echo url('Index/index'); ?>">系统</a>
+                        </li>
+                        <li class="active">
+                            <a href="<?php echo url('AuthGroup/lst'); ?>">菜单列表</a>
+                        </li>
+                    </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
 
                 <!-- Page Body -->
                 <div class="page-body">
-
-<button type="button" tooltip="添加系统配置" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('backup'); ?>'"> <i class="fa fa-plus"></i> 添加备份
+                    
+<button type="button" tooltip="添加用户组" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add'); ?>'"> <i class="fa fa-plus"></i> 添加
 </button>
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                <form action="" method="post">
+                    <form action="" method="post"> 
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
-                                <th class="text-center">序号</th>
-                                <th class="text-center">备份名称</th>
-                                <th class="text-center">备份时间</th>
-                                <th class="text-center">备份大小</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">排序</th>
+                                <th class="text-center">中文名称</th>
+                                <th class="text-center">英文名称</th>
+                                <th class="text-center">状态</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
-                                <td align="center" style="width: 10%;"><?php echo $key; ?></td>
-                                <td align="left" style="width: 30%;"><?php echo $vo['name']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['time']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['size']; ?></td>
-                                <td align="center" style="width: 20%;">
-                                    <a href="<?php echo url('dowonload',['name'=>$vo['name']]); ?>" class="btn btn-success btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 下载
+                                <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
+                                <td align="center" style="width: 10%;">
+                                    <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
+                                </td>
+                                <td align="left" style="width: 20%;"><?php echo $vo['cnname']; ?></td>
+                                <td align="center" style="width: 20%;"><?php echo $vo['enname']; ?></td>
+                                <td align="center" style="width: 10%;">
+                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>!$vo['status'])),['显示','隐藏']); ?>
+                                </td>
+                               <td align="center" style="width: 15%;">
+                                    <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="<?php echo url('restore',['name'=>$vo['name']],''); ?>" class="btn btn-primary btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 还原
-                                    </a>
-                                    <a href="<?php echo url('del',['name'=>$vo['name']],''); ?>" class="btn btn-danger btn-sm shiny">
+                                    <a href="#" onClick="warning('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
                             </tr>
-                        <?php endforeach; endif; else: echo "" ;endif; ?> 
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                            <tr>
+                                <td></td>
+                                <td style="text-align: center;">
+                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
+                                </td>
+                                <td colspan="5"></td>
+                            </tr>
                         </tbody>
                     </table>
-                     </form>
+                </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">
-
+                    <?php echo $categorys->render(); ?>
                 </div>
             </div>
         </div>
@@ -229,16 +237,9 @@
     <script src="__ADMIN__/style/jquery.js"></script>
     <!--Beyond Scripts-->
     <script src="__ADMIN__/style/beyond.js"></script>
-
-<script>
-    function handle(tp,name=''){
-        if (tp){
-            $.post("<?php echo url('index'); ?>",{tp:tp,name:name},function(response){
-                alert(response);
-                window.location.reload();
-            }); 
-        }
-    }
-</script>
+    
+    <script type="text/javascript">
+            
+    </script>
 
 </body></html>
