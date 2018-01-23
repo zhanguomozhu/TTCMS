@@ -8,7 +8,7 @@ class Admin extends Base
 	//多对多关联角色表
 	public function authGroup()
     {
-        return $this->belongsToMany('AuthGroup','auth_group_access','group_id');
+        return $this->belongsToMany('AuthGroup','auth_group_access','group_id')->field('id,title');
     }
 
 

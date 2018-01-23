@@ -51,9 +51,10 @@ class Index extends Base
 		//开发者细信息
 		$data['developer'] = obj_to_arr(model('Conf')->field('cnname,value')->where('conf_cate_id',6)->select());
 
+		//管理员信息
+		$admin = obj_to_arr(model('Admin')->getAdmin(session('admin_info.id')));
 
-
-		return $this->fetch('',['data'=>$data]);
+		return $this->fetch('',['data'=>$data,'admin'=>$admin]);
 	}
 
 	/**

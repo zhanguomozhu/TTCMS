@@ -146,16 +146,6 @@ class Base extends Controller
     }
 
 
-    /**
-     *  获取管理员信息
-     */
-    public function getAdminInfo(){
-        $res = model('Admin')->find(session('admin_info.id'));
-        return $res;
-    }
-
-
-
 
 	/**
 	 * api返回数据json

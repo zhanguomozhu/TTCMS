@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html";i:1516600447;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516602966;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html";i:1516600447;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -46,29 +46,15 @@
                 <i class="collapse-icon fa fa-bars"></i>
             </div>
             <!-- /Sidebar Collapse -->
-            <div style="height: 45px;text-align: center;line-height: 45px;width: 70%;float: left;margin: 0 50px;border: 1px solid red;">
-                <div style="width: 50%;border: 1px solid red;float: left;">
-                    <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
-                    <script>
-                        tpwidget("init", {
-                            "flavor": "slim",
-                            "location": "WX4FBXXFKE4F",
-                            "geolocation": "enabled",
-                            "language": "zh-chs",
-                            "unit": "c",
-                            "theme": "chameleon",
-                            "container": "tp-weather-widget",
-                            "bubble": "disabled",
-                            "alarmType": "badge",
-                            "color": "#FFFFFF",
-                            "uid": "U9EC08A15F",
-                            "hash": "039da28f5581f4bcb5c799fb4cdfb673"
-                        });
-                   console.log( tpwidget("show"));
-                </script>
+
+            <div style="height: 45px;line-height: 45px;width: 70%;float: left;margin: 0 50px;">
+                <!-- 天气信息 -->
+                <div style="float: left;color: #fff;margin: 0 50px;">
+                    <?php echo $weather['city']; ?>  <?php echo $weather['weather']; ?>  <?php echo $weather['temp']; ?>°
                 </div>
+
                 <!-- 农历日期 -->
-                <div style="width: 50%;float: left;color: #fff;">
+                <div style="float: left;color: #fff;margin: 0 50px;">
                      <?php echo $nongli; ?>
                 </div>
             
@@ -76,39 +62,42 @@
              <!-- 登录开始-->
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
-                    <ul class="account-area">
-                        <li>
-                                
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile">
-                                    <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
-                                </div>
-                                <section>
-                                    <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/loginout'); ?>">
-                                            退出登录
-                                        </a>
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
-                                            修改密码
-                                        </a>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                    </ul>
+                    
+                   <ul class="account-area">
+                       <li>
+                               
+                           <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                               <div class="avatar" title="View your public profile">
+                                   <img src="/<?php echo \think\Session::get('admin_info.avatar'); ?>">
+                               </div>
+                               <section>
+                                   <h2><span class="profile"><span><?php echo \think\Session::get('admin_info.username'); ?></span></span></h2>
+                               </section>
+                           </a>
+
+                           <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                           退出登录
+                                       </a>
+                               </li>
+                               <li class="dropdown-footer">
+                                   <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
+                                           修改密码
+                                       </a>
+                               </li>
+                           </ul>
+
+                       </li>
+                   </ul>
                 </div>
             </div>
            <!-- 登录结束-->
         </div>
     </div>
 </div>
+
+
 	<!-- /头部 -->
 	
 	<div class="main-container container-fluid">

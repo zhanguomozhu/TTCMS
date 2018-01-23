@@ -44,9 +44,14 @@ class Category extends Base
 			return;
 		}
 
-		//分类列表
-		$cates = $this->model->getList(0,'sort');
-		return $this->fetch('',['cates'=>$cates]);
+		//栏目列表
+		$categorys = $this->model->getlist();
+		//模型列表
+		$models = model('Model')->getList();
+		return $this->fetch('',[
+			'categorys'=>$categorys,
+			'models'   =>$models,
+		]);
 	}
 
 
@@ -95,7 +100,7 @@ class Category extends Base
 	public function edit_status()
 	{
 		 if(request()->isGet()){
-            if($this->model->setStatus()){
+            if($this->model->setStatus('is_menu')){
                 $this->redirect($_SERVER['HTTP_REFERER']);
             }else{
                 $this->error('修改失败');

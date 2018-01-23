@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>添加模型</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- 头部 -->
+	{include file="public/top"}
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+            {include file="public/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('Index/index')}">系统</a>
+                    </li>
+                                        <li>
+                        <a href="{:url('lst')}">模型列表</a>
+                    </li>
+                    <li class="active">添加模型</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">添加模型</span>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main ">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" id="myTab9">
+                            <li class="active">
+                                <a data-toggle="tab" href="#jiben">
+                                    基本设置
+                                </a>
+                            </li>
+
+                            <li class="tab-red">
+                                <a data-toggle="tab" href="#fields">
+                                    字段设置
+                                </a>
+                            </li>
+                        </ul>
+                    
+                        <div class="tab-content">
+                            <!-- 基本选项 -->
+                            <div id="jiben" class="tab-pane active">
+
+                               <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">模型名称</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入模型名称" name="name"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">模型表名</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入模型表名,必须由英文、数字、下划线组成" name="tablename"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">首页模板</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入首页模板名称" name="index_template"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">列表页模板</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入列表页模板名称" name="list_template"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">详情页模板</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入详情页模板名称" name="show_template"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-success">保存信息</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- 模板设置 -->
+                            <div id="fields" class="tab-pane">
+                                
+                                    <!-- 字段配置表 -->
+                                    <div class="well with-header with-footer">
+                                        <div class="header bg-darkorange">
+                                            模型字段配置
+                                        </div>
+                                        <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
+                                        <table class="table table-hover table-striped table-bordered">
+                                            <thead class="bordered-darkorange">
+                                                <tr>
+                                                    <th style="text-align: center;">表单提示文字</th>
+                                                    <th style="text-align: center;">数据字段名</th>
+                                                    <th style="text-align: center;">数据类型</th>
+                                                    <th style="text-align: center;">表单类型</th>
+                                                    <th style="text-align: center;">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">
+                                                        <a href="" class="btn btn-primary btn-sm shiny">
+                                                            <i class="fa fa-edit"></i> 编辑
+                                                        </a>
+                                                        <a href="#" onClick="warning('确实要删除吗', '')" class="btn btn-darkorange btn-sm shiny">
+                                                            <i class="fa fa-trash-o"></i> 删除
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </form>
+                                    </div>
+                                  
+                                
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__ADMIN__/style/jquery_002.js"></script>
+    <script src="__ADMIN__/style/bootstrap.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__ADMIN__/style/beyond.js"></script>
+    
+
+
+</body></html>

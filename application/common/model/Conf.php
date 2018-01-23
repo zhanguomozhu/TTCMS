@@ -17,6 +17,8 @@ class Conf extends Base
 	public function getConfList(){
 		return $this->with('confCate')->paginate('',false,['query' => request()->param()]);
 	}
+
+	
 	/**
 	 * 添加
 	 * @return [type] [description]

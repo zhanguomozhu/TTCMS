@@ -68,13 +68,13 @@ class Base extends Model
      * 修改状态
      * @return [type] [description]
      */
-    public function setStatus()
+    public function setStatus($status='status')
     {
          if(request()->isGet()){
             //数据库字段 网页字段转换，过滤参数
             $param = [
                 'id'     => 'id',
-                'status' => 'status',
+                $status  => $status,
             ];
             $data = $this->buildParam($param);
             //提交数据

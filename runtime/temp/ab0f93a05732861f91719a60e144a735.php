@@ -1,8 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1516610854;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1516685723;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
-    <title>菜单列表</title>
+    <title>栏目列表</title>
 
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -156,7 +156,7 @@
                             <a href="<?php echo url('Index/index'); ?>">系统</a>
                         </li>
                         <li class="active">
-                            <a href="<?php echo url('AuthGroup/lst'); ?>">菜单列表</a>
+                            <a href="<?php echo url('lst'); ?>">栏目列表</a>
                         </li>
                     </ul>
                 </div>
@@ -178,9 +178,9 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">排序</th>
-                                <th class="text-center">中文名称</th>
-                                <th class="text-center">英文名称</th>
-                                <th class="text-center">状态</th>
+                                <th class="text-center">栏目名称</th>
+                                <th class="text-center">所属模型</th>
+                                <th class="text-center">是否显示</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
@@ -191,10 +191,10 @@
                                 <td align="center" style="width: 10%;">
                                     <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
                                 </td>
-                                <td align="left" style="width: 20%;"><?php echo $vo['cnname']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['enname']; ?></td>
+                                <td align="left" style="width: 20%;"><?php echo $vo['title']; ?></td>
+                                <td align="center" style="width: 20%;"><?php echo $vo['model_id']; ?></td>
                                 <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>!$vo['status'])),['显示','隐藏']); ?>
+                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'is_menu'=>!$vo['is_menu'])),['显示','隐藏']); ?>
                                 </td>
                                <td align="center" style="width: 15%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">

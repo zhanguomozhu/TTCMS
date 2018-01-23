@@ -1,8 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\sqlbak\index.html";i:1516521512;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\add.html";i:1516697300;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
-    <title>数据库备份下载</title>
+    <title>添加模型</title>
 
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,6 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-
     
 </head>
 <body>
@@ -149,63 +148,139 @@
                                         <li>
                         <a href="<?php echo url('Index/index'); ?>">系统</a>
                     </li>
-                                        <li class="active">数据库</li>
-                                        </ul>
+                                        <li>
+                        <a href="<?php echo url('lst'); ?>">模型列表</a>
+                    </li>
+                    <li class="active">添加模型</li>
+                    </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
 
                 <!-- Page Body -->
                 <div class="page-body">
-
-<button type="button" tooltip="添加系统配置" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('backup'); ?>'"> <i class="fa fa-plus"></i> 添加备份
-</button>
+                    
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
-            <div class="widget-body">
-                <div class="flip-scroll">
-                <form action="" method="post">
-                    <table class="table table-bordered table-hover">
-                        <thead class="">
-                            <tr>
-                                <th class="text-center">序号</th>
-                                <th class="text-center">备份名称</th>
-                                <th class="text-center">备份时间</th>
-                                <th class="text-center">备份大小</th>
-                                <th class="text-center">操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                            <tr>
-                                <td align="center" style="width: 10%;"><?php echo $key; ?></td>
-                                <td align="left" style="width: 30%;"><?php echo $vo['name']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['time']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['size']; ?></td>
-                                <td align="center" style="width: 20%;">
-                                    <a href="<?php echo url('dowonload',['name'=>$vo['name']]); ?>" class="btn btn-success btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 下载
-                                    </a>
-                                    <a href="<?php echo url('restore',['name'=>$vo['name']],''); ?>" class="btn btn-primary btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 还原
-                                    </a>
-                                    <a href="<?php echo url('del',['name'=>$vo['name']],''); ?>" class="btn btn-danger btn-sm shiny">
-                                        <i class="fa fa-trash-o"></i> 删除
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; endif; else: echo "" ;endif; ?> 
-                        </tbody>
-                    </table>
-                     </form>
-                </div>
-                <div style="padding-top:10px;text-align: center;">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">添加模型</span>
+            </div>
 
+            <div class="widget-body">
+                <div class="widget-main ">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" id="myTab9">
+                            <li class="active">
+                                <a data-toggle="tab" href="#jiben">
+                                    基本设置
+                                </a>
+                            </li>
+
+                            <li class="tab-red">
+                                <a data-toggle="tab" href="#fields">
+                                    字段设置
+                                </a>
+                            </li>
+                        </ul>
+                    
+                        <div class="tab-content">
+                            <!-- 基本选项 -->
+                            <div id="jiben" class="tab-pane active">
+
+                               <form class="form-horizontal" role="form" action="<?php echo url('add'); ?>" method="post">
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">模型名称</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入模型名称" name="name"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">模型表名</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入模型表名,必须由英文、数字、下划线组成" name="tablename"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">首页模板</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入首页模板名称" name="index_template"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">列表页模板</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入列表页模板名称" name="list_template"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label no-padding-right">详情页模板</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="请输入详情页模板名称" name="show_template"  type="text">
+                                        </div>
+                                        <p class="help-block col-sm-4 red">* 必填</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-success">保存信息</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- 模板设置 -->
+                            <div id="fields" class="tab-pane">
+                                
+                                    <!-- 字段配置表 -->
+                                    <div class="well with-header with-footer">
+                                        <div class="header bg-darkorange">
+                                            模型字段配置
+                                        </div>
+                                        <form class="form-horizontal" role="form" action="<?php echo url('add'); ?>" method="post">
+                                        <table class="table table-hover table-striped table-bordered">
+                                            <thead class="bordered-darkorange">
+                                                <tr>
+                                                    <th style="text-align: center;">表单提示文字</th>
+                                                    <th style="text-align: center;">数据字段名</th>
+                                                    <th style="text-align: center;">数据类型</th>
+                                                    <th style="text-align: center;">表单类型</th>
+                                                    <th style="text-align: center;">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">xxxx</td>
+                                                    <td align="center" style="width: 20%;">
+                                                        <a href="" class="btn btn-primary btn-sm shiny">
+                                                            <i class="fa fa-edit"></i> 编辑
+                                                        </a>
+                                                        <a href="#" onClick="warning('确实要删除吗', '')" class="btn btn-darkorange btn-sm shiny">
+                                                            <i class="fa fa-trash-o"></i> 删除
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </form>
+                                    </div>
+                                  
+                                
+                            </div>
+                            
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        <div>
     </div>
 </div>
+
                 </div>
                 <!-- /Page Body -->
             </div>
@@ -216,19 +291,9 @@
 	    <!--Basic Scripts-->
     <script src="__ADMIN__/style/jquery_002.js"></script>
     <script src="__ADMIN__/style/bootstrap.js"></script>
-    <script src="__ADMIN__/style/jquery.js"></script>
     <!--Beyond Scripts-->
     <script src="__ADMIN__/style/beyond.js"></script>
+    
 
-<script>
-    function handle(tp,name=''){
-        if (tp){
-            $.post("<?php echo url('index'); ?>",{tp:tp,name:name},function(response){
-                alert(response);
-                window.location.reload();
-            }); 
-        }
-    }
-</script>
 
 </body></html>

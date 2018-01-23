@@ -1,8 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\index\index.html";i:1516609172;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\index\index.html";i:1516694839;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
-    <title>ThinkPHP功能集锦</title>
+    <title>TTCMS</title>
 
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -158,7 +158,7 @@
                                         <div class="header-fullname"><?php echo \think\Session::get('admin_info.username'); ?></div>
                                         <a href="#" class="btn btn-palegreen btn-sm  btn-follow">
                                             <i class="fa fa-check"></i>
-                                            超级管理员
+                                            <?php echo $admin['auth_group'][0]['title']; ?>
                                         </a>
                                         <div class="header-information">
                                             我是个人简介
