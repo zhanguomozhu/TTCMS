@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html";i:1516600447;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html";i:1517902367;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -187,7 +187,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if(is_array($admins) || $admins instanceof \think\Collection || $admins instanceof \think\Paginator): $i = 0; $__LIST__ = $admins;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($admins) || $admins instanceof \think\Collection || $admins instanceof \think\Paginator): $i = 0; $__LIST__ = $admins;if( count($__LIST__)==0 ) : echo "暂时没有数据" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
                                 <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
                                 <td align="center" style="width: 10%;"><?php echo $vo['username']; ?></td>
@@ -196,10 +196,10 @@
                                 <td align="center" style="width: 10%;"><?php echo date("Y-m-d H:i:s",$vo['logintime']); ?></td>
                                 <td align="center" style="width: 10%;"><?php echo $vo['loginip']; ?></td>
                                 <td align="center" style="width: 5%;"><?php echo $vo['num']; ?></td>
-                                <td align="center" style="width: 10%;"><?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>!$vo['status'])),['锁定','开启']); ?></td>
+                                <td align="center" style="width: 10%;"><?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['锁定','开启']); ?></td>
                                 <td align="center" style="width: 10%;">
                                     <?php if(is_array($vo['auth_group']) || $vo['auth_group'] instanceof \think\Collection || $vo['auth_group'] instanceof \think\Paginator): $i = 0; $__LIST__ = $vo['auth_group'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
-                                        <?php echo levelStyle(1,[$v->title]); endforeach; endif; else: echo "" ;endif; ?>
+                                        <?php echo levelStyle($key+1,[$key=>$v['title']]); endforeach; endif; else: echo "" ;endif; ?>
                                 </td>
                                 <td align="center" style="width: 20%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
@@ -210,7 +210,7 @@
                                     </a>
                                 </td>
                             </tr>
-                        <?php endforeach; endif; else: echo "" ;endif; ?>                         
+                        <?php endforeach; endif; else: echo "暂时没有数据" ;endif; ?>                         
                         </tbody>
                     </table>
                 </div>

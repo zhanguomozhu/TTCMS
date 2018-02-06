@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\edit.html";i:1516264407;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\edit.html";i:1516865350;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
         <meta charset="utf-8">
@@ -170,7 +170,7 @@
                     <form class="form-horizontal" role="form" action="" method="post">
                         <input type="hidden" name="id" value="<?php echo $admin['id']; ?>" id="id">
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label no-padding-right">所属用户组</label>
+                            <label class="col-sm-2 control-label no-padding-right">所属用户组</label>
                             <div class="col-sm-4">
                                 <select name="group_id">
                                 <?php if($groups): if(is_array($groups) || $groups instanceof \think\Collection || $groups instanceof \think\Paginator): $i = 0; $__LIST__ = $groups;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
@@ -184,7 +184,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label no-padding-right">名称</label>
+                            <label class="col-sm-2 control-label no-padding-right">名称</label>
                             <div class="col-sm-4">
                                 <input class="form-control"  placeholder="" name="username" required="" type="text" value="<?php echo $admin['username']; ?>" onchange="check()">
                             </div>
@@ -192,30 +192,30 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="group_id" class="col-sm-2 control-label no-padding-right">旧密码</label>
+                            <label class="col-sm-2 control-label no-padding-right">旧密码</label>
                             <div class="col-sm-4">
                               <input class="form-control"  placeholder="" name="old" required="" type="password"  value="" onchange="check()">
                             </div>
                             <p class="help-block col-sm-4 red old">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label for="group_id" class="col-sm-2 control-label no-padding-right">新密码</label>
+                            <label class="col-sm-2 control-label no-padding-right">新密码</label>
                             <div class="col-sm-4">
                               <input class="form-control"  placeholder="" name="password" required="" type="password"  value="" onchange="check()">
                             </div>
                             <p class="help-block col-sm-4 red password">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label for="group_id" class="col-sm-2 control-label no-padding-right">手机号</label>
+                            <label class="col-sm-2 control-label no-padding-right">手机号</label>
                             <div class="col-sm-4">
                               <input class="form-control" placeholder="" name="phone" required="" type="text"  value="<?php echo $admin['phone']; ?>" onchange="check()">
                             </div>
                             <p class="help-block col-sm-4 red phone">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label for="group_id" class="col-sm-2 control-label no-padding-right">头像</label>
+                            <label class="col-sm-2 control-label no-padding-right">头像</label>
                             <div class="col-sm-4">
-                                    <?php echo uploadImg(['avatar',$admin['avatar']]); ?>
+                                    <?php echo uploadImg(['avatar',$admin['avatar']],$admin['avatar']); ?>
                             </div>
                         </div>
                  

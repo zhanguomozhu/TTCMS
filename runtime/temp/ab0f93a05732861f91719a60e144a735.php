@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1516685723;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1517907705;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -185,16 +185,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "暂时没有数据" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
                                 <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
                                 <td align="center" style="width: 10%;">
                                     <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
                                 </td>
-                                <td align="left" style="width: 20%;"><?php echo $vo['title']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['model_id']; ?></td>
+                                <td align="left" style="width: 20%;"><a href="<?php echo url('admin/article/lst',array('category_id'=>$vo['id'])); ?>"><?php echo $vo['name']; ?></a></td>
+                                <td align="center" style="width: 20%;"><?php echo levelStyle($vo['model']['id'],[$vo['model']['id']-1=>$vo['model']['name']]); ?></td>
                                 <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'is_menu'=>!$vo['is_menu'])),['显示','隐藏']); ?>
+                                <?php echo statusStyle($vo['is_menu'],url('edit_status',array('id'=>$vo['id'],'is_menu'=>$vo['is_menu'])),['显示','隐藏']); ?>
                                 </td>
                                <td align="center" style="width: 15%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
@@ -205,7 +205,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                            <?php endforeach; endif; else: echo "暂时没有数据" ;endif; ?>
                             <tr>
                                 <td></td>
                                 <td style="text-align: center;">
@@ -218,7 +218,7 @@
                 </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">
-                    <?php echo $categorys->render(); ?>
+                    
                 </div>
             </div>
         </div>

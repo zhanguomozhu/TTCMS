@@ -23,7 +23,15 @@ return [
         'ext'=>'jpg,png,gif'
     ],
 
-
+    //上传广告图片配置
+    //上传广告图片文件路径
+    'upload_ads_path'=>'uploads/ads',
+    //存储上传图片文件的数据表名称
+    //'upload_images_table'=>'mk_common_images',
+    'upload_ads_validate'=>[
+        'size'=>1024*1024*5,
+        'ext'=>'jpg,png,gif'
+    ],
 
 
 

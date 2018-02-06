@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:73:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_rule\lst.html";i:1516525062;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:73:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_rule\lst.html";i:1517902262;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -206,7 +206,7 @@
                                 <?php endif; ?>
                                 </td>
                                 <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>!$vo['status'])),['显示','隐藏']); ?>
+                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['显示','隐藏']); ?>
                                 </td>
                                <td align="center" style="width: 15%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:74:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_group\lst.html";i:1516342600;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:74:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_group\lst.html";i:1517902254;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -188,7 +188,7 @@
                                 <td align="center" style="width: 10%;"><?php echo $vo['id']; ?></td>
                                 <td align="center" style="width: 20%;"><?php echo $vo['title']; ?></td>
                                 <td align="center" style="width: 20%;">
-                                    <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>!$vo['status']))); ?>
+                                    <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status']))); ?>
                                 </td>
                                <td align="center" style="width: 20%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">

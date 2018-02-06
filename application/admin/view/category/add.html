@@ -77,147 +77,143 @@
                                 </a>
                             </li>
                         </ul>
-                    
-                        <div class="tab-content">
-                            <!-- 基本选项 -->
-                            <div id="jiben" class="tab-pane active">
 
-                                <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">选择模型</label>
-                                        <div class="col-sm-6">
-                                            <select name='model_id'>
-                                                <option value="0">请选择</option>
-                                                {volist name="models" id='vo'}
-                                                <option value="{$vo.id}">{$vo.name}</option>
-                                                {/volist}
-                                            </select>
+                        <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
+                            <div class="tab-content">
+                                <!-- 基本选项 -->
+                                <div id="jiben" class="tab-pane active">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">选择模型</label>
+                                            <div class="col-sm-6">
+                                                <select name='model_id' onchange="setTemplate(this)">
+                                                    <option value="0">请选择</option>
+                                                    {volist name="models" id='vo'}
+                                                    <option value="{$vo.id}">{$vo.name}</option>
+                                                    {/volist}
+                                                </select>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">上级栏目</label>
-                                        <div class="col-sm-6">
-                                            <select name='parent_id'>
-                                                <option value="0">顶级栏目</option>
-                                                {volist name="categorys" id='vo'}
-                                                <option value="{$vo.id}">{$vo.name}</option>
-                                                {/volist}
-                                            </select>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">上级栏目</label>
+                                            <div class="col-sm-6">
+                                                <select name='pid'>
+                                                    <option value="0">一级栏目</option>
+                                                    {volist name="categorys" id='vo'}
+                                                    <option value="{$vo.id}">{$vo.name}</option>
+                                                    {/volist}
+                                                </select>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">栏目名称</label>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" placeholder="请输入栏目名称" name="name"  type="text">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目名称</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入栏目名称" name="name"  type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                     <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">栏目图片</label>
-                                        <div class="col-sm-6">
-                                            {:uploadImg(['image_url'])}
+                                         <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目图片</label>
+                                            <div class="col-sm-6">
+                                                {:uploadImg(['image_url'])}
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                     <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">栏目描述</label>
-                                        <div class="col-sm-6">
-                                            <textarea class="form-control" rows="6" name="description" placeholder="请输入栏目描述"></textarea>
+                                         <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目描述</label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="6" name="description" placeholder="请输入栏目描述"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">排序</label>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" name="sort"  type="text" value="50">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">排序</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="sort"  type="text" value="50">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">是否导航显示</label>
-                                        <div class="col-sm-6">
-                                            <label style="margin-top:5px; ">
-                                                <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_menu" value="1">
-                                                <span class="text"></span>
-                                            </label>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">是否导航显示</label>
+                                            <div class="col-sm-6">
+                                                <label style="margin-top:5px; ">
+                                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_menu" value="1">
+                                                    <span class="text"></span>
+                                                </label>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">是否导航封面</label>
-                                        <div class="col-sm-6">
-                                            <label style="margin-top:5px; ">
-                                                <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_cover" value="1">
-                                                <span class="text"></span>
-                                            </label>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">是否导航封面</label>
+                                            <div class="col-sm-6">
+                                                <label style="margin-top:5px; ">
+                                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_cover" value="1">
+                                                    <span class="text"></span>
+                                                </label>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-success">保存信息</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">保存信息</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- 模板设置 -->
-                            <div id="moban" class="tab-pane">
-                                <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">封面页模版</label>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" placeholder="请输入封面页模版" name="index_template"  type="text">
+                                </div>
+                                <!-- 模板设置 -->
+                                <div id="moban" class="tab-pane">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">封面页模版</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入封面页模版" name="index_template"  type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">列表页模版</label>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" placeholder="请输入列表页模版" name="list_template"  type="text">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">列表页模版</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入列表页模版" name="list_template"  type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">详情页模版</label>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" placeholder="请输入详情页模版" name="show_template"  type="text">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">详情页模版</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入详情页模版" name="show_template"  type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-success">保存信息</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">保存信息</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- SEO设置 -->
-                            <div id="seo" class="tab-pane">
-                                <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">栏目页面关键词</label>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" placeholder="请输入栏目页面关键词" name="meta_keywords"  type="text">
+                                </div>
+                                <!-- SEO设置 -->
+                                <div id="seo" class="tab-pane">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目页面关键词</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入栏目页面关键词,关键字中间用半角逗号隔开" name="meta_keywords"  type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label no-padding-right">栏目页面描述</label>
-                                        <div class="col-sm-6">
-                                            <textarea class="form-control" rows="6" placeholder="请输入栏目页面描述" name="meta_description"></textarea>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目页面描述</label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="6" placeholder="请输入栏目页面描述,针对搜索引擎设置的网页描述" name="meta_description"></textarea>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
-                                        <p class="help-block col-sm-4 red">* 必填</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-success">保存信息</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">保存信息</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
+                                    
+                                </div>
 
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -238,6 +234,35 @@
     <!--Beyond Scripts-->
     <script src="__ADMIN__/style/beyond.js"></script>
     
+    <script type="text/javascript">
+        var models = <?php echo json_encode($models);?>;
+        function setTemplate(obj){
+            //模型id
+            var key = $(obj).val();
+            var tem = null;
+            for(var i in models){
+                if(models[i].id == key){
+                    tem = models[i];
+                }
+            }
+            //console.log(tem)
+            //模板赋值
+            $("input[name=index_template]").val(tem.index_template);
+            $("input[name=list_template]").val(tem.list_template);
+            $("input[name=show_template]").val(tem.show_template);
+        }
 
+
+        //seo关键词
+        $("input[name=name]").change(function(){
+            $("input[name=meta_keywords]").val($(this).val());
+        })
+        
+        //seo页面描述
+        $("textarea[name=description]").change(function(){
+            $("textarea[name=meta_description]").val($(this).val());
+        })
+        
+    </script>
 
 </body></html>

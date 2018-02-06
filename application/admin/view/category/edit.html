@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>编辑栏目</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- 头部 -->
+	{include file="public/top"}
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+            {include file="public/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('Index/index')}">系统</a>
+                    </li>
+                                        <li>
+                        <a href="{:url('lst')}">栏目列表</a>
+                    </li>
+                    <li class="active">编辑栏目</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">编辑栏目</span>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main ">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" id="myTab9">
+                            <li class="active">
+                                <a data-toggle="tab" href="#jiben">
+                                    基本选项
+                                </a>
+                            </li>
+
+                            <li class="tab-red">
+                                <a data-toggle="tab" href="#moban">
+                                    模板设置
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a data-toggle="tab" href="#seo">
+                                    SEO设置
+                                </a>
+                            </li>
+                        </ul>
+
+                        <form class="form-horizontal" role="form" action="{:url('edit')}" method="post">
+                            <input type="hidden" name="id" value="{$model.id}">
+                            <div class="tab-content">
+                                <!-- 基本选项 -->
+                                <div id="jiben" class="tab-pane active">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">选择模型</label>
+                                            <div class="col-sm-6">
+                                                <select name='model_id' onchange="setTemplate(this)">
+                                                    <option value="0">请选择</option>
+                                                    {volist name="models" id='vo'}
+                                                    <option value="{$vo.id}" {if condition="$model.model_id eq $vo.id"}selected{/if}>{$vo.name}</option>
+                                                    {/volist}
+                                                </select>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">上级栏目</label>
+                                            <div class="col-sm-6">
+                                                <select name='pid'>
+                                                    <option value="0">一级栏目</option>
+                                                        {volist name="categorys" id='vo'}
+                                                            {if condition="!in_array($vo['id'],$sons)" }
+                                                                <option value="{$vo.id}" {if condition="$model.pid eq $vo.id"}selected{/if}>{$vo.name}</option>
+                                                            {/if}
+                                                        {/volist}
+                                                    
+                                                </select>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目名称</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入栏目名称" name="name"  type="text" value="{$model.name}">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目图片</label>
+                                            <div class="col-sm-6">
+                                                {:uploadImg(['image_url',$model['image_url']],$model['image_url'])}
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目描述</label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="6" name="description" placeholder="请输入栏目描述" >{$model.description}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">排序</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="sort"  type="text" value="{$model.sort}">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">是否导航显示</label>
+                                            <div class="col-sm-6">
+                                                <label style="margin-top:5px; ">
+                                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" name="is_menu" {if condition="$model.is_menu eq 1"}checked{/if} value="1">
+                                                    <span class="text"></span>
+                                                </label>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">是否导航封面</label>
+                                            <div class="col-sm-6">
+                                                <label style="margin-top:5px; ">
+                                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" name="is_cover" {if condition="$model.is_cover eq 1"}checked{/if} value="1">
+                                                    <span class="text"></span>
+                                                </label>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">保存信息</button>
+                                            </div>
+                                        </div>
+                                </div>
+                                <!-- 模板设置 -->
+                                <div id="moban" class="tab-pane">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">封面页模版</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入封面页模版" name="index_template"  type="text" value="{$model.index_template}">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">列表页模版</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入列表页模版" name="list_template"  type="text" value="{$model.list_template}">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">详情页模版</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入详情页模版" name="show_template"  type="text" value="{$model.show_template}">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">保存信息</button>
+                                            </div>
+                                        </div>
+                                </div>
+                                <!-- SEO设置 -->
+                                <div id="seo" class="tab-pane">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目页面关键词</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="请输入栏目页面关键词,关键字中间用半角逗号隔开" name="meta_keywords"  type="text" value="{$model.meta_keywords}">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label no-padding-right">栏目页面描述</label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="6" placeholder="请输入栏目页面描述,针对搜索引擎设置的网页描述" name="meta_description">{$model.meta_description}</textarea>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">保存信息</button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__ADMIN__/style/jquery_002.js"></script>
+    <script src="__ADMIN__/style/bootstrap.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__ADMIN__/style/beyond.js"></script>
+    
+    <script type="text/javascript">
+        var models = <?php echo json_encode($models);?>;
+        function setTemplate(obj){
+            //模型id
+            var key = $(obj).val();
+            var tem = null;
+            for(var i in models){
+                if(models[i].id == key){
+                    tem = models[i];
+                }
+            }
+            //console.log(tem)
+            //模板赋值
+            $("input[name=index_template]").val(tem.index_template);
+            $("input[name=list_template]").val(tem.list_template);
+            $("input[name=show_template]").val(tem.show_template);
+        }
+
+
+        //seo关键词
+        $("input[name=name]").change(function(){
+            $("input[name=meta_keywords]").val($(this).val());
+        })
+        
+        //seo页面描述
+        $("textarea[name=description]").change(function(){
+            $("textarea[name=meta_description]").val($(this).val());
+        })
+        
+    </script>
+
+</body></html>

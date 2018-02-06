@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\lst.html";i:1516697296;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\lst.html";i:1517880060;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -204,13 +204,6 @@
                                 </td>
                             </tr>
                             <?php endforeach; endif; else: echo "" ;endif; ?>
-                            <tr>
-                                <td></td>
-                                <td style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
-                                </td>
-                                <td colspan="5"></td>
-                            </tr>
                         </tbody>
                     </table>
                 </form>

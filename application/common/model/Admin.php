@@ -8,7 +8,7 @@ class Admin extends Base
 	//多对多关联角色表
 	public function authGroup()
     {
-        return $this->belongsToMany('AuthGroup','auth_group_access','group_id')->field('id,title');
+        return $this->belongsToMany('AuthGroup','auth_group_access','group_id','admin_id');
     }
 
 
@@ -26,11 +26,12 @@ class Admin extends Base
 	public function getAdmin($id=null)
 	{
 		if($id){
-			$admins = self::with('authGroup')->field('id,username,phone,avatar')->find($id);
+			$admins = $this->with('authGroup')->field('id,username,phone,avatar')->find($id);
 			return obj_to_arr($admins);
 		}else{
 			//获取管理员列表
-			$admins = self::with('authGroup')->field('password,token,token_exptime,session_id',true)->paginate('',false,['query' => request()->param()]);
+			$admins = $this->with('authGroup')->field('id,username,phone,avatar,logintime,loginip,num,status')->paginate('',false,['query' => request()->param()]);
+			//dump(obj_to_arr($admins));die;
 			return $admins;
 		}
 	}
@@ -97,11 +98,10 @@ class Admin extends Base
 		$avatar = $this->field('avatar')->find($data['id']);
 		if($this->allowField(true)->save($data,['id'=>$data['id']])){
 			//编辑角色管理员表，group——access
-			if($this->authGroupAccess()->where('admin_id',$data['id'])->update(['group_id'=>$data['group_id']])){
-				//若果新图片喝酒图片不一致，删除旧图片
-				if($data['avatar'] != $avatar['avatar']){
-					@unlink($avatar['avatar']);
-				}
+			$this->authGroupAccess()->where('admin_id',$data['id'])->update(['group_id'=>$data['group_id']]);
+			//如果新图片和旧图片不一致，删除旧图片
+			if($data['avatar'] != $avatar['avatar']){
+				@unlink($avatar['avatar']);
 			}
 			return true;
 		}else{

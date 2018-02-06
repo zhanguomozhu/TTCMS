@@ -5,31 +5,31 @@ class Category extends Validate
 {
 	//验证规则
 	protected  $rule = [
-		'pid'            => 'require',
-        'tablename'       => 'require|zsx',
-        'index_template'  => 'require|zsx',
-        'list_template'   => 'require|zsx',
-        'show_template'   => 'require|zsx',
+		'pid'            => 'require|number',
+        'model_id'       => 'require|number',
+        'name'           => 'require',
+        'is_menu'        => 'number',
+        'sort'           => 'number',
+        'is_cover'       => 'number',
 	];
 	//验证提示
 	 protected $message  =   [
-        'name.require'          => '模型名称必须填写',
-        'tablename.require'     => '模型表名必须填写',
-        'tablename.require'     => '模型表名必须填写',
-        'index_template.require'=> '首页模板必须填写',
-        'list_template.require' => '列表页模板必须填写',
-        'show_template.require' => '详情页模板必须填写',
-        'tablename.zsx'         => '模型表名必须是字母数字下划线',
-        'index_template.zsx'    => '首页模板必须是字母数字下划线',
-        'list_template.zsx'     => '列表页模板必须是字母数字下划线',
-        'show_template.zsx'     => '详情页模板必须是字母数字下划线',
+        'pid.require'       => '父级id必须填写',
+        'model_id.require'  => '模型id必须填写',
+        'name.require'      => '栏目名称必须填写',
+        'pid.number'        => '父级id必须是数字',
+        'model_id.number'   => '模型id必须是数字',
+        'is_menu.number'    => '是否展示必须是数字',
+        'sort.number'       => '排序必须是数字',
+        'is_cover.number'   => '是否有封面必须是数字',
     ];
     //验证场景
     protected $scene = [
-        'add'     =>  ['name','tablename','index_template','list_template','show_template'],//添加
-        'edit'    =>  ['name','tablename','index_template','list_template','show_template'],//修改
+        'add'     =>  ['pid','model_id','name','is_menu','sort','is_cover'],//添加
+        'edit'    =>  ['pid','model_id','name','is_menu','sort','is_cover'],//修改
     ];
 
 
 
 }
+

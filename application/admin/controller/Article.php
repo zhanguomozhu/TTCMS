@@ -1,19 +1,9 @@
-<?php
+<?php 
 namespace app\admin\controller;
 use app\base\controller\Base;
-/**
-* 文章控制器
-*/
+
 class Article extends Base
 {
-	private $category_model;//栏目模型
-
-	//初始化
-	public function _initialize()
-	{
-		parent::_initialize();
-		$this->category_model = model('Category');
-	}
 
 	/**
 	 * 列表
@@ -31,8 +21,15 @@ class Article extends Base
 			return;
 		}
 
-		//文章列表
-		$articles = $this->model->getList(0,'sort');
+		//列表
+		$articles = $this->model->with('category')->order('sort')->paginate('',false,['query' => request()->param()]);
+
+		//如果从栏目页条转过来
+		$category_id = input('category_id') ? input('category_id') : '';
+		if($category_id){
+			$articles = $this->model->with('category')->where('category_id',$category_id)->order('sort')->paginate('',false,['query' => request()->param()]);
+		}
+		
 		return $this->fetch('',['articles'=>$articles]);
 	}
 
@@ -43,17 +40,23 @@ class Article extends Base
 	public function add()
 	{
 		if(request()->isPost()){
-			if($this->model->add()){
-				$this->success('添加成功','lst');
+			if(request()->isAjax() && !empty($_FILES)){
+				$this->douploadimg();
+				return;
 			}else{
-				$this->error('添加失败');
+				if($this->model->add()){
+					$this->success('添加成功','lst');
+				}else{
+					$this->error('添加失败');
+				}
+				return;
 			}
-			return;
 		}
 
-		//分类列表
-		$cates = $this->model->getList(0,'sort');
-		return $this->fetch('',['cates'=>$cates]);
+		//栏目列表
+		$categorys = model('Category')->getCate();
+
+		return $this->fetch('',['categorys'=>$categorys]);
 	}
 
 
@@ -72,10 +75,13 @@ class Article extends Base
 			return;
 		}
 
-		//根据id获取配置
-		$cates = $this->model->find($id);
+		//栏目列表
+		$categorys = model('Category')->getCate();
 
-		return $this->fetch('',['cates'=>$cates]);
+		//根据id获取配置
+		$article = $this->model->find($id);
+
+		return $this->fetch('',['article'=>$article,'categorys'=>$categorys]);
 	}
 
 
@@ -84,9 +90,9 @@ class Article extends Base
 	 * 删除
 	 * @return [type] [description]
 	 */
-	public function del($id)
+	public function del()
 	{
-		if($this->model->destroy($id)){
+		if($this->model->del()){
 			$this->success('删除成功','lst');
 		}else{
 			$this->error('修改失败');

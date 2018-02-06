@@ -197,6 +197,29 @@ class Base extends Controller
 
 
 
+    /**
+     * webupload上传图片
+     * @return [type] [description]
+     */
+    public function ajax_upload($type="images"){
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file(key($_FILES));
+        //执行上传操作
+        $info = $file->validate(config("uploadfile.upload_".$type."_validate"))->move(ROOT_PATH . 'public' . DS .config("uploadfile.upload_".$type."_path"));
+        if($info){
+            //获取文件名
+            $path = config("uploadfile.upload_".$type."_path").'/'.$info->getSaveName();
+            if($path){
+                echo json_encode(['data'=>$path]);
+            }else{
+                echo json_encode(['error_info'=>$file->getError()]);
+            }
+        }else{
+            echo json_encode(['error_info'=>$file->getError()]);
+        }
+    }
+
+
 
     // /**
     //  * 上传图片,返回json

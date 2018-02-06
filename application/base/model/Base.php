@@ -68,17 +68,16 @@ class Base extends Model
      * 修改状态
      * @return [type] [description]
      */
-    public function setStatus($status='status')
+    public function setStatus()
     {
          if(request()->isGet()){
-            //数据库字段 网页字段转换，过滤参数
-            $param = [
-                'id'     => 'id',
-                $status  => $status,
-            ];
-            $data = $this->buildParam($param);
+            
+            $data = request()->param();
+            $id = $data['id'];//获取id
+            unset($data['id']);//删除id
+            $data[key($data)] = $data[key($data)] ? 0 : 1;
             //提交数据
-            if($this->save($data,['id'=>$data['id']])){
+            if($this->allowField(true)->save($data,['id'=>$id])){
                 return true;
             }else{
                return false;

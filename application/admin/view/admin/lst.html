@@ -76,7 +76,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {volist name="admins" id="vo"}
+                        {volist name="admins" id="vo" empty="暂时没有数据"}
                             <tr>
                                 <td align="center" style="width: 5%;">{$vo.id}</td>
                                 <td align="center" style="width: 10%;">{$vo.username}</td>
@@ -85,10 +85,10 @@
                                 <td align="center" style="width: 10%;">{$vo.logintime|date="Y-m-d H:i:s",###}</td>
                                 <td align="center" style="width: 10%;">{$vo.loginip}</td>
                                 <td align="center" style="width: 5%;">{$vo.num}</td>
-                                <td align="center" style="width: 10%;">{$vo.status|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'status'=>!$vo['status'])),['锁定','开启']}</td>
+                                <td align="center" style="width: 10%;">{$vo.status|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'status'=>###)),['锁定','开启']}</td>
                                 <td align="center" style="width: 10%;">
                                     {volist name="$vo['auth_group']" id="v"}
-                                        {:levelStyle(1,[$v->title])}
+                                        {:levelStyle($key+1,[$key=>$v.title])}
                                     {/volist}
                                 </td>
                                 <td align="center" style="width: 20%;">

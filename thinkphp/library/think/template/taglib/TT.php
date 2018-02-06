@@ -60,7 +60,7 @@ class TT extends TagLib
         //实例化编辑器
         $parseStr .= "<!-- 实例化编辑器 -->
                     <script>
-                        var um = UE.getEditor('container',{
+                        var um = UE.getEditor('{$id}',{
                             initialFrameWidth:'{$width}',
                             initialFrameHeight:'{$height}',
                             toolbars: [[
@@ -109,7 +109,7 @@ class TT extends TagLib
         $parseStr .= "<!-- 实例化编辑器 -->
                     <script>
                         $(function(){
-                            window.um = UM.getEditor('container',{
+                            window.um = UM.getEditor('{$id}',{
                                 initialFrameWidth:'{$width}',
                                 initialFrameHeight:'{$height}',
                             });
@@ -167,6 +167,7 @@ class TT extends TagLib
 </div>
 
 <!-- 引入webupload.js主文件 -->
+<script src="{$src}/jquery-1.11.1.js"></script>
 <script src="{$src}/webuploader.min.js"></script>
 
 <!-- 引入webupload.js配置 -->
@@ -471,7 +472,8 @@ jQuery(function() {
     }
 
     uploader.onUploadSuccess=function(file ,response){
-        \$('#'+file.id +' .bjy-filename').val(response.data.data)
+        console.log(response);
+        \$('#'+file.id +' .bjy-filename').val(response.data)
     }
     uploader.onUploadError=function(file){
         alert(fileError);
