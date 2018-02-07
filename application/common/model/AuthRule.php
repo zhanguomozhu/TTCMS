@@ -136,4 +136,35 @@ class AuthRule extends Base
         }
 	}
 
+
+
+    /**
+     * 获取角色权限列表
+     * @return [type] [description]
+     */
+    public function getRuleTree()
+    {
+        $rules = obj_to_arr($this->order('sort')->select());
+        return $this->sortTree($rules);
+    }
+    /**
+     * tree排序
+     * @param  [type]  $data [description]
+     * @param  integer $pid  [description]
+     * @return [type]        [description]
+     */
+    public function sortTree($data,$pid=0)
+    {
+        static $arr = array();
+        foreach ($data as $k => $v) {
+            if($v['pid'] == $pid){
+                $v['dataid'] = implode('-',getParents($data,$v['id'],'id',0,true));
+                $arr[] = $v;
+                $this->sortTree($data,$v['id']);
+            }
+        }
+        return $arr;
+    }
+
+
 }

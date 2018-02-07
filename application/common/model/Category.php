@@ -16,7 +16,7 @@ class Category extends Base
 
 
 	/**
-	 * 权限列表
+	 * 列表
 	 * @return [type] [description]
 	 */
 	public function getCate(){

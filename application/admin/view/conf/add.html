@@ -58,7 +58,7 @@
                 <div id="horizontal-form">
                     <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">配置分类</label>
+                            <label class="col-sm-1 control-label no-padding-right">配置分类</label>
                             <div class="col-sm-6">
                                 <select name='conf_cate_id'>
                                     <option value="0">请选择</option>
@@ -70,21 +70,21 @@
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">英文名称</label>
+                            <label class="col-sm-1 control-label no-padding-right">英文名称</label>
                             <div class="col-sm-6">
                                 <input class="form-control" placeholder="" name="enname"  type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">中文名称</label>
+                            <label class="col-sm-1 control-label no-padding-right">中文名称</label>
                             <div class="col-sm-6">
                                 <input class="form-control" placeholder="" name="cnname"  type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">配置类型</label>
+                            <label class="col-sm-1 control-label no-padding-right">配置类型</label>
                             <div class="col-sm-6">
                                 <select name='type'>
                                     <option value="0">请选择</option>
@@ -94,18 +94,20 @@
                                     <option value="4">复选按钮</option>
                                     <option value="5">下拉菜单</option>
                                     <option value="6">上传按钮</option>
+                                    <option value="7">编辑器</option>
+                                    <option value="8">时间</option>
                                 </select>
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">可选值</label>
+                            <label class="col-sm-1 control-label no-padding-right">可选值</label>
                             <div class="col-sm-6">
                                 <textarea class="form-control" rows="6" name="values" placeholder="多个值以（，）分割，如1小时,2小时,3小时，只有单选框，多选框，下拉框可填写"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-offset-1 col-sm-10">
                                 <button type="submit" class="btn btn-success">保存信息</button>
                             </div>
                         </div>

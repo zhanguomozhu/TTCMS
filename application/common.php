@@ -122,7 +122,9 @@ function array_sort($arr,$keys,$type='asc'){
         $new_array[$k] = $arr[$k];  
     }  
     return $new_array;  
-} 
+}
+
+
 /**
  * 时间日期格式化为多少天前
  * @param sting|intval $date_time

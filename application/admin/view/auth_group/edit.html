@@ -61,14 +61,14 @@
                      <input type="hidden" name="id" value="{$res.id}">
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">角色名称</label>
+                            <label class="col-sm-1 control-label no-padding-right">角色名称</label>
                             <div class="col-sm-6">
                                 <input class="form-control" placeholder="" name="title" required="" type="text" value="{$res.title}">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">角色状态</label>
+                            <label class="col-sm-1 control-label no-padding-right">角色状态</label>
                             <div class="col-sm-6">
                                 <label style="margin-top:5px;">
                                     <input class="checkbox-slider toggle colored-blue" type="checkbox" {if condition="$res.status eq 1"}checked{/if} name="status" value="1">
@@ -78,7 +78,7 @@
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right">配置权限</label>
+                            <label class="col-sm-1 control-label no-padding-right">配置权限</label>
                             <div class="col-sm-6">
                                 <table class="table table-hover" style="border: 1px solid #ddd;">
                                     <tbody>
@@ -100,8 +100,8 @@
                         </div>
                      
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">保存信息</button>
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-success">保存信息</button>
                             </div>
                         </div>
                     </form>

@@ -53,7 +53,9 @@ class Model extends Base
 		//根据id获取配置
 		$models = $this->model->find($id);
 
-		return $this->fetch('',['model'=>$models]);
+		//字段列表
+		$fields = model("ModelField")->with('model')->where('model_id',$id)->order('sort')->select();
+		return $this->fetch('',['model'=>$models,'fields'=>$fields]);
 	}
 
 

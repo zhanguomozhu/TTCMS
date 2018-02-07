@@ -33,4 +33,7 @@ return [
     
     //不作初始化生成的模块
     'not_model'=>['Base','Common','Index','Sqlbak'],
+
+    //系统模型id
+    'sys_model_ids'=>[1,2,3,4,5],
 ];

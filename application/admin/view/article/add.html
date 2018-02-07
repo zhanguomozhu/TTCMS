@@ -59,12 +59,13 @@
             <div class="widget-body">
                 <div id="horizontal-form">
                     <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
+                        
                          <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">所属栏目</label>
                             <div class="col-sm-6">
                                <select name="category_id">
                                     {volist name="categorys" id='vo'}
-                                    <option value="{$vo.id}">{$vo.name}</option>
+                                    <option value="{$vo.id}" {if condition="$vo.id eq input('category_id')"}selected{/if}>{$vo.name}</option>
                                     {/volist}
                                </select>
                             </div>
@@ -78,6 +79,26 @@
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">是否推荐</label>
+                                <div class="col-sm-6">
+                                    <label style="margin-top:5px; ">
+                                        <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_recommend" value="1">
+                                        <span class="text"></span>
+                                    </label>
+                                </div>
+                                <p class="help-block col-sm-4 red">用于前台推荐调用</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">是否置顶</label>
+                                <div class="col-sm-6">
+                                    <label style="margin-top:5px; ">
+                                        <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_top" value="1">
+                                        <span class="text"></span>
+                                    </label>
+                                </div>
+                                <p class="help-block col-sm-4 red">用于前台置顶调用</p>
+                            </div>
+                        <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">缩略图</label>
                             <div class="col-sm-6">
                                 {:uploadImg(['image_url'])}
@@ -85,72 +106,80 @@
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">是否推荐</label>
-                            <div class="col-sm-6">
-                                <label style="margin-top:5px; ">
-                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_recommend" value="1">
-                                    <span class="text"></span>
-                                </label>
+                                <label class="col-sm-1 control-label no-padding-right">关键词</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" placeholder="" name="keywords" required="" type="text">
+                                </div>
+                                <p class="help-block col-sm-4 red">关键词以英文逗号隔开</p>
                             </div>
-                            <p class="help-block col-sm-4 red">用于前台推荐调用</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">是否置顶</label>
-                            <div class="col-sm-6">
-                                <label style="margin-top:5px; ">
-                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_top" value="1">
-                                    <span class="text"></span>
-                                </label>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">摘要</label>
+                                <div class="col-sm-6">
+                                    <textarea  class="form-control" rows="6" name="description" placeholder=""></textarea>
+                                </div>
+                                <p class="help-block col-sm-4 red">留空时默认截取内容的前250个字符</p>
                             </div>
-                            <p class="help-block col-sm-4 red">用于前台置顶调用</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">关键词</label>
-                            <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="keywords" required="" type="text">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">内容</label>
+                                <div class="col-sm-6">
+                                     <!-- 声明使用 TagLib -->
+                                     {taglib name="TT" /}
+                                     <!-- 在需要使用 标签的地方插入 -->
+                                     {TT:ueditor src="__OTHER__/ueditor" id='content' name="content" width="100%" height="300"/}
+                                </div>
+                                <p class="help-block col-sm-4 red">* 必填</p>
                             </div>
-                            <p class="help-block col-sm-4 red">关键词以英文逗号隔开</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">摘要</label>
-                            <div class="col-sm-6">
-                                <textarea  class="form-control" rows="6" name="description" placeholder=""></textarea>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">添加时间</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" id="create_time" placeholder="{:date('Y-m-d H:i:s')}" value="{:date('Y-m-d H:i:s')}" name="create_time" required="" type="text">
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                                <p class="help-block col-sm-4 red">默认是当前时间</p>
                             </div>
-                            <p class="help-block col-sm-4 red">留空时默认截取内容的前250个字符</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">内容</label>
-                            <div class="col-sm-6">
-                                 <!-- 声明使用 TagLib -->
-                                 {taglib name="TT" /}
-                                 <!-- 在需要使用 标签的地方插入 -->
-                                 {TT:ueditor src="__OTHER__/ueditor" id='content' name="content" width="100%" height="300"/}
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">点击量</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+                                </div>
+                                <p class="help-block col-sm-4 red">请输入数字</p>
                             </div>
-                            <p class="help-block col-sm-4 red">* 必填</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">添加时间</label>
-                            <div class="col-sm-2">
-                                <input class="form-control" id="create_time" placeholder="{:date('Y-m-d H:i:s')}" value="{:date('Y-m-d H:i:s')}" name="create_time" required="" type="text">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">链接地址</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" placeholder="" name="url" required="" type="text">
+                                </div>
+                                <p class="help-block col-sm-4 red">请输入url</p>
                             </div>
-                            <p class="help-block col-sm-4 red">默认是当前时间</p>
-                        </div>
+                        {if condition='isset($model)'}
+                            <input type="hidden" name="model_id" value="{$model}">
+                            {if condition='$model eq 1'}
+                            <!-- 单页模型 -->
+                            {elseif condition='$model eq 2'/}
+                            <!-- 文章模型 -->
+                            {elseif condition='$model eq 3'/}
+                            <!-- 图集模型 -->
+                            {elseif condition='$model eq 4'/}
+                            <!-- 链接模型 -->
+                            {elseif condition='$model eq 5'/}
+                            <!-- 下载模型 -->
+                            {/if}
+                        {/if}
+                        <!-- 附加字段或者不是系统自带模型 -->
+                        {if condition='isset($fields)'}
+                            {volist name='fields' id='vo'}
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label no-padding-right">{$vo.cnname}</label>
+                                    <div class="col-sm-6">
+                                        {$vo.formtype|formStyle=###,$vo}
+                                    </div>
+                                    <p class="help-block col-sm-4 red">{$vo.tips}</p>
+                                </div>
+                            {/volist}
+                        {/if}
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">点击量</label>
-                            <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
-                            </div>
-                            <p class="help-block col-sm-4 red">请输入数字</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">链接地址</label>
-                            <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="url" required="" type="text">
-                            </div>
-                            <p class="help-block col-sm-4 red">请输入url</p>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-offset-1 col-sm-10">
                                 <button type="submit" class="btn btn-success">保存信息</button>
                             </div>
                         </div>

@@ -14,7 +14,7 @@ class Article extends Base
 		//排序
 		if(request()->isPost()){
 			if($this->model->setOrder()){
-				$this->success('排序成功','lst');
+				$this->redirect($_SERVER['HTTP_REFERER']);
 			}else{
 				$this->error('排序失败');
 			}
@@ -27,7 +27,11 @@ class Article extends Base
 		//如果从栏目页条转过来
 		$category_id = input('category_id') ? input('category_id') : '';
 		if($category_id){
-			$articles = $this->model->with('category')->where('category_id',$category_id)->order('sort')->paginate('',false,['query' => request()->param()]);
+			//获取下级id
+			$data  = model('Category')->select();
+			$ids   = getSons($data,$category_id,'id');
+			$ids[] = (int) $category_id;
+			$articles = $this->model->with('category')->where('category_id','in',$ids)->order('sort')->paginate('',false,['query' => request()->param()]);
 		}
 		
 		return $this->fetch('',['articles'=>$articles]);
@@ -55,6 +59,18 @@ class Article extends Base
 
 		//栏目列表
 		$categorys = model('Category')->getCate();
+
+		
+		if(input('category_id')){
+			//查找栏目
+			$category = model('Category')->find(input('category_id'));
+			//字段列表
+			$fields = model('ModelField')->where('model_id',$category['model_id'])->select();
+			$this->assign([
+				'fields'=>$fields,
+				'model' =>$category['model_id'],
+			]);
+		}
 
 		return $this->fetch('',['categorys'=>$categorys]);
 	}

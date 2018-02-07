@@ -17,7 +17,7 @@ class Category extends Base
 		//排序
 		if(request()->isPost()){
 			if($this->model->setOrder()){
-				$this->success('排序成功','lst');
+				$this->redirect($_SERVER['HTTP_REFERER']);
 			}else{
 				$this->error('排序失败');
 			}
@@ -26,7 +26,10 @@ class Category extends Base
 
 		//栏目列表
 		$categorys = $this->model->getCate();
-		return $this->fetch('',['categorys'=>$categorys]);
+		//模型列表
+		$model = model('Model')->column('name');
+
+		return $this->fetch('',['categorys'=>$categorys,'model'=>obj_to_arr($model)]);
 	}
 
 

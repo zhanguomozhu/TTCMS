@@ -88,7 +88,10 @@ class Base extends Model
 
     /**
      * 获取数据列表
-     * @return [type] [description]
+     * @return [where] [搜索条件]
+     * @return [orderField] [排序]
+     * @return [page] [是否分页]
+     * @return [field] [字段]
      */
     public function getList($where=null,$orderField = null,$page=1,$field=null){
         $order = null;

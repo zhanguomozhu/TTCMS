@@ -1,8 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:66:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\ad\add.html";i:1517885191;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\add.html";i:1517985280;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
-    <title>添加广告位</title>
+    <title>添加模型字段</title>
 
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,6 @@
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
     
-
 </head>
 <body>
 	<!-- 头部 -->
@@ -150,9 +149,9 @@
                         <a href="<?php echo url('Index/index'); ?>">系统</a>
                     </li>
                                         <li>
-                        <a href="<?php echo url('lst'); ?>">广告位列表</a>
+                        <a href="<?php echo url('lst',array('model_id'=>input('model_id'))); ?>">模型字段列表</a>
                     </li>
-                    <li class="active">添加广告位</li>
+                    <li class="active">添加模型字段</li>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -164,61 +163,57 @@
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">添加广告位</span>
+                <span class="widget-caption">添加模型字段</span>
             </div>
             <div class="widget-body">
                 <div id="horizontal-form">
                     <form class="form-horizontal" role="form" action="<?php echo url('add'); ?>" method="post">
+                        <input type="hidden" name="model_id" value="<?php echo input('model_id'); ?>">
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">所属栏目</label>
+                            <label class="col-sm-1 control-label no-padding-right">字段名称</label>
                             <div class="col-sm-6">
-                               <select name="category_id">
-                                    <option value="0">全站通用</option>
-                                    <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                    <option value="<?php echo $vo['id']; ?>"><?php echo $vo['name']; ?></option>
-                                    <?php endforeach; endif; else: echo "" ;endif; ?>
-                               </select>
+                                <input class="form-control" placeholder="只能用英文字母或数字" name="enname"  type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">广告类型</label>
+                            <label class="col-sm-1 control-label no-padding-right">表单名称</label>
                             <div class="col-sm-6">
-                               <select name="type">
-                                   <option value="单图">单图</option>
-                                   <option value="多图">多图</option>
-                               </select>
+                                <input class="form-control" placeholder="发布内容时显示的提示文字" name="cnname"  type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">名称</label>
+                            <label class="col-sm-1 control-label no-padding-right">表单类型</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="name" type="text">
+                                <select name='formtype'>
+                                    <option value="1">单行文本</option>
+                                    <option value="2">多行文本</option>
+                                    <option value="3">单选按钮</option>
+                                    <option value="4">复选按钮</option>
+                                    <option value="5">下拉菜单</option>
+                                    <option value="6">上传按钮</option>
+                                    <option value="7">编辑器</option>
+                                    <option value="8">时间</option>
+                                </select>
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">排序</label>
+                         <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">表单提示</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="sort"  type="text" value="50">
+                                <input class="form-control" placeholder="" name="tips"  type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
-                        
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">显示状态</label>
+                         <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">可选值</label>
                             <div class="col-sm-6">
-                                <label style="margin-top:5px; ">
-                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="status" value="1">
-                                    <span class="text"></span>
-                                </label>
+                                <textarea class="form-control" rows="6" name="values" placeholder="多个值以（，）分割，如1小时,2小时,3小时，只有单选框，多选框，下拉框可填写"></textarea>
                             </div>
-                            <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
-                        
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-offset-1 col-sm-10">
                                 <button type="submit" class="btn btn-success">保存信息</button>
                             </div>
                         </div>
@@ -241,6 +236,7 @@
     <script src="__ADMIN__/style/bootstrap.js"></script>
     <!--Beyond Scripts-->
     <script src="__ADMIN__/style/beyond.js"></script>
+    
 
-</body>
-</html>
+
+</body></html>

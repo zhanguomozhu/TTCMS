@@ -16,7 +16,7 @@ class Featured extends Base
 		//排序
 		if(request()->isPost()){
 			if($this->model->setOrder()){
-				$this->success('排序成功','lst');
+				$this->redirect($_SERVER['HTTP_REFERER']);
 			}else{
 				$this->error('排序失败');
 			}

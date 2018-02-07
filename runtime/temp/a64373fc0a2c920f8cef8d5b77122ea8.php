@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\add.html";i:1517906516;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\add.html";i:1517994328;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
@@ -170,12 +170,13 @@
             <div class="widget-body">
                 <div id="horizontal-form">
                     <form class="form-horizontal" role="form" action="<?php echo url('add'); ?>" method="post">
+                        
                          <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">所属栏目</label>
                             <div class="col-sm-6">
                                <select name="category_id">
                                     <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                    <option value="<?php echo $vo['id']; ?>"><?php echo $vo['name']; ?></option>
+                                    <option value="<?php echo $vo['id']; ?>" <?php if($vo['id'] == input('category_id')): ?>selected<?php endif; ?>><?php echo $vo['name']; ?></option>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
                                </select>
                             </div>
@@ -189,6 +190,26 @@
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">是否推荐</label>
+                                <div class="col-sm-6">
+                                    <label style="margin-top:5px; ">
+                                        <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_recommend" value="1">
+                                        <span class="text"></span>
+                                    </label>
+                                </div>
+                                <p class="help-block col-sm-4 red">用于前台推荐调用</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">是否置顶</label>
+                                <div class="col-sm-6">
+                                    <label style="margin-top:5px; ">
+                                        <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_top" value="1">
+                                        <span class="text"></span>
+                                    </label>
+                                </div>
+                                <p class="help-block col-sm-4 red">用于前台置顶调用</p>
+                            </div>
+                        <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">缩略图</label>
                             <div class="col-sm-6">
                                 <?php echo uploadImg(['image_url']); ?>
@@ -196,46 +217,26 @@
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">是否推荐</label>
-                            <div class="col-sm-6">
-                                <label style="margin-top:5px; ">
-                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_recommend" value="1">
-                                    <span class="text"></span>
-                                </label>
+                                <label class="col-sm-1 control-label no-padding-right">关键词</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" placeholder="" name="keywords" required="" type="text">
+                                </div>
+                                <p class="help-block col-sm-4 red">关键词以英文逗号隔开</p>
                             </div>
-                            <p class="help-block col-sm-4 red">用于前台推荐调用</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">是否置顶</label>
-                            <div class="col-sm-6">
-                                <label style="margin-top:5px; ">
-                                    <input class="checkbox-slider toggle colored-blue" type="checkbox" checked="checked" name="is_top" value="1">
-                                    <span class="text"></span>
-                                </label>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">摘要</label>
+                                <div class="col-sm-6">
+                                    <textarea  class="form-control" rows="6" name="description" placeholder=""></textarea>
+                                </div>
+                                <p class="help-block col-sm-4 red">留空时默认截取内容的前250个字符</p>
                             </div>
-                            <p class="help-block col-sm-4 red">用于前台置顶调用</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">关键词</label>
-                            <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="keywords" required="" type="text">
-                            </div>
-                            <p class="help-block col-sm-4 red">关键词以英文逗号隔开</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">摘要</label>
-                            <div class="col-sm-6">
-                                <textarea  class="form-control" rows="6" name="description" placeholder=""></textarea>
-                            </div>
-                            <p class="help-block col-sm-4 red">留空时默认截取内容的前250个字符</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">内容</label>
-                            <div class="col-sm-6">
-                                 <!-- 声明使用 TagLib -->
-                                 
-                                 <!-- 在需要使用 标签的地方插入 -->
-                                 <!-- 配置文件 --><script type='text/javascript' src='__OTHER__/ueditor/ueditor.config.js'></script><!-- 编辑器源码文件 --><script type='text/javascript' src='__OTHER__/ueditor/ueditor.all.min.js'></script><!-- 字体文件 --><script type='text/javascript' charset='utf-8' src='__OTHER__/ueditor/lang/zh-cn/zh-cn.js'></script><!-- 加载编辑器的容器 --><script id='content' name='content' type='text/plain'></script><!-- 实例化编辑器 -->
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">内容</label>
+                                <div class="col-sm-6">
+                                     <!-- 声明使用 TagLib -->
+                                     
+                                     <!-- 在需要使用 标签的地方插入 -->
+                                     <!-- 配置文件 --><script type='text/javascript' src='__OTHER__/ueditor/ueditor.config.js'></script><!-- 编辑器源码文件 --><script type='text/javascript' src='__OTHER__/ueditor/ueditor.all.min.js'></script><!-- 字体文件 --><script type='text/javascript' charset='utf-8' src='__OTHER__/ueditor/lang/zh-cn/zh-cn.js'></script><!-- 加载编辑器的容器 --><script id='content' name='content' type='text/plain'></script><!-- 实例化编辑器 -->
                     <script>
                         var um = UE.getEditor('content',{
                             initialFrameWidth:'100%',
@@ -257,32 +258,57 @@
                             catchRemoteImageEnable:true
                         });
                     </script>
+                                </div>
+                                <p class="help-block col-sm-4 red">* 必填</p>
                             </div>
-                            <p class="help-block col-sm-4 red">* 必填</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">添加时间</label>
-                            <div class="col-sm-2">
-                                <input class="form-control" id="create_time" placeholder="<?php echo date('Y-m-d H:i:s'); ?>" value="<?php echo date('Y-m-d H:i:s'); ?>" name="create_time" required="" type="text">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">添加时间</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" id="create_time" placeholder="<?php echo date('Y-m-d H:i:s'); ?>" value="<?php echo date('Y-m-d H:i:s'); ?>" name="create_time" required="" type="text">
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                                <p class="help-block col-sm-4 red">默认是当前时间</p>
                             </div>
-                            <p class="help-block col-sm-4 red">默认是当前时间</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">点击量</label>
-                            <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">点击量</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+                                </div>
+                                <p class="help-block col-sm-4 red">请输入数字</p>
                             </div>
-                            <p class="help-block col-sm-4 red">请输入数字</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">链接地址</label>
-                            <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="url" required="" type="text">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right">链接地址</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" placeholder="" name="url" required="" type="text">
+                                </div>
+                                <p class="help-block col-sm-4 red">请输入url</p>
                             </div>
-                            <p class="help-block col-sm-4 red">请输入url</p>
-                        </div>
+                        <?php if(isset($model)): ?>
+                            <input type="hidden" name="model_id" value="<?php echo $model; ?>">
+                            <?php if($model == 1): ?>
+                            <!-- 单页模型 -->
+                            <?php elseif($model == 2): ?>
+                            <!-- 文章模型 -->
+                            <?php elseif($model == 3): ?>
+                            <!-- 图集模型 -->
+                            <?php elseif($model == 4): ?>
+                            <!-- 链接模型 -->
+                            <?php elseif($model == 5): ?>
+                            <!-- 下载模型 -->
+                            <?php endif; endif; ?>
+                        <!-- 附加字段或者不是系统自带模型 -->
+                        <?php if(isset($fields)): if(is_array($fields) || $fields instanceof \think\Collection || $fields instanceof \think\Paginator): $i = 0; $__LIST__ = $fields;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label no-padding-right"><?php echo $vo['cnname']; ?></label>
+                                    <div class="col-sm-6">
+                                        <?php echo formStyle($vo['formtype'],$vo); ?>
+                                    </div>
+                                    <p class="help-block col-sm-4 red"><?php echo $vo['tips']; ?></p>
+                                </div>
+                            <?php endforeach; endif; else: echo "" ;endif; endif; ?>
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-offset-1 col-sm-10">
                                 <button type="submit" class="btn btn-success">保存信息</button>
                             </div>
                         </div>

@@ -155,6 +155,16 @@ function formStyle($type,$data=null){
 }
 
 
+
+
+
+
+
+
+
+
+
+
 /**
  * 上传图片
  * @param  [type] $data [description]
