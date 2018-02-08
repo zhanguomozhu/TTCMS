@@ -5,8 +5,6 @@ use app\base\controller\Base;
 class Ad extends Base
 {
 
-
-
 	/**
 	 * 列表
 	 * @return [type] [description]
@@ -22,7 +20,6 @@ class Ad extends Base
 			}
 			return;
 		}
-
 		//列表
 		$ads = $this->model->with('category')->order('sort')->paginate('',false,['query' => request()->param()]);
 		return $this->fetch('',['ads'=>$ads]);

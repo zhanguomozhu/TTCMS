@@ -27,7 +27,7 @@ class Article extends Base
 		//如果从栏目页条转过来
 		$category_id = input('category_id') ? input('category_id') : '';
 		if($category_id){
-			//获取下级id
+			//获取下级栏目的文章
 			$data  = model('Category')->select();
 			$ids   = getSons($data,$category_id,'id');
 			$ids[] = (int) $category_id;
@@ -71,7 +71,6 @@ class Article extends Base
 				'model' =>$category['model_id'],
 			]);
 		}
-
 		return $this->fetch('',['categorys'=>$categorys]);
 	}
 

@@ -41,6 +41,9 @@ class Base extends Controller
 
         //天气信息
         $this->getWeather();
+
+        //获取title,postion信息
+        $this->getTitle();
     }
 
 
@@ -93,16 +96,51 @@ class Base extends Controller
                         );
         if(session('admin_info.id') != 1){              //检测是用户是否登录
              //检测是否超级管理员
-            $admin = model('Admin')->field('admin')->find(session('admin_info.id'));
-            if(!$admin['admin']){
+            //$admin = model('Admin')->field('admin')->find(session('admin_info.id'));
+            //if(!$admin['admin']){
                 if(!in_array($name,$not_check)){                //过滤权限检测
                     if(!$auth->check($name,session('admin_info.id'))){//检测权限
                         $this->error('没有权限','Index/index');
                     }
                 }
+            //}
+        }
+    }
+
+    /**
+     * 获取title,postion信息
+     * @return [type] [description]
+     */
+    public function getTitle(){
+        $request    = Request::instance();                  //初始化request
+        $module = $request->module();                       //模块
+        $controller = $request->controller();               //控制器
+        $method     = $request->action();                   //方法
+        $name       = $module.'/'.$controller.'/'.$method;  //拼接权限名称
+        //获取权限
+        $rules = db('auth_rule')->field('id,pid,title,name')->select();
+        foreach ($rules as $key => $value) {
+            if(strtolower($name) == strtolower($value['name'])){
+                //标题
+                $this->assign(['title'=>$value['title']]);
+                //当前位置
+                $par = getParents($rules,$value['id'],['id','title','name'],0,1);
+                $postion = '';
+                foreach ($par as $k => $v) {
+                    $postion .= '<li>';
+                    if($k == 0){//最后一个不加链接
+                        $postion .= $v['title'];
+                    }else{
+                        $postion .= '<a href="'.url($v['name']).'">'.$v['title'].'</a>';
+                    }
+                    $postion .= '</li>';
+                }
+                $this->assign(['postion'=>$postion]);
             }
         }
     }
+
+
 
 
     /**

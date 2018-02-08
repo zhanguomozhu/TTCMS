@@ -1,13 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1517989714;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1518069836;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>栏目列表</title>
-
+<html>
+<head>
+	<meta charset="utf-8">
+    <title><?php echo $title; ?></title>
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <!--Basic Styles-->
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
     <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
@@ -18,6 +19,7 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
     <style type="text/css">
         tr td{
             vertical-align: middle!important;
@@ -152,12 +154,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                        <li>
-                            <a href="<?php echo url('Index/index'); ?>">系统</a>
-                        </li>
-                        <li class="active">
-                            <a href="<?php echo url('lst'); ?>">栏目列表</a>
-                        </li>
+                       <?php echo $postion; ?>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -165,7 +162,7 @@
                 <!-- Page Body -->
                 <div class="page-body">
                     
-<button type="button" tooltip="添加用户组" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add'); ?>'"> <i class="fa fa-plus"></i> 添加
+<button type="button" tooltip="添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add'); ?>'"> <i class="fa fa-plus"></i> 添加
 </button>
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -231,15 +228,12 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <script src="__ADMIN__/style/jquery.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
-    
-    <script type="text/javascript">
-            
-    </script>
 
-</body></html>
+
+</body>
+<!--Basic Scripts-->
+<script src="__ADMIN__/style/jquery_002.js"></script>
+<script src="__ADMIN__/style/bootstrap.js"></script>
+<!--Beyond Scripts-->
+<script src="__ADMIN__/style/beyond.js"></script>
+</html>

@@ -1,24 +1,6 @@
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>添加模型字段</title>
-
-    <meta name="description" content="Dashboard">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--Basic Styles-->
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
-
-    <!--Beyond styles-->
-    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
-    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
-    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
-    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    
-</head>
+<html>
+{include file="public/head"}
 <body>
 	<!-- 头部 -->
 	{include file="public/top"}
@@ -34,13 +16,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                                        <li>
-                        <a href="{:url('Index/index')}">系统</a>
-                    </li>
-                                        <li>
-                        <a href="{:url('lst',array('model_id'=>input('model_id')))}">模型字段列表</a>
-                    </li>
-                    <li class="active">添加模型字段</li>
+                        {$postion}
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -52,7 +28,7 @@
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">添加模型字段</span>
+                <span class="widget-caption">{$title}</span>
             </div>
             <div class="widget-body">
                 <div id="horizontal-form">
@@ -85,6 +61,7 @@
                                     <option value="6" {if condition="$field.formtype eq 6"}selected="selected"{/if}>上传按钮</option>
                                     <option value="7" {if condition="$field.formtype eq 7"}selected="selected"{/if}>编辑器</option>
                                     <option value="8" {if condition="$field.formtype eq 8"}selected="selected"{/if}>时间</option>
+                                    <option value="8" {if condition="$field.formtype eq 9"}selected="selected"{/if}>上传插件</option>
                                 </select>
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
@@ -121,12 +98,8 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
-    
 
 
-</body></html>
+</body>
+{include file="public/foot"}
+</html>

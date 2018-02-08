@@ -1,13 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:73:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_rule\lst.html";i:1517902262;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:76:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\edit.html";i:1518075533;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>菜单列表</title>
-
+<html>
+<head>
+	<meta charset="utf-8">
+    <title><?php echo $title; ?></title>
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <!--Basic Styles-->
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
     <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
@@ -18,6 +19,7 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
     <style type="text/css">
         tr td{
             vertical-align: middle!important;
@@ -29,7 +31,7 @@
 </head>
 <body>
 	<!-- 头部 -->
-        <div class="navbar">
+	    <div class="navbar">
     <div class="navbar-inner">
         <div class="navbar-container">
             <!-- Navbar Barnd -->
@@ -152,12 +154,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                        <li>
-                            <a href="<?php echo url('Index/index'); ?>">系统</a>
-                        </li>
-                        <li class="active">
-                            <a href="<?php echo url('AuthGroup/lst'); ?>">菜单列表</a>
-                        </li>
+                        <?php echo $postion; ?>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -165,76 +162,73 @@
                 <!-- Page Body -->
                 <div class="page-body">
                     
-<button type="button" tooltip="添加用户组" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add'); ?>'"> <i class="fa fa-plus"></i> 添加
-</button>
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption"><?php echo $title; ?></span>
+            </div>
             <div class="widget-body">
-                <div class="flip-scroll">
-                    <form action="" method="post"> 
-                    <table class="table table-bordered table-hover">
-                        <thead class="">
-                            <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">排序</th>
-                                <th class="text-center">权限名称</th>
-                                <th class="text-center">控制器/方法</th>
-                                <th class="text-center">菜单图标</th>
-                                <th class="text-center">级别</th>
-                                <th class="text-center">是否显示</th>
-                                <th class="text-center">操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php if(is_array($rules) || $rules instanceof \think\Collection || $rules instanceof \think\Paginator): $i = 0; $__LIST__ = $rules;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                            <tr>
-                                <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
-                                <td align="center" style="width: 10%;">
-                                    <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
-                                </td>
-                                <td align="left" style="width: 20%;"><?php echo $vo['title']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['name']; ?></td>
-                                <td align="center" style="width: 10%;"><i class="fa <?php echo $vo['icon']; ?>"></i></td>
-                                <td align="center" style="width: 10%;">
-                                <?php if($vo['level'] == 0): ?>
-                                <span class="label label-danger">项目</span>
-                                <?php elseif($vo['level'] == 1): ?>
-                                <span class="label label-primary">模块</span>
-                                <?php elseif($vo['level'] == 2): ?>
-                                <span class="label label-success">操作</span>
-                                <?php endif; ?>
-                                </td>
-                                <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['显示','隐藏']); ?>
-                                </td>
-                               <td align="center" style="width: 15%;">
-                                    <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 编辑
-                                    </a>
-                                    <a href="#" onClick="warning('确实要删除吗?会删除子权限！', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
-                                        <i class="fa fa-trash-o"></i> 删除
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                            <tr>
-                                <td></td>
-                                <td style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
-                                </td>
-                                <td colspan="6"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
-                </div>
-                <div style="padding-top:10px;text-align: center;">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" action="<?php echo url('edit'); ?>" method="post">
+                        <input type="hidden" name="id" value="<?php echo $field['id']; ?>">
+                        <input type="hidden" name="model_id" value="<?php echo $field['model_id']; ?>">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">字段名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" placeholder="只能用英文字母或数字" name="enname"  type="text" value="<?php echo $field['enname']; ?>">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">表单名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" placeholder="发布内容时显示的提示文字" name="cnname"  type="text" value="<?php echo $field['cnname']; ?>">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">表单类型</label>
+                            <div class="col-sm-6">
+                                <select name='formtype'>
+                                    <option value="1" <?php if($field['formtype'] == 1): ?>selected="selected"<?php endif; ?>>单行文本</option>
+                                    <option value="2" <?php if($field['formtype'] == 2): ?>selected="selected"<?php endif; ?>>多行文本</option>
+                                    <option value="3" <?php if($field['formtype'] == 3): ?>selected="selected"<?php endif; ?>>单选按钮</option>
+                                    <option value="4" <?php if($field['formtype'] == 4): ?>selected="selected"<?php endif; ?>>复选按钮</option>
+                                    <option value="5" <?php if($field['formtype'] == 5): ?>selected="selected"<?php endif; ?>>下拉菜单</option>
+                                    <option value="6" <?php if($field['formtype'] == 6): ?>selected="selected"<?php endif; ?>>上传按钮</option>
+                                    <option value="7" <?php if($field['formtype'] == 7): ?>selected="selected"<?php endif; ?>>编辑器</option>
+                                    <option value="8" <?php if($field['formtype'] == 8): ?>selected="selected"<?php endif; ?>>时间</option>
+                                    <option value="8" <?php if($field['formtype'] == 9): ?>selected="selected"<?php endif; ?>>上传插件</option>
+                                </select>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">表单提示</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" placeholder="" name="tips"  type="text" value="<?php echo $field['tips']; ?>">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">可选值</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" rows="6" name="values" placeholder="多个值以（，）分割，如1小时,2小时,3小时，只有单选框，多选框，下拉框可填写"><?php echo $field['values']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-success">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
                 </div>
                 <!-- /Page Body -->
             </div>
@@ -242,14 +236,12 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
-    
-    <script type="text/javascript">
-            
-    </script>
 
-</body></html>
+
+</body>
+<!--Basic Scripts-->
+<script src="__ADMIN__/style/jquery_002.js"></script>
+<script src="__ADMIN__/style/bootstrap.js"></script>
+<!--Beyond Scripts-->
+<script src="__ADMIN__/style/beyond.js"></script>
+</html>

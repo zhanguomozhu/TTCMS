@@ -16,6 +16,10 @@ class ModelField extends Base
 	 */
 	public function add(){
 		$data = input('post.');
+		//中文逗号变英文
+		if($data['values']){
+			$data['values'] = str_replace('，',',',$data['values']);
+		}
 		return $this->allowField(true)->save($data);
 	}
 
@@ -26,18 +30,11 @@ class ModelField extends Base
 	 */
 	public function edit(){
 		$data = input('post.');
+		//中文逗号变英文
+		if($data['values']){
+			$data['values'] = str_replace('，',',',$data['values']);
+		}
 		return $this->allowField(true)->save($data,['id'=>$data['id']]);
 	}
 
-
-	/**
-	 * 检测是否是系统模型
-	 */
-	public function checkModel($model_id){
-		if(in_array($model_id,config('sys_model_ids'))){
-			return true;
-		}else{
-			return false;
-		}
-	}
 }

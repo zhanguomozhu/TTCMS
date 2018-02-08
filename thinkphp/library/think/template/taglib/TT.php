@@ -33,7 +33,10 @@ class TT extends TagLib
         'umeditor'=>array('attr'=>'src,id,name,content,width,height','close'=>0),
 
         //webuploader异步上传<webuploader src='__PUBLIC__/Other/webuploader' name="image" url="{:U('Admin/Product/ajax_upload')}" filenum="5" max="2"/>
-        'webuploader'=>array('attr'=>'src,name,url,filenum,max','close'=>0),
+        'webuploader'=>array('attr'=>'src,name,url,filenum,max,click_txt','close'=>0),
+
+        //laydate 时间插件
+        'laydate'=>array('attr'=>'src,id,name,value','close'=>0),
     ];
 
 
@@ -83,9 +86,49 @@ class TT extends TagLib
         return $parseStr;
     }
 
+    /**
+    * 引入layui时间插件
+    * @param string $tag  name:表单name content：编辑器初始化后 默认内容
+    */
+    public function tagLaydate($tag){
+        $src     = isset($tag['src'])     ? $tag['src']     : '__OTHER__/layui';
+        $id      = isset($tag['id'])      ? $tag['id']      : '';
+        $name    = isset($tag['name'])    ? $tag['name']    : '';
+        $value   = isset($tag['value'])   ? $tag['value']   : '';
+
+
+        $parseStr = '';
+
+        //加载静态资源
+        $parseStr .= "<!-- 样式 --><link rel='stylesheet' href='{$src}/css/layui.css'>";
+        $parseStr .= "<!-- 样式 --><link rel='stylesheet' href='{$src}/css/modules/laydate/default/laydate.css'>";
+        $parseStr .= "<!-- js文件 --><script type='text/javascript' src='{$src}/layui.js'></script>";
+        //加载插件
+        $parseStr .= "<input class='form-control' id='{$id}' placeholder='{$id}' name='{$name}' value='{$value}'  type='text' />";
+        //实例化插件
+        $parseStr .= "<!-- 实例化编辑器 -->
+                    <script>
+                    $(function(){
+                        layui.use('laydate', function(){
+                            var laydate = layui.laydate;
+                              
+                            //创建时间
+                            laydate.render({
+                                elem: '#{$id}'
+                                ,type: 'datetime'
+                                ,theme: 'grid'
+                            });
+                        });
+                    })
+                    </script>";
+        return $parseStr;
+    }
+
+
+
 
     /**
-    * 引入ueidter编辑器完整版
+    * 引入ueidter编辑器简洁版
     * @param string $tag  name:表单name content：编辑器初始化后 默认内容
     */
     public function tagUmeditor($tag,$content){
@@ -131,6 +174,7 @@ class TT extends TagLib
         $name    = isset($tag['name'])    ? $tag['name']    : 'file_name';
         $filenum = isset($tag['filenum']) ? $tag['filenum'] : '10';
         $max     = isset($tag['max'])     ? $tag['max']     : '5';
+        $click_txt = isset($tag['click_txt']) ? $tag['click_txt'] : '点击选择文件';
         $id_name = 'upload-'.uniqid();
 
         $parseStr=<<<str
@@ -146,7 +190,7 @@ class TT extends TagLib
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
-            <p>或将照片拖到这里，单次最多可选{$filenum}张,最大不能超过{$max}M</p>
+            <p>或将文件拖到这里，单次最多可选{$filenum}个,最大不能超过{$max}M</p>
         </div>
     </div>
     <div class="statusBar" style="display:none;">
@@ -167,9 +211,7 @@ class TT extends TagLib
 </div>
 
 <!-- 引入webupload.js主文件 -->
-<script src="{$src}/jquery-1.11.1.js"></script>
 <script src="{$src}/webuploader.min.js"></script>
-
 <!-- 引入webupload.js配置 -->
 <script>
 jQuery(function() {
@@ -238,7 +280,7 @@ jQuery(function() {
     uploader = WebUploader.create({
         pick: {
             id: "#$id_name .filePicker",
-            label: '点击选择文件',
+            label: "{$click_txt}",
             multiple : true
         },
         dnd: "#$id_name .queueList",

@@ -1,13 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\edit.html";i:1517985366;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\edit.html";i:1518075613;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>编辑模型</title>
-
+<html>
+<head>
+	<meta charset="utf-8">
+    <title><?php echo $title; ?></title>
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <!--Basic Styles-->
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
     <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
@@ -18,7 +19,15 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    
+    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
+    <style type="text/css">
+        tr td{
+            vertical-align: middle!important;
+        }
+        tr th{
+            vertical-align: middle!important;
+        }
+    </style>
 </head>
 <body>
 	<!-- 头部 -->
@@ -145,13 +154,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                                        <li>
-                        <a href="<?php echo url('Index/index'); ?>">系统</a>
-                    </li>
-                                        <li>
-                        <a href="<?php echo url('lst'); ?>">模型列表</a>
-                    </li>
-                    <li class="active">编辑模型</li>
+                        <?php echo $postion; ?>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -163,7 +166,7 @@
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">编辑模型</span>
+                <span class="widget-caption"><?php echo $title; ?></span>
             </div>
 
             <div class="widget-body">
@@ -257,7 +260,7 @@
                                                     <td align="center" style="width: 10%;"><?php echo $vo['id']; ?></td>
                                                     <td align="center" style="width: 20%;"><?php echo $vo['cnname']; ?></td>
                                                     <td align="center" style="width: 20%;"><?php echo $vo['enname']; ?></td>
-                                                    <td align="center" style="width: 20%;"><?php echo levelStyle($vo['formtype'],['单行文本','多行文本','单选按钮','复选按钮','下拉菜单','上传按钮','未知类型']); ?></td>
+                                                    <td align="center" style="width: 20%;"><?php echo levelStyle($vo['formtype'],['单行文本','多行文本','单选按钮','复选按钮','下拉菜单','上传按钮','编辑器','时间','上传插件']); ?></td>
                                                     <td align="left" style="width: 30%;">
                                                     <?php if($vo['values'] == false): ?>无可选值<?php else: ?><?php echo $vo['values']; endif; ?>
                                                     </td>
@@ -287,12 +290,12 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
-    
 
 
-</body></html>
+</body>
+<!--Basic Scripts-->
+<script src="__ADMIN__/style/jquery_002.js"></script>
+<script src="__ADMIN__/style/bootstrap.js"></script>
+<!--Beyond Scripts-->
+<script src="__ADMIN__/style/beyond.js"></script>
+</html>

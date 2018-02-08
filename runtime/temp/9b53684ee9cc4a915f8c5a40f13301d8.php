@@ -1,13 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\lst.html";i:1517985360;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\lst.html";i:1518075554;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>模型字段列表</title>
-
+<html>
+<head>
+	<meta charset="utf-8">
+    <title><?php echo $title; ?></title>
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <!--Basic Styles-->
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
     <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
@@ -18,6 +19,7 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
     <style type="text/css">
         tr td{
             vertical-align: middle!important;
@@ -152,12 +154,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                        <li>
-                            <a href="<?php echo url('Index/index'); ?>">系统</a>
-                        </li>
-                        <li class="active">
-                            <a href="<?php echo url('lst',array('model_id'=>input('model_id'))); ?>">模型字段列表</a>
-                        </li>
+                        <?php echo $postion; ?>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -165,7 +162,7 @@
                 <!-- Page Body -->
                 <div class="page-body">
                     
-<button type="button" tooltip="添加字段" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add',array('model_id'=>input('model_id'))); ?>'"> <i class="fa fa-plus"></i> 添加字段
+<button type="button" tooltip="添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add',array('model_id'=>input('model_id'))); ?>'"> <i class="fa fa-plus"></i> 添加
 </button>
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -197,7 +194,7 @@
                                 <td align="center" style="width: 10%;"><?php echo $vo['model']['name']; ?></td>
                                 <td align="center" style="width: 15%;"><?php echo $vo['cnname']; ?></td>
                                 <td align="center" style="width: 10%;"><?php echo $vo['enname']; ?></td>
-                                <td align="center" style="width: 10%;"><?php echo levelStyle($vo['formtype'],['单行文本','多行文本','单选按钮','复选按钮','下拉菜单','上传按钮','未知类型']); ?></td>
+                                <td align="center" style="width: 10%;"><?php echo levelStyle($vo['formtype'],['单行文本','多行文本','单选按钮','复选按钮','下拉菜单','上传按钮','编辑器','时间','上传插件']); ?></td>
                                 <td align="left" style="width: 25%;">
                                     <?php if($vo['values'] == false): ?>无可选值<?php else: ?><?php echo $vo['values']; endif; ?>
                                 </td>
@@ -235,15 +232,11 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <script src="__ADMIN__/style/jquery.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
-    
-    <script type="text/javascript">
-            
-    </script>
 
-</body></html>
+</body>
+<!--Basic Scripts-->
+<script src="__ADMIN__/style/jquery_002.js"></script>
+<script src="__ADMIN__/style/bootstrap.js"></script>
+<!--Beyond Scripts-->
+<script src="__ADMIN__/style/beyond.js"></script>
+</html>

@@ -1,25 +1,6 @@
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>添加权限</title>
-
-    <meta name="description" content="Dashboard">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--Basic Styles-->
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
-
-    <!--Beyond styles-->
-    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
-    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
-    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
-    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    
-
-</head>
+<html>
+{include file="public/head"}
 <body>
 	<!-- 头部 -->
 	{include file="public/top"}
@@ -35,13 +16,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                                        <li>
-                        <a href="{:url('Index/index')}">系统</a>
-                    </li>
-                                        <li>
-                        <a href="{:url('lst')}">权限管理</a>
-                    </li>
-                    <li class="active">添加权限</li>
+                        {$postion}
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -53,7 +28,7 @@
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">添加权限</span>
+                <span class="widget-caption">{$title}</span>
             </div>
             <div class="widget-body">
                 <div id="horizontal-form">
@@ -131,10 +106,8 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
 
-</body></html>
+
+</body>
+{include file="public/foot"}
+</html>

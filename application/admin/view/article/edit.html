@@ -1,26 +1,6 @@
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>编辑文章</title>
-
-    <meta name="description" content="Dashboard">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--Basic Styles-->
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
-
-    <!--Beyond styles-->
-    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
-    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
-    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
-    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    <link href="__OTHER__/layui/css/layui.css" rel="stylesheet">
-    <link href="__OTHER__/layui/css/modules/laydate/default/laydate.css" rel="stylesheet">
-
-</head>
+<html>
+    {include file="public/head"}
 <body>
 	<!-- 头部 -->
 	{include file="public/top"}
@@ -36,13 +16,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                                        <li>
-                        <a href="{:url('Index/index')}">系统</a>
-                    </li>
-                                        <li>
-                        <a href="{:url('lst')}">文章列表</a>
-                    </li>
-                    <li class="active">编辑文章</li>
+                         {$postion}
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -54,7 +28,7 @@
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">编辑文章</span>
+                <span class="widget-caption">{$title}</span>
             </div>
             <div class="widget-body">
                 <div id="horizontal-form">
@@ -132,10 +106,13 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">添加时间</label>
-                            <div class="col-sm-2">
-                                <input class="form-control" id="create_time" placeholder="" value="{$article.create_time}" name="create_time" required="" type="text">
+                            <div class="col-sm-6">
+                                <!-- 声明使用 TagLib -->
+                                {taglib name="TT" /}
+                                <!-- 在需要使用时间插件 标签的地方插入 -->
+                                {TT:laydate src="__OTHER__/layui" id="create_time" name="create_time" value="<?php echo $article['create_time'];?>"/}
                             </div>
-                            <p class="help-block col-sm-4 red">默认是当前时间</p>
+                            <p class="help-block col-sm-2 red">默认是当前时间</p>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">点击量</label>
@@ -170,24 +147,7 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
-
-    <script src="__OTHER__/layui/layui.js"></script>
-    <script>
-    layui.use('laydate', function(){
-          var laydate = layui.laydate;
-          
-          //创建时间
-          laydate.render({
-            elem: '#create_time'
-            ,type: 'datetime'
-            ,theme: 'grid'
-          });
-      });
-    </script>    
+	
 </body>
+    {include file="public/foot"}
 </html>

@@ -1,25 +1,6 @@
 <!DOCTYPE html>
-<html><head>
-	    <meta charset="utf-8">
-    <title>数据库备份下载</title>
-
-    <meta name="description" content="Dashboard">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--Basic Styles-->
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
-
-    <!--Beyond styles-->
-    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
-    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
-    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
-    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-
-    
-</head>
+<html>
+{include file="public/head"}
 <body>
 	<!-- 头部 -->
 	{include file="public/top"}
@@ -35,18 +16,15 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                                        <li>
-                        <a href="{:url('Index/index')}">系统</a>
-                    </li>
-                                        <li class="active">数据库</li>
-                                        </ul>
+                        {$postion}
+                    </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
 
                 <!-- Page Body -->
                 <div class="page-body">
 
-<button type="button" tooltip="添加系统配置" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('backup')}'"> <i class="fa fa-plus"></i> 添加备份
+<button type="button" tooltip="添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('backup')}'"> <i class="fa fa-plus"></i> 添加备份
 </button>
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -102,12 +80,10 @@
 		</div>	
 	</div>
 
-	    <!--Basic Scripts-->
-    <script src="__ADMIN__/style/jquery_002.js"></script>
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <script src="__ADMIN__/style/jquery.js"></script>
-    <!--Beyond Scripts-->
-    <script src="__ADMIN__/style/beyond.js"></script>
+
+
+</body>
+{include file="public/foot"}
 
 <script>
     function handle(tp,name=''){
@@ -119,5 +95,4 @@
         }
     }
 </script>
-
-</body></html>
+</html>

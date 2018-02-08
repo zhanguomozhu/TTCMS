@@ -349,20 +349,28 @@ function ssort($data,$pid=0,$access=null)
  * 根据子分类id获取所有父级分类
  * @param  [type] $data [description]
  * @param  [type] $id   [description]
- * @param  [type] $filed[需要取的字段]
+ * @param  [type] $field[需要取的字段]
  * @param  [type] $sort [排序，默认0从小到大]
  * @return [type]       [description]
  */
-function getParents($data,$id,$filed=null,$sort=0,$clear=false){
+function getParents($data,$id,$field=null,$sort=0,$clear=false){
     static $array = array();
-    //清空数组
+    //清空缓存数组
     if($clear){
         $array = array();
     }
     foreach ($data as $v) {
         if($v['id'] == $id){
-            $array[] = $filed ? $v[$filed] : $v;//获取所有数据
-            getParents($data,$v['pid'],$filed);
+            if(!is_array($field)){
+                $array[] = $field ? $v[$field] : $v;//获取所有数据
+            }else{
+                $list = array();
+                foreach ($field as $v1) {//遍历字段
+                   $list[$v1] = $v[$v1];
+                }
+                $array[] = $list;
+            }
+            getParents($data,$v['pid'],$field);
         }
     }
     //从小到大排序
@@ -380,11 +388,11 @@ function getParents($data,$id,$filed=null,$sort=0,$clear=false){
  * 根据子父级分类id获取所有子级分类
  * @param  [type] $data [description]
  * @param  [type] $id   [description]
- * @param  [type] $filed[需要取的字段]
+ * @param  [type] $field[需要取的字段]
  * @param  [type] $sort [排序，默认0从小到大]
  * @return [type]       [description]
  */
-function getSons($data,$pid,$filed=null,$sort=0,$clear=false){
+function getSons($data,$pid,$field=null,$sort=0,$clear=false){
     static $array = array();
     //清空数组
     if($clear){
@@ -392,8 +400,16 @@ function getSons($data,$pid,$filed=null,$sort=0,$clear=false){
     }
     foreach ($data as $v) {
         if($v['pid'] == $pid){
-            $array[] = $filed ? $v[$filed] : $v;//获取所有数据
-            getSons($data,$v['id'],$filed);
+            if(!is_array($field)){
+                $array[] = $field ? $v[$field] : $v;//获取所有数据
+            }else{
+                $list = array();
+                foreach ($field as $v1) {//遍历字段
+                   $list[$v1] = $v[$v1];
+                }
+                $array[] = $list;
+            }
+            getSons($data,$v['id'],$field);
         }
     }
     //从小到大排序

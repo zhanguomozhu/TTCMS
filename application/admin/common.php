@@ -42,10 +42,9 @@ function levelStyle($level=1,$data=array(),$url='javascript:void(0);'){
  * @param  [type] $value    [value]
  * @param  [type] $placeholder    [提交地址]
  * @return [type]         [字符串]
- * 配置类型[1:单行文本框2:文本域3:单选按钮4:复选框5:下拉菜单6:上传]
+ * 配置类型[1:单行文本框2:文本域3:单选按钮4:复选框5:下拉菜单6:上传,7:编辑器,8:时间插件,9:上传插件]
  */
 function formStyle($type,$data=null){
-
 	switch ($type) {
 		case 1:
 			$style = '<input class="form-control" name="'.$data['enname'].'"  type="text" value="'.$data['value'].'">';
