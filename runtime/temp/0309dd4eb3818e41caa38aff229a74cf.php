@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\login\register.html";i:1518165485;}*/ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><!--Head--><head>
     <meta charset="utf-8">
@@ -49,7 +50,7 @@
                 </div>
                 <div class="loginbox-textbox">
                     <p class="text-center">
-                        <a  href="{:url('login')}">已有账号点击这里登录</a>
+                        <a  href="<?php echo url('login'); ?>">已有账号点击这里登录</a>
                     </p>
                 </div>
             </div>

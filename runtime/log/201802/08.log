@@ -943,3 +943,437 @@
   8 => 'fields',
 ) ]
 [ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:15:34+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/auth_group/lst.html
+[ info ] tlcms.com/admin/auth_group/lst.html [运行时间：0.619036s][吞吐率：1.62req/s] [内存消耗：3,233.20kb] [文件加载：80]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'auth_group',
+    2 => 'lst',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/model/edit/id/11.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\AuthGroup->lst[ D:\phpStudy\WWW\TLCMS\application\admin\controller\AuthGroup.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_group\lst.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'groups',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:15:37+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/admin/lst.html
+[ info ] tlcms.com/admin/admin/lst.html [运行时间：0.576033s][吞吐率：1.74req/s] [内存消耗：3,348.66kb] [文件加载：82]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'admin',
+    2 => 'lst',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/auth_group/lst.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\Admin->lst[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Admin.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'admins',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:17:40+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/auth_group/lst.html
+[ info ] tlcms.com/admin/auth_group/lst.html [运行时间：0.637036s][吞吐率：1.57req/s] [内存消耗：3,089.70kb] [文件加载：78]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'auth_group',
+    2 => 'lst',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/admin/lst.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\AuthGroup->lst[ D:\phpStudy\WWW\TLCMS\application\admin\controller\AuthGroup.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_group\lst.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'groups',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:17:44+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/admin/lst.html
+[ info ] tlcms.com/admin/admin/lst.html [运行时间：0.512030s][吞吐率：1.95req/s] [内存消耗：3,200.62kb] [文件加载：80]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'admin',
+    2 => 'lst',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/auth_group/lst.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\Admin->lst[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Admin.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'admins',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:17:47+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/featured/lst.html
+[ info ] tlcms.com/admin/featured/lst.html [运行时间：0.661037s][吞吐率：1.51req/s] [内存消耗：3,317.44kb] [文件加载：82]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'featured',
+    2 => 'lst',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/admin/lst.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\Featured->lst[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Featured.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\featured\lst.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'featureds',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:18:12+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/conf/conf.html
+[ info ] tlcms.com/admin/conf/conf.html [运行时间：0.595034s][吞吐率：1.68req/s] [内存消耗：3,302.13kb] [文件加载：80]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'conf',
+    2 => 'conf',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/featured/lst.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\Conf->conf[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Conf.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\conf\conf.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'res',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:18:20+08:00 ] 127.0.0.1 127.0.0.1 POST /admin/conf/conf.html
+[ info ] tlcms.com/admin/conf/conf.html [运行时间：0.523030s][吞吐率：1.91req/s] [内存消耗：3,053.00kb] [文件加载：74]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'conf',
+    2 => 'conf',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/conf/conf.html',
+  'content-type' => 'multipart/form-data; boundary=----WebKitFormBoundaryChkx8BQ4EmMlOhZu',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://tlcms.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '6019',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+  'code' => '是',
+  'cache' => '3小时',
+  'status' => '开启',
+  'logo' => 'uploads/images/201801159235e7ff36f1dc1f5f2edfc4b56cd86.jpg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\Conf->conf[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Conf.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-08T17:18:22+08:00 ] 127.0.0.1 127.0.0.1 POST /admin/conf/conf.html
+[ info ] tlcms.com/admin/conf/conf.html [运行时间：0.642037s][吞吐率：1.56req/s] [内存消耗：3,114.56kb] [文件加载：82]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'conf',
+    2 => 'conf',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/conf/conf.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://tlcms.com',
+  'cache-control' => 'max-age=0',
+  'content-length' => '158',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+  'code' => '是',
+  'cache' => '3小时',
+  'status' => '开启',
+  'logo' => 'uploads/images/20180208\\7f857d2e796e38b00a0a2451f6edd3ed.gif',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\Conf->conf[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Conf.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'code',
+  8 => 'msg',
+  9 => 'data',
+  10 => 'url',
+  11 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [2]unlink(uploads/images/201801159235e7ff36f1dc1f5f2edfc4b56cd86.jpg): Invalid argument[D:\phpStudy\WWW\TLCMS\application\common\model\Conf.php:80]
+---------------------------------------------------------------
+[ 2018-02-08T17:18:26+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/conf/conf.html
+[ info ] tlcms.com/admin/conf/conf.html [运行时间：0.606035s][吞吐率：1.65req/s] [内存消耗：3,145.64kb] [文件加载：78]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'conf',
+    2 => 'conf',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; OUTFOX_SEARCH_USER_ID_NCOO=172315712.71034667; PHPSESSID=prlv43p8h8caponphoetk3bc55',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/conf/conf.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ RUN ] app\admin\controller\Conf->conf[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Conf.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\conf\conf.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'res',
+) ]
+[ info ] [ LOG ] INIT File

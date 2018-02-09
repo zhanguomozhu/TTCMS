@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\lst.html";i:1518071649;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\lst.html";i:1518071649;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518139526;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518139256;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +15,24 @@
     <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
 
     <!--Beyond styles-->
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
     <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+
+
+    <!-- js -->
     <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
+    <!-- bootstrap -->
+    <script src="__ADMIN__/style/bootstrap.js"></script>
+    <!-- Beyond -->
+    <script src="__ADMIN__/style/beyond.js"></script>
+    <!-- layui -->
+    <script src="__OTHER__/layui/layui.js"></script>
+    <!-- 弹窗js -->
+    <script src="__ADMIN__/style/dialog.js"></script>
+
     <style type="text/css">
         tr td{
             vertical-align: middle!important;
@@ -244,11 +257,8 @@
 	
 
 </body>
-    <!--Basic Scripts-->
-<script src="__ADMIN__/style/jquery_002.js"></script>
-<script src="__ADMIN__/style/bootstrap.js"></script>
-<!--Beyond Scripts-->
-<script src="__ADMIN__/style/beyond.js"></script>
+    <!-- common -->
+<script src="__ADMIN__/style/common.js"></script>
     
     <script type="text/javascript">
         $('.fa-picture-o').mouseover(function(e){

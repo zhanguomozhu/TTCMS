@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1518069836;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518140404;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518140400;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:73:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_rule\lst.html";i:1518071680;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518140404;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518140400;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,7 +164,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                       <?php echo $postion; ?>
+                        <?php echo $postion; ?>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -185,29 +185,41 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">排序</th>
-                                <th class="text-center">栏目名称</th>
-                                <th class="text-center">所属模型</th>
+                                <th class="text-center">权限名称</th>
+                                <th class="text-center">控制器/方法</th>
+                                <th class="text-center">菜单图标</th>
+                                <th class="text-center">级别</th>
                                 <th class="text-center">是否显示</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($rules) || $rules instanceof \think\Collection || $rules instanceof \think\Paginator): $i = 0; $__LIST__ = $rules;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
                                 <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
                                 <td align="center" style="width: 10%;">
                                     <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
                                 </td>
-                                <td align="left" style="width: 20%;"><a href="<?php echo url('admin/article/lst',array('category_id'=>$vo['id'])); ?>"><?php echo $vo['name']; ?></a></td>
-                                <td align="center" style="width: 20%;"><?php echo levelStyle(array_search($vo['model']['name'],$model)+1,$model); ?></td>
+                                <td align="left" style="width: 20%;"><?php echo $vo['title']; ?></td>
+                                <td align="center" style="width: 20%;"><?php echo $vo['name']; ?></td>
+                                <td align="center" style="width: 10%;"><i class="fa <?php echo $vo['icon']; ?>"></i></td>
                                 <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['is_menu'],url('edit_status',array('id'=>$vo['id'],'is_menu'=>$vo['is_menu'])),['显示','隐藏']); ?>
+                                <?php if($vo['level'] == 0): ?>
+                                <span class="label label-danger">项目</span>
+                                <?php elseif($vo['level'] == 1): ?>
+                                <span class="label label-primary">模块</span>
+                                <?php elseif($vo['level'] == 2): ?>
+                                <span class="label label-success">操作</span>
+                                <?php endif; ?>
+                                </td>
+                                <td align="center" style="width: 10%;">
+                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['显示','隐藏']); ?>
                                 </td>
                                <td align="center" style="width: 15%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                    <a href="#" onClick="warning('确实要删除吗?会删除子权限！', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -218,14 +230,13 @@
                                 <td style="text-align: center;">
                                     <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
                                 </td>
-                                <td colspan="5"></td>
+                                <td colspan="6"></td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">
-                    
                 </div>
             </div>
         </div>

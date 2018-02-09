@@ -179,15 +179,15 @@ class Admin extends Base
 				];
 				//修改数据
 				$this->save($param,['id'=>$res['id']]);
-				return ['code'=>1,'msg'=>'登陆成功'];
-				//return 2;//密码正确
+				return json(['code'=>1,'msg'=>'登陆成功']);
+				//return 1;//密码正确
 			}else{
-				return ['code'=>1,'msg'=>'密码错误'];
-				//return 3;//密码错误
+				return json(['code'=>0,'msg'=>'密码错误']);
+				//return 0;//密码错误
 			}
 		}else{
-			return ['code'=>1,'msg'=>'用户不存在'];
-			//return 1;//用户不存在
+			return json(['code'=>0,'msg'=>'用户不存在']);
+			//return 0;//用户不存在
 		}
 		
 	}
@@ -205,6 +205,7 @@ class Admin extends Base
             'password' => 'password',
             'password1'=> 'password1',
             'phone'    => 'phone',
+            'email'    => 'email',
         ];
         $data = $this->buildParam($param);
 		//验证
@@ -225,8 +226,8 @@ class Admin extends Base
 			if($this->authGroupAccess()->save(['admin_id'=>$this->id,'group_id'=>2])){
 				//是否发送邮件
 			    if($e){
-					$email='976352324@qq.com';//注册邮箱
-				    $title="TTCMS账号激活";//邮件标题
+					$email = $data['email'];//注册邮箱
+				    $title = "TTCMS账号激活";//邮件标题
 				    //邮件主题
 				    $content="亲爱的".$data['username']."：<br/>感谢您在我站注册了新帐号。<br/>请点击链接激活您的帐号。<br/> 
 				         <a href='".request()->domain().url('admin/login/check',array('verify'=>$data['token']))."' target= 

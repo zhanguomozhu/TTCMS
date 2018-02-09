@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1518069836;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518140404;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518140400;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:68:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\conf\lst.html";i:1518070049;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518144150;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518140400;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +11,13 @@
 
 
     <!--Beyond styles-->
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
     <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
     <link href="__ADMIN__/style/beyond.css" id="beyond-link" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
-    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    
 
 
     <!-- js -->
@@ -164,7 +165,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                       <?php echo $postion; ?>
+                        <?php echo $postion; ?>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -179,31 +180,35 @@
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
+                <form action="" method="post">
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">排序</th>
-                                <th class="text-center">栏目名称</th>
-                                <th class="text-center">所属模型</th>
-                                <th class="text-center">是否显示</th>
+                                <th class="text-center">所属分类</th>
+                                <th class="text-center">英文名称</th>
+                                <th class="text-center">中文名称</th>
+                                <th class="text-center">配置类型</th>
+                                <th class="text-center">配置值</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($confs) || $confs instanceof \think\Collection || $confs instanceof \think\Paginator): $i = 0; $__LIST__ = $confs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
                                 <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
-                                <td align="center" style="width: 10%;">
-                                    <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
+                                <td align="center" style="width: 5%;"> 
+                                    <input type="text" style="width: 100%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
                                 </td>
-                                <td align="left" style="width: 20%;"><a href="<?php echo url('admin/article/lst',array('category_id'=>$vo['id'])); ?>"><?php echo $vo['name']; ?></a></td>
-                                <td align="center" style="width: 20%;"><?php echo levelStyle(array_search($vo['model']['name'],$model)+1,$model); ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['conf_cate']['cnname']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['enname']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['cnname']; ?></td>
                                 <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['is_menu'],url('edit_status',array('id'=>$vo['id'],'is_menu'=>$vo['is_menu'])),['显示','隐藏']); ?>
+                                <?php echo levelStyle($vo['type'],['单行文本','多行文本','单选按钮','复选按钮','下拉菜单','上传按钮','未知类型']); ?>
                                 </td>
-                               <td align="center" style="width: 15%;">
+                                <td align="left" style="width: 30%;"><?php echo $vo['values']; ?></td>
+                                <td align="center" style="width: 20%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
@@ -212,33 +217,34 @@
                                     </a>
                                 </td>
                             </tr>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                            <tr>
+                        <?php endforeach; endif; else: echo "" ;endif; ?> 
+                          <tr>
                                 <td></td>
                                 <td style="text-align: center;">
                                     <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
                                 </td>
-                                <td colspan="5"></td>
-                            </tr>
+                                <td colspan="6"></td>
+                            </tr>                        
                         </tbody>
                     </table>
-                </form>
+                     </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">
-                    
+                <?php echo $confs->render(); ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
                 </div>
                 <!-- /Page Body -->
             </div>
             <!-- /Page Content -->
 		</div>	
 	</div>
-
-
 
 </body>
 <!-- common -->

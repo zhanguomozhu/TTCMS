@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1518069836;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518140404;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518140400;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html";i:1518071633;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518144530;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +11,8 @@
 
 
     <!--Beyond styles-->
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
     <link href="__ADMIN__/style/beyond.css" id="beyond-link" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
@@ -23,12 +23,9 @@
     <script src="__ADMIN__/js/jquery-1.11.1.js"></script>
     <!-- bootstrap -->
     <script src="__ADMIN__/js/bootstrap.js"></script>
-    <!-- Beyond -->
-    <script src="__ADMIN__/js/beyond.js"></script>
     <!-- layui -->
     <script src="__OTHER__/layui/layui.js"></script>
-    <!-- 弹窗js -->
-    <script src="__ADMIN__/js/dialog.js"></script>
+
 
     <style type="text/css">
         tr td{
@@ -164,7 +161,7 @@
                 <!-- Page Breadcrumb -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
-                       <?php echo $postion; ?>
+                        <?php echo $postion; ?>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -179,58 +176,58 @@
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">排序</th>
-                                <th class="text-center">栏目名称</th>
-                                <th class="text-center">所属模型</th>
-                                <th class="text-center">是否显示</th>
+                                <th class="text-center">用户名</th>
+                                <th class="text-center">头像</th>
+                                <th class="text-center">手机号</th>
+                                <th class="text-center">上一次登录时间</th>
+                                <th class="text-center">上一次登录IP</th>
+                                <th class="text-center">登陆次数</th>
+                                <th class="text-center">是否锁定</th>
+                                <th class="text-center">所属用户组</th>
                                 <th class="text-center">操作</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($admins) || $admins instanceof \think\Collection || $admins instanceof \think\Paginator): $i = 0; $__LIST__ = $admins;if( count($__LIST__)==0 ) : echo "暂时没有数据" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
                                 <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['username']; ?></td>
+                                <td align="center" style="width: 10%;"><img src="/<?php echo $vo['avatar']; ?>" width="50" height="50"></td>
+                                <td align="center" style="width: 15%;"><?php echo $vo['phone']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo date("Y-m-d H:i:s",$vo['logintime']); ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['loginip']; ?></td>
+                                <td align="center" style="width: 5%;"><?php echo $vo['num']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['锁定','开启']); ?></td>
                                 <td align="center" style="width: 10%;">
-                                    <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
+                                    <?php if(is_array($vo['auth_group']) || $vo['auth_group'] instanceof \think\Collection || $vo['auth_group'] instanceof \think\Paginator): $i = 0; $__LIST__ = $vo['auth_group'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
+                                        <?php echo levelStyle($key+1,[$key=>$v['title']]); endforeach; endif; else: echo "" ;endif; ?>
                                 </td>
-                                <td align="left" style="width: 20%;"><a href="<?php echo url('admin/article/lst',array('category_id'=>$vo['id'])); ?>"><?php echo $vo['name']; ?></a></td>
-                                <td align="center" style="width: 20%;"><?php echo levelStyle(array_search($vo['model']['name'],$model)+1,$model); ?></td>
-                                <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['is_menu'],url('edit_status',array('id'=>$vo['id'],'is_menu'=>$vo['is_menu'])),['显示','隐藏']); ?>
-                                </td>
-                               <td align="center" style="width: 15%;">
+                                <td align="center" style="width: 20%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                    <a href="#" onClick="warning('确实要删除吗','<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
                             </tr>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                            <tr>
-                                <td></td>
-                                <td style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
-                                </td>
-                                <td colspan="5"></td>
-                            </tr>
+                        <?php endforeach; endif; else: echo "暂时没有数据" ;endif; ?>                         
                         </tbody>
                     </table>
-                </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">
-                    
+                    <?php echo $admins->render(); ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
                 </div>
                 <!-- /Page Body -->
             </div>
@@ -238,9 +235,11 @@
 		</div>	
 	</div>
 
-
-
 </body>
+<!-- Beyond -->
+<script src="__ADMIN__/js/beyond.js"></script>
+<!-- 基于layer的弹窗js -->
+<script src="__ADMIN__/js/dialog.js"></script>
 <!-- common -->
 <script src="__ADMIN__/js/common.js"></script>
 </html>

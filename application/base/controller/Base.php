@@ -121,9 +121,9 @@ class Base extends Controller
         $rules = db('auth_rule')->field('id,pid,title,name')->select();
         foreach ($rules as $key => $value) {
             if(strtolower($name) == strtolower($value['name'])){
-                //标题
+                //当前标题
                 $this->assign(['title'=>$value['title']]);
-                //当前位置
+                //当前位置字符串
                 $par = getParents($rules,$value['id'],['id','title','name'],0,1);
                 $postion = '';
                 foreach ($par as $k => $v) {
@@ -172,6 +172,7 @@ class Base extends Controller
         $nongli = date('Y-m-d') . ' ' . $data[3] . '年 ' . $data[1] . $data[2] . ' ' .getWeek();
         $this->assign(['nongli'=> $nongli]);
     }
+
 
 
     //获取天气信息

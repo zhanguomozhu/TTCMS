@@ -216,13 +216,13 @@ function sendEmail($email,$title,$content)
 
 
 /**
- * 发送短信
+ * 阿里大鱼发送短信
  * @param  string $value [description]
  * @return [type]        [description]
  */
 function sendPhone($phone,$content)
 {
-   //加载阿里大鱼短信类
+    //加载阿里大鱼短信类
     include EXTEND_PATH.'alidayu/TopSdk.php';//载入阿里大鱼
     $alidayu = new \TopClient();
     //加载配置
@@ -238,7 +238,7 @@ function sendPhone($phone,$content)
     $res = $alidayu->execute($req);//发送
     if (isset($res->err_code) && $res->err_code == 0) {
         //成功
-        return ['code'=>1];
+        return ['code'=>1,'msg'=>'发送成功'];
     } else {
         //不成功
         return ['code'=>0,'msg'=>$res->msg];
@@ -246,7 +246,50 @@ function sendPhone($phone,$content)
 }
 
 
+//云之讯发送短信
+function sendPhone1($phone)
+{
+    include EXTEND_PATH.'org/Ucpaas.php';//载入阿里大鱼
+    //加载云之讯短信类
+    //使用案例 $this->sms->send(156xxxx8175);
+    //加载配置
+    $yun = config('sms.yun');
 
+    $options['accountsid'] = $yun['accountsid']; //填写自己的accountsid
+    $options['token']      = $yun['token'];      //填写自己的token
+    $ucpaas = new Ucpaas($options);
+
+    //随机生成6位验证码
+    $authnum = '';
+    srand((double)microtime() * 1000000);//create a random number feed.
+    $ychar = "0,1,2,3,4,5,6,7,8,9";
+    //$ychar="0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
+    $list = explode(",", $ychar);
+    for ($i = 0; $i < 6; $i++) {
+        //$randnum=rand(0,35); // 10+26;
+        $randnum = rand(0, 9); // 10+26;
+        $authnum .= $list[$randnum];
+    }
+    
+    //短信验证码（模板短信）,默认以65个汉字（同65个英文）为一条（可容纳字数受您应用名称占用字符影响），超过长度短信平台将会自动分割为多条发送。分割后的多条短信将按照具体占用条数计费。
+    $appId      = $yun['appid'];            //appId
+    $phone      = $phone;                   //手机号
+    $templateId = $yun['templateid'];       //模板id
+    $param      = $authnum;                 //验证码
+    //把生成的验证码拼接手机号生成md5码存储到session***用于ajax验证***********************************【重要】
+    //加密手机和验证码
+
+    session($phone . '_sms', md5($phone . $param));
+    //发送验证码
+    $arr = $ucpaas->templateSMS($appId, $phone, $templateId, $param);
+    if (substr($arr, 21, 6) == 000000) {
+        //如果成功就，这里只是测试样式，可根据自己的需求进行调节
+        return ['code'=>1,'msg'=>'发送成功'];
+    } else {
+        //如果不成功
+        return ['code'=>0,'msg'=>'发送失败'];
+    }
+}
 
 
 
@@ -419,4 +462,37 @@ function getSons($data,$pid,$field=null,$sort=0,$clear=false){
         $array = array_reverse($array);
     }
     return $array;
+}
+
+
+
+
+/**
+ * 随机生成一定长度的字符串
+ * @param  [type] $length [长度]
+ * @param  [type] $model  [类别]
+ * @return [type]         [description]
+ *  0 小写字母 1大写字母 2 数字 3大小写 4小写与数字 5大写与数字     其它 混合
+ */
+function rand_string($length,$model=0){
+    if($model == 0){
+        $str = "abcdefghijklmnopqrstuvwxyz";
+    }elseif($model == 1){
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }elseif($model == 2){
+        $str = "0123456789";
+    }elseif($model == 3){
+        $str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }elseif($model == 4){
+        $str = "0123456789abcdefghijklmnopqrstuvwxyz";
+    }elseif($model == 5){
+        $str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }else{
+        $str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    }
+    $res = '';
+    for($i=0;$i<$length;$i++){
+        $res .=$str[mt_rand(0,strlen($str)-1)];
+    }
+    return $res;
 }

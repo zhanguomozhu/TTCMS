@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\category\lst.html";i:1518069836;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518140404;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518140400;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\featured\lst.html";i:1518070678;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,27 +9,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
 
     <!--Beyond styles-->
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/beyond.css" id="beyond-link" rel="stylesheet" type="text/css">
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-
-
-    <!-- js -->
-    <script src="__ADMIN__/js/jquery-1.11.1.js"></script>
-    <!-- bootstrap -->
-    <script src="__ADMIN__/js/bootstrap.js"></script>
-    <!-- Beyond -->
-    <script src="__ADMIN__/js/beyond.js"></script>
-    <!-- layui -->
-    <script src="__OTHER__/layui/layui.js"></script>
-    <!-- 弹窗js -->
-    <script src="__ADMIN__/js/dialog.js"></script>
-
+    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
     <style type="text/css">
         tr td{
             vertical-align: middle!important;
@@ -185,25 +175,21 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">排序</th>
-                                <th class="text-center">栏目名称</th>
-                                <th class="text-center">所属模型</th>
-                                <th class="text-center">是否显示</th>
+                                <th class="text-center">推荐位</th>
+                                <th class="text-center">所属栏目</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($featureds) || $featureds instanceof \think\Collection || $featureds instanceof \think\Paginator): $i = 0; $__LIST__ = $featureds;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
                                 <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
                                 <td align="center" style="width: 10%;">
                                     <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
                                 </td>
-                                <td align="left" style="width: 20%;"><a href="<?php echo url('admin/article/lst',array('category_id'=>$vo['id'])); ?>"><?php echo $vo['name']; ?></a></td>
-                                <td align="center" style="width: 20%;"><?php echo levelStyle(array_search($vo['model']['name'],$model)+1,$model); ?></td>
-                                <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['is_menu'],url('edit_status',array('id'=>$vo['id'],'is_menu'=>$vo['is_menu'])),['显示','隐藏']); ?>
-                                </td>
-                               <td align="center" style="width: 15%;">
+                                <td align="center" style="width: 35%;"><?php echo $vo['name']; ?></td>
+                                <td align="center" style="width: 30%;"><?php if($vo['category_id'] == 0): ?>全站通用<?php else: ?><?php echo $vo['category']['name']; endif; ?></td>
+                                <td align="center" style="width: 20%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
@@ -218,14 +204,14 @@
                                 <td style="text-align: center;">
                                     <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
                                 </td>
-                                <td colspan="5"></td>
+                                <td colspan="6"></td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">
-                    
+                    <?php echo $featureds->render(); ?>
                 </div>
             </div>
         </div>
@@ -239,8 +225,10 @@
 	</div>
 
 
-
 </body>
-<!-- common -->
-<script src="__ADMIN__/js/common.js"></script>
+<!--Basic Scripts-->
+<script src="__ADMIN__/style/jquery_002.js"></script>
+<script src="__ADMIN__/style/bootstrap.js"></script>
+<!--Beyond Scripts-->
+<script src="__ADMIN__/style/beyond.js"></script>
 </html>
