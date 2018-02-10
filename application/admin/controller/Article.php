@@ -22,7 +22,7 @@ class Article extends Base
 		}
 
 		//列表
-		$articles = $this->model->with('category')->order('sort')->paginate('',false,['query' => request()->param()]);
+		$articles = $this->model->with('category')->order('sort')->cache(true,60)->paginate('',false,['query' => request()->param()]);
 
 		//如果从栏目页条转过来
 		$category_id = input('category_id') ? input('category_id') : '';
@@ -31,7 +31,7 @@ class Article extends Base
 			$data  = model('Category')->select();
 			$ids   = getSons($data,$category_id,'id');
 			$ids[] = (int) $category_id;
-			$articles = $this->model->with('category')->where('category_id','in',$ids)->order('sort')->paginate('',false,['query' => request()->param()]);
+			$articles = $this->model->with('category')->where('category_id','in',$ids)->order('sort')->cache(true,60)->paginate('',false,['query' => request()->param()]);
 		}
 		
 		return $this->fetch('',['articles'=>$articles]);
@@ -65,7 +65,7 @@ class Article extends Base
 			//查找栏目
 			$category = model('Category')->find(input('category_id'));
 			//字段列表
-			$fields = model('ModelField')->where('model_id',$category['model_id'])->select();
+			$fields = model('ModelField')->where('model_id',$category['model_id'])->cache(true,60)->select();
 			$this->assign([
 				'fields'=>$fields,
 				'model' =>$category['model_id'],
@@ -108,9 +108,9 @@ class Article extends Base
 	public function del()
 	{
 		if($this->model->del()){
-			$this->success('删除成功','lst');
+			return json(['code'=>1,'msg'=>'删除成功']);
 		}else{
-			$this->error('修改失败');
+			return json(['code'=>0,'msg'=>'删除失败']);
 		}
 	}
 

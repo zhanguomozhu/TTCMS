@@ -34,24 +34,50 @@ var dialog = {
 
     // 确认弹出层
     confirm : function(message, url) {
-        this.getLayer();
-        this.layer.open({
+        var that = this;
+        that.getLayer();
+        that.layer.open({
             content : message,
             icon:3,
             btn : ['是','否'],
-            yes : function(){
+            yes : function(index){
+                //关闭本窗口
+                that.layer.close(index);
+                //跳转
                 location.href=url;
             },
         });
     },
 
-    //无需跳转到指定页面的确认弹出层
-    toconfirm : function(message) {
-        this.getLayer();
-        this.layer.open({
+    //无需跳转到指定页面的确认弹出层,get提交
+    toconfirm : function(message,url) {
+        var that = this;
+        that.getLayer();
+        that.layer.open({
             content : message,
             icon:3,
-            btn : ['确定'],
+            btn : ['确定','取消'],
+            yes : function(index){
+                //关闭本窗口
+                that.layer.close(index);
+                $.get(url,{},function(res){
+                    //成功
+                    if(res.code == 1){
+                        //提示成功信息
+                        that.msg(res.msg,1,1000,0);
+                        //刷新当前页面
+                        if(res.url) {
+                            location.href = url;
+                        }else{
+                            location.reload();
+                        }
+                    }
+                    //失败
+                    if(res.code == 0){
+                        that.msg(res.msg,2,1000,6);
+                    }
+                },'json')
+            },
         });
     },
 

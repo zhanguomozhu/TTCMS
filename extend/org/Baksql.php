@@ -135,7 +135,12 @@ class Baksql {
         }
               
         if(!file_exists($this->config['path'])){mkdir($this->config['path']);}
-        return file_put_contents($this->config['path'].$this->config['sqlbakname'], $str) ? '备份成功!花费时间' . round(microtime(true) - $this->begin,2) . 'ms' : '备份失败!';
+
+        if(file_put_contents($this->config['path'].$this->config['sqlbakname'], $str)){
+            return ['code'=>1,'msg'=>'备份成功!花费时间' . round(microtime(true) - $this->begin,2) . 'ms'];
+        }else{
+            return ['code'=>0,'msg'=>'备份失败'];
+        }
     }
     /**
      * 设置要备份的表
@@ -179,8 +184,7 @@ class Baksql {
         }
         else
         {
-            $this->error = '数据库中没有表!';
-            return false;
+            return ['code'=>0,'msg'=>'数据库中没有表'];
         }
     }
     /**
@@ -213,12 +217,15 @@ class Baksql {
             try
             {
                 $this->handler->exec($sql);
-                echo '还原成功!花费时间', round(microtime(true) - $this->begin,2) . 'ms';
+                return [
+                    'code' => 1,
+                    'msg'  => '还原成功!花费时间'. round(microtime(true) - $this->begin,2) . 'ms',
+                ];
             }
             catch (PDOException $e)
             {
                 $this->error = $e->getMessage();
-                return false;
+                return ['code' => 0,'msg' =>'还原失败'];
             }
         }
     }
@@ -265,7 +272,7 @@ class Baksql {
             header('Content-Disposition: attachment; filename=' . basename($fileName));
             readfile($fileName);
         }else{
-            $this->error="文件有错误！";
+            $this->error = false;
         }
 
     }
@@ -333,8 +340,12 @@ class Baksql {
      * @return [type]           [description]
      */
     public function delfilename($filename){
-        $path=$this->config['path'].$filename;          
-        if (@unlink($path)) {return '删除成功';}
+        $path=$this->config['path'].$filename;
+        if (@unlink($path)){
+            return ['code' => 1,'msg' =>'删除成功'];
+        }else{
+            return ['code' => 0,'msg' =>'删除失败'];
+        }
     }
 }
 

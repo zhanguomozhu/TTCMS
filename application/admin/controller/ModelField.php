@@ -74,9 +74,10 @@ class ModelField extends Base
 	public function del($id)
 	{
 		if($this->model->destroy($id)){
-			$this->success('删除成功',url('lst',array('model_id'=>input('model_id'))));
+			//$this->success('删除成功',url('lst',array('model_id'=>input('model_id'))));
+			return json(['code'=>1,'msg'=>'删除成功','url'=>url('lst',array('model_id'=>input('model_id'))]);
 		}else{
-			$this->error('修改失败');
+			return json(['code'=>0,'msg'=>'删除失败']);
 		}
 	}
 

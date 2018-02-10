@@ -279,7 +279,7 @@ function sendPhone1($phone)
     //把生成的验证码拼接手机号生成md5码存储到session***用于ajax验证***********************************【重要】
     //加密手机和验证码
 
-    session($phone . '_sms', md5($phone . $param));
+    session($phone . '_phone_code', md5($phone . $param));
     //发送验证码
     $arr = $ucpaas->templateSMS($appId, $phone, $templateId, $param);
     if (substr($arr, 21, 6) == 000000) {
@@ -496,3 +496,4 @@ function rand_string($length,$model=0){
     }
     return $res;
 }
+

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\login\register.html";i:1518165485;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\login\register.html";i:1518250739;}*/ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><!--Head--><head>
     <meta charset="utf-8">
@@ -25,7 +25,7 @@
     <div class="login-container animated fadeInDown">
         <form>
             <div class="loginbox bg-white">
-                <div class="loginbox-title">管理员注册</div>
+                <div class="loginbox-title">注&nbsp;&nbsp;册</div>
                 <div class="loginbox-textbox">
                     <input value="" class="form-control" placeholder="用户名" name="username" type="text" onchange="register.verify('username')">
                 </div>
@@ -42,11 +42,11 @@
                     <input class="form-control" placeholder="手机号" name="phone" type="text" onchange="register.verify('phone')">
                 </div>
                 <div class="loginbox-textbox">
-                    <input class="form-control" style="width: 115px;float: left;margin-right: 3px;" placeholder="手机验证码" name="code" type="text" onchange="register.verify()">
-                    <a href="javascript:void(0);" style="width: 100px;" class="btn btn-success" onclick="common.getCode(this,'phone')">获取验证码</a>
+                    <input class="form-control" style="width: 115px;float: left;margin-right: 3px;" placeholder="手机验证码" name="code" type="text" onchange="register.verify('code')">
+                    <a href="javascript:void(0);" style="width: 100px;" id="phone_code_sub" disabled class="btn btn-success" onclick="common.getCode(this,'phone')">获取验证码</a>
                 </div>
                 <div class="loginbox-submit">
-                    <input class="btn btn-primary btn-block" value="注册" type="button" onclick="register.check()">
+                    <input class="btn btn-primary btn-block" value="注册" id="sub" disabled type="button" onclick="register.check()">
                 </div>
                 <div class="loginbox-textbox">
                     <p class="text-center">

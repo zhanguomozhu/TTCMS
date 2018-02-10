@@ -23,8 +23,8 @@
 
 <body>
     <div class="login-container animated fadeInDown">
-        <form action="{:url('forget')}" method="post">
-            <div class="loginbox bg-white" >
+        <form>
+            <div class="loginbox bg-white bg-all" style="height: 440px!important;">
                 <div class="loginbox-title">重置密码</div>
                 <div class="loginbox-social">
                     <div class="social-title ">请选择验证方式</div>
@@ -45,11 +45,14 @@
                         <input class="form-control" placeholder="手机号" name="phone" type="text" onchange="forget.verify(this,'phone')">
                     </div>
                     <div class="loginbox-textbox">
-                        <input class="form-control" style="width: 115px;float: left;margin-right: 3px;" placeholder="手机验证码" name="phone_code" type="text">
-                        <a href="javascript:void(0);" style="width: 100px;" class="btn btn-success" onclick="common.getCode(this,'phone')">获取验证码</a>
+                        <input class="form-control" style="width: 115px;float: left;margin-right: 3px;" placeholder="手机验证码" name="phone_code" type="text" onchange="forget.verify(this,'phone_code')">
+                        <a href="javascript:void(0);" style="width: 100px;" id="phone_code_sub" disabled class="btn btn-success" onclick="common.getCode(this,'phone')">获取验证码</a>
+                    </div>
+                    <div class="loginbox-textbox" style="display: none;" id="phone_password">
+                        <input value="" class="form-control" placeholder="请输入新密码" name="password" type="password" onchange="forget.verify(this,'password')">
                     </div>
                     <div class="loginbox-submit" >
-                        <input class="btn btn-primary btn-block" value="提交" type="button" onclick="forget.check('phone')">
+                        <input class="btn btn-primary btn-block" value="提交" id="phone_sub" type="button" onclick="forget.check('phone')">
                     </div>
                 </div>
                 <div class="email" style="display: none;">
@@ -57,13 +60,17 @@
                         <input class="form-control" placeholder="邮箱" name="email" type="text" onchange="forget.verify(this,'email')">
                     </div>
                     <div class="loginbox-textbox">
-                        <input class="form-control" style="width: 115px;float: left;margin-right: 3px;" placeholder="邮箱验证码" name="email_code" type="text">
-                        <a href="javascript:void(0);" style="width: 100px;" class="btn btn-success" onclick="common.getCode(this,'email')">获取验证码</a>
+                        <input class="form-control" style="width: 115px;float: left;margin-right: 3px;" placeholder="邮箱验证码" name="email_code" type="text" onchange="forget.verify(this,'email_code')">
+                        <a href="javascript:void(0);" style="width: 100px;" id="email_code_sub" disabled class="btn btn-success" onclick="common.getCode(this,'email')">获取验证码</a>
+                    </div>
+                    <div class="loginbox-textbox" style="display: none;" id="email_password">
+                        <input value="" class="form-control" placeholder="请输入新密码" name="password" type="password" onchange="forget.verify(this,'password')">
                     </div>
                     <div class="loginbox-submit" >
-                        <input class="btn btn-primary btn-block" value="提交" type="button" onclick="forget.check('email')">
+                        <input class="btn btn-primary btn-block" value="提交" id="email_sub" type="button" onclick="forget.check('email')">
                     </div>
                 </div>
+                
                 <div class="loginbox-textbox">
                     <p class="text-center">
                         <a href="{:url('login')}">立即登录</a>    |    <a  href="{:url('register')}">立即注册</a>

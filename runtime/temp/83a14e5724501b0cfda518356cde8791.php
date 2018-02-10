@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\login\login.html";i:1518161556;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\login\login.html";i:1518231463;}*/ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><!--Head--><head>
     <meta charset="utf-8">
@@ -26,7 +26,7 @@
     <div class="login-container animated fadeInDown">
         <form action="<?php echo url('login'); ?>" method="post">
             <div class="loginbox bg-white">
-                <div class="loginbox-title">管理员登录</div>
+                <div class="loginbox-title">登&nbsp;&nbsp;录</div>
                 <div class="loginbox-textbox">
                     <input value="" class="form-control" placeholder="用户名" name="username" type="text">
                 </div>

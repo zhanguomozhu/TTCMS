@@ -30044,3 +30044,33 @@
   'expire' => 3600,
 )
 [ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-09T17:10:51+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/login/forget.html
+[ info ] tlcms.com/admin/login/forget.html [运行时间：0.042002s][吞吐率：23.81req/s] [内存消耗：1,607.42kb] [文件加载：59]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'forget',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=b5va1biqn98ol9b7bhgmfd6lv0',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/login/login.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Login->forget[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Login.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\login\forget.html [ array (
+) ]
+[ info ] [ LOG ] INIT File

@@ -1,0 +1,4 @@
+<?php
+//000000000060
+ exit();?>
+a:4:{i:0;a:8:{s:2:"id";i:1;s:8:"username";s:5:"admin";s:5:"phone";s:11:"18603854370";s:6:"avatar";s:60:"uploads/images/20180121\3c3aa8ae04e8e7b0c26606e4d2dc2a8a.jpg";s:9:"logintime";i:1518251840;s:7:"loginip";s:9:"127.0.0.1";s:3:"num";i:120;s:6:"status";i:1;}i:1;a:8:{s:2:"id";i:4;s:8:"username";s:6:"admin1";s:5:"phone";s:11:"15617577173";s:6:"avatar";s:60:"uploads/images/20180123\f3b592e2860da9593ea748aa62cf4097.jpg";s:9:"logintime";i:1518058918;s:7:"loginip";s:9:"127.0.0.1";s:3:"num";i:6;s:6:"status";i:1;}i:2;a:8:{s:2:"id";i:5;s:8:"username";s:6:"admin2";s:5:"phone";s:11:"15617578122";s:6:"avatar";s:60:"uploads/images/20180206\4e56157aaf8c0fa47cac15c3b73627f6.jpg";s:9:"logintime";i:0;s:7:"loginip";s:0:"";s:3:"num";i:0;s:6:"status";i:0;}i:3;a:8:{s:2:"id";i:15;s:8:"username";s:4:"dasd";s:5:"phone";s:4:"dasd";s:6:"avatar";s:0:"";s:9:"logintime";i:0;s:7:"loginip";s:0:"";s:3:"num";i:0;s:6:"status";i:1;}}

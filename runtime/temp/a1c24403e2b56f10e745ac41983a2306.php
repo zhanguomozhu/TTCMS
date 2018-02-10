@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:74:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_group\lst.html";i:1518071661;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518140404;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518140400;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:74:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\auth_group\lst.html";i:1518249344;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +11,8 @@
 
 
     <!--Beyond styles-->
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
     <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
     <link href="__ADMIN__/style/beyond.css" id="beyond-link" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
@@ -23,12 +23,9 @@
     <script src="__ADMIN__/js/jquery-1.11.1.js"></script>
     <!-- bootstrap -->
     <script src="__ADMIN__/js/bootstrap.js"></script>
-    <!-- Beyond -->
-    <script src="__ADMIN__/js/beyond.js"></script>
     <!-- layui -->
     <script src="__OTHER__/layui/layui.js"></script>
-    <!-- 弹窗js -->
-    <script src="__ADMIN__/js/dialog.js"></script>
+
 
     <style type="text/css">
         tr td{
@@ -201,7 +198,7 @@
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -228,6 +225,10 @@
 	</div>
 
 </body>
+<!-- Beyond -->
+<script src="__ADMIN__/js/beyond.js"></script>
+<!-- 基于layer的弹窗js -->
+<script src="__ADMIN__/js/dialog.js"></script>
 <!-- common -->
 <script src="__ADMIN__/js/common.js"></script>
 </html>

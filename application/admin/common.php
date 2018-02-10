@@ -9,11 +9,11 @@
  * @param  [type] $url    [提交地址]
  * @return [type]         [字符串]
  */
-function statusStyle($status,$url='javascript:void(0);',$data=array('开启','锁定')){
+function statusStyle($status,$url='javascript:void(0);',$data=array('锁定','开启')){
 	if($status ==1 ){
-		$str = '<a href="'.$url.'" class="btn btn-sm btn-success" title="点击修改状态">'.$data[0].'</a>';
+		$str = '<a href="'.$url.'" class="btn btn-sm btn-success" title="点击修改状态">'.$data[1].'</a>';
 	}elseif($status == 0){
-		$str = '<a href="'.$url.'" class="btn btn-sm btn-danger" title="点击修改状态">'.$data[1].'</a>';
+		$str = '<a href="'.$url.'" class="btn btn-sm btn-danger" title="点击修改状态">'.$data[0].'</a>';
 	}
 	return $str;
 }
@@ -110,10 +110,10 @@ function formStyle($type,$data=null){
 			$style .='</select>';
 			break;
 		case 6:
-			$style= '<div style="width:100%;height:125px;border: 3px dashed #e6e6e6;padding: 5px 5px;position:relative;">
+			$style= '<div style="width:100%;height:150px;border: 3px dashed #e6e6e6;padding: 5px 5px;position:relative;">
 						<input style="display:none;" id="file" onchange="upload(this)" name="'.$data['enname'].'" type="file">
 					  	<input style="width:34%;float:left;margin-right:5px;" class="form-control" placeholder="上传后文件路径"  id="filepath" name="'.$data['enname'].'" type="hidden" value="'.$data["value"].'">
-				    	<img src="/'.$data["value"].'" width="110" height="110" id="fileimg">
+				    	<img src="/'.$data["value"].'" width="120" height="120" id="fileimg">
 				    	<a style="left:25%;" onClick="file_click()" class="btn btn-success">点击上传</a>
 					</div>';
 			$style .= '<script type="text/javascript">
@@ -173,10 +173,10 @@ function uploadImg($data,$img=null){
 	$name  = isset($data[0]) ? $data[0] : '';
 	$value = isset($data[1]) ? $data[1] : '';
 	$img   = isset($img) ? '/'.$img : '';
-	$style = '<div style="width:100%;height:125px;border: 3px dashed #e6e6e6;padding: 5px 5px;position:relative;">
+	$style = '<div style="width:100%;height:150px;border: 3px dashed #e6e6e6;padding: 5px 5px;position:relative;">
 						<input style="display:none;" id="file" onchange="upload(this)" name="'.$name.'" type="file">
 					  	<input style="width:34%;float:left;margin-right:5px;" class="form-control" placeholder="上传后文件路径"  id="filepath" name="'.$name.'" type="hidden" value="'.$value.'">
-				    	<img src="'.$img.'" width="110" height="110" id="fileimg">
+				    	<img src="'.$img.'" width="120" height="120" id="fileimg">
 				    	<a style="left:25%;" onClick="file_click()" class="btn btn-success">点击上传</a>
 					</div>';
 	$style .= '<script type="text/javascript">

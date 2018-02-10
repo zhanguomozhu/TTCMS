@@ -92,7 +92,6 @@ class Base extends Controller
         $not_check  = array(                                //禁止检测权限
                         "Index/index",              //后台首页
                         "Admin/loginout",           //后台登出
-                        'Admin/changePW'            //修改密码
                         );
         if(session('admin_info.id') != 1){              //检测是用户是否登录
              //检测是否超级管理员
@@ -152,7 +151,7 @@ class Base extends Controller
         $rule_access = model('AuthGroupAccess')->getAuths(session('admin_info.id'));
         //dump($rule_access);
         //菜单数据
-        $rules = obj_to_arr(model('AuthRule')->order('sort asc')->select());
+        $rules = obj_to_arr(model('AuthRule')->order('sort asc')->cache(true,60)->select());
         //子排序
         $menus = getTree($rules,2,$rule_access);
         //dump(obj_to_arr($rules));die;

@@ -22,27 +22,25 @@ class Sqlbak extends Base
 
 	//备份
 	public function backup(){
-		$this->error($this->sql->backup());
-
+		return json($this->sql->backup());
 	}
 
 
 	//下载
 	public function dowonload(){
-		return $this->sql->downloadFile(input("name")) != '文件有错误！' ? $this->sql->downloadFile(input("name")) : $this->error('文件有错误！');
+		return $this->sql->downloadFile(input("name"))  ? $this->sql->downloadFile(input("name")) : $this->error('文件有错误！');
 	}
 
 
 	//还原
 	public function restore(){
-		$this->error($this->sql->restore(input("name")));
-
+		return json($this->sql->restore(input("name")));
 	}
 
 
 	//删除
 	public function del(){
-		$this->error($this->sql->delfilename(input("name")));
+		return json($this->sql->delfilename(input("name")));
 	}
 
 }

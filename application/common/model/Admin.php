@@ -31,7 +31,6 @@ class Admin extends Base
 		}else{
 			//获取管理员列表
 			$admins = $this->with('authGroup')->field('id,username,phone,avatar,logintime,loginip,num,status')->paginate('',false,['query' => request()->param()]);
-			//dump(obj_to_arr($admins));die;
 			return $admins;
 		}
 	}
@@ -180,14 +179,11 @@ class Admin extends Base
 				//修改数据
 				$this->save($param,['id'=>$res['id']]);
 				return json(['code'=>1,'msg'=>'登陆成功']);
-				//return 1;//密码正确
 			}else{
 				return json(['code'=>0,'msg'=>'密码错误']);
-				//return 0;//密码错误
 			}
 		}else{
 			return json(['code'=>0,'msg'=>'用户不存在']);
-			//return 0;//用户不存在
 		}
 		
 	}
@@ -275,5 +271,24 @@ class Admin extends Base
 		}
 	}
 
+
+	/**
+	 * 重置密码
+	 * @return [type] [description]
+	 */
+	public function forget()
+	{
+		$data = input('post.');
+		if(isset($data['username']) && isset($data['phone']) && isset($data['password'])){
+			$res = $this->where(['username'=>$data['username'],'phone'=>$data['phone']])->update(['password' =>md5($data['password'])]);
+		}elseif(isset($data['username']) && isset($data['email']) && isset($data['password'])){
+			$res = $this->where(['username'=>$data['username'],'email'=>$data['email']])->update(['password' =>md5($data['password'])]);
+		}
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 }

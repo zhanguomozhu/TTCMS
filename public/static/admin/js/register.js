@@ -13,6 +13,7 @@
         var code     = $('input[name="code"]').val();
         var email    = $('input[name="email"]').val();
 
+
         if(!username) {
             dialog.msg('用户名不能为空',2,1000,6);
             return;
@@ -37,7 +38,6 @@
             dialog.msg('邮箱不能为空',2,1000,6);
             return;
         }
-
         var url  = 'register';
         var data  = {'username':username,'password':password,'phone':phone,'email':email};
 
@@ -47,7 +47,7 @@
                 dialog.msg(res.msg,2,1000,6);
             }
             if(res.code == 1) {
-                dialog.msg(res.msg,1,1000,0,'/admin/Login/login');
+                dialog.msg(res.msg,1,1000,0,res.url);
             }
         },'json');
     },
@@ -62,6 +62,9 @@
         var code     = $('input[name="code"]').val();
         var email    = $('input[name="email"]').val();
         var url = '/admin/Login/yanzheng';
+
+        this.noClick();
+
         switch(type){
             case 'username':
                 //用户名
@@ -96,14 +99,20 @@
                 //手机
                 if(phone.length != 11){
                     dialog.msg('手机号长度为11位',2,1000,6);
+                    //发送验证码
+                    $("#phone_code_sub").attr('disabled',true);
                 }else if(!phone.match(/^1[34578]\d{9}$/)){
                     dialog.msg('请输入正确格式手机号',2,1000,6);
+                    //发送验证码
+                    $("#phone_code_sub").attr('disabled',true);
                 }else{
                     $.post(url,{phone:phone},function(res){
                         if(res.code == 0){
                             dialog.msg(res.msg,2,1000,6);
                         }
                         if(res.code == 1){
+                            //发送验证码
+                            $("#phone_code_sub").attr('disabled',false);
                             dialog.msg(res.msg,1,1000);
                         }
                     },"json");
@@ -127,11 +136,14 @@
             case 'code':
                 if(code.length != 6){
                     dialog.msg('验证错误',2,1000,6);
+                    //禁止提交
+                    $("#sub").attr('disabled',true);
                 }else{
-                    $.post(url,{code:code},function(res){
+                    $.post(url,{phone:phone,code:code},function(res){
                         if(res.code == 0){
                             dialog.msg(res.msg,2,1000,6);
-                            return false;
+                            //禁止提交
+                            $("#sub").attr('disabled',true);
                         }
                         if(res.code == 1){
                             dialog.msg(res.msg,1,1000);
@@ -139,6 +151,22 @@
                     },"json");
                 }
             break;
+        }
+    },
+
+
+    //禁止提交
+    noClick : function(){
+        var username = $('input[name="username"]').val();
+        var password = $('input[name="password"]').val();
+        var password1= $('input[name="password1"]').val();
+        var phone    = $('input[name="phone"]').val();
+        var code     = $('input[name="code"]').val();
+        var email    = $('input[name="email"]').val();
+        if(username && password && password1 && email && phone && code){
+            $("#sub").attr('disabled',false);
+        }else{
+            $("#sub").attr('disabled',true);
         }
     },
  }

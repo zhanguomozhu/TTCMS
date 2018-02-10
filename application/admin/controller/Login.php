@@ -36,7 +36,7 @@ class Login extends Controller
 	{
 		if(request()->isPost()){
 			if(!$this->check_verify(input('code'))){
-				$this->error('验证码错误');
+				return json(['code'=>0,'msg'=>'验证码错误']);
 			}
 			return model('Admin')->login();
 		}
@@ -63,18 +63,18 @@ class Login extends Controller
 	}
 
 	/**
-	 * 忘记密码
+	 * 重置密码
 	 * @return [type] [description]
 	 */
 	public function forget()
 	{
 		if(request()->isPost()){
             //插入数据库,true发送激活邮件,false不发送
-			// if(model('Admin')->register(true)){
-			// 	$this->success('注册成功','login/login');
-			// }else{
-			// 	$this->error('注册失败,请重试');
-			// };
+			if(model('Admin')->forget()){
+				return json(['code'=>1,'msg'=>'重置密码成功']);
+			}else{
+				return json(['code'=>0,'msg'=>'重置密码失败']);
+			};
 			return;
 		}
 		return $this->fetch();
@@ -91,34 +91,52 @@ class Login extends Controller
 		  	$username	=	input('username') ? input('username') : '';//验证用户名
 			$phone		=	input('phone') ? input('phone') : '';//验证手机号
 			$email		=	input('email') ? input('email') : '';//验证邮箱
-			$code       =	input('code') ? input('code') : '';//短信验证码
-			if((isset($username) && !empty($username)) && (!isset($phone) || empty($phone)) && (!isset($email) || empty($email)))
-			{
+			$phone_code =	input('phone_code') ? input('phone_code') : '';//短信验证码
+			$email_code =	input('email_code') ? input('email_code') : '';//邮箱验证码
+			if($username && !$phone && !$email)
+			{//账号
 	    		if(model('admin')->where(['username'=>$username])->find()){
 		        	return json(['code'=>1,'msg'=>'管理员账号正确']);
 			  	}else{
 			   		return json(['code'=>0,'msg'=>'管理员账号错误']);
 			  	}
-			}elseif((isset($phone) && !empty($phone)) && (!isset($email) || empty($email)))
-			{
+			}elseif($phone && !$email && !$phone_code)
+			{//手机
 	    		if(model('admin')->where(['username'=>$username,'phone'=>$phone])->find()){
 	    			return json(['code'=>1,'msg'=>'手机号正确']);
 			  	}else{
 			  		return json(['code'=>0,'msg'=>'手机号错误']);
 			  	}
-			}elseif((isset($email) && !empty($email)) && (!isset($phone) || empty($phone)))
-			{
+			}elseif($email && !$phone && !$email_code)
+			{//邮箱
 	    		if(model('admin')->where(['username'=>$username,'email'=>$email])->find()){
 	    			return json(['code'=>1,'msg'=>'邮箱正确']);
 			  	}else{
 			  		return json(['code'=>0,'msg'=>'邮箱错误']);
 			  	}
-			}elseif(isset($code) && !empty($code))
-			{
-	    		if($code != session('phone_code')){
-	    			return json(['code'=>0,'msg'=>'验证码错误']);
+			}elseif($phone_code && $phone && !$username)
+			{//手机验证码
+				if(!session($phone.'_phone_code')){
+					return json(['code'=>0,'msg'=>'验证码已过期']);
+				}
+	    		if(md5($phone . $phone_code) != session($phone.'_phone_code')){
+	    			return json(['code'=>0,'msg'=>'手机验证码错误']);
 			  	}else{
-			  		return json(['code'=>1,'msg'=>'验证码正确']);
+			  		//验证成功删除session
+			  		session($phone.'_phone_code', null);
+			  		return json(['code'=>1,'msg'=>'手机验证码正确']);
+			  	}
+			}elseif($email_code && $email && !$username)
+			{//邮箱验证码
+				if(!session($email.'_email_code')){
+					return json(['code'=>0,'msg'=>'验证码已过期']);
+				}
+	    		if(md5($email . $email_code) != session($email.'_email_code')){
+	    			return json(['code'=>0,'msg'=>'邮箱验证码错误']);
+			  	}else{
+			  		//验证成功删除session
+			  		session($email.'_email_code', null);
+			  		return json(['code'=>1,'msg'=>'邮箱验证码正确']);
 			  	}
 			}
 		}
@@ -133,9 +151,9 @@ class Login extends Controller
 		if(request()->isPost()){
             //插入数据库,true发送激活邮件,false不发送
 			if(model('Admin')->register(true)){
-				$this->success('注册成功','login/login');
+				return json(['code'=>1,'msg'=>'注册成功','url'=>'/admin/Login/login']);
 			}else{
-				$this->error('注册失败,请重试');
+				return json(['code'=>0,'msg'=>'注册失败,请重试']);
 			};
 			return;
 		}
@@ -167,32 +185,37 @@ class Login extends Controller
 			$phone		=	input('phone') ? input('phone') : '';//验证手机号
 			$email		=	input('email') ? input('email') : '';//验证邮箱
 			$code       =	input('code') ? input('code') : '';//短信验证码
-			if(isset($username) && !empty($username))
+			if($username)
 			{
 	    		if(model('admin')->where(['username'=>$username])->find()){
 		        	return json(['code'=>0,'msg'=>'管理员账号已存在']);
 			  	}else{
 			   		return json(['code'=>1,'msg'=>'管理员账号可以使用']);
 			  	}
-			}elseif(isset($phone) && !empty($phone))
+			}elseif($phone && !$code)
 			{
 	    		if(model('admin')->where(['phone'=>$phone])->find()){
 	    			return json(['code'=>0,'msg'=>'手机号已存在']);
 			  	}else{
 			  		return json(['code'=>1,'msg'=>'手机号可以使用']);
 			  	}
-			}elseif(isset($email) && !empty($email))
+			}elseif($email)
 			{
 	    		if(model('admin')->where(['email'=>$email])->find()){
 	    			return json(['code'=>0,'msg'=>'邮箱已存在']);
 			  	}else{
 			  		return json(['code'=>1,'msg'=>'邮箱可以使用']);
 			  	}
-			}elseif(isset($code) && !empty($code))
+			}elseif($code && $phone)
 			{
-	    		if($code != session('phone_code')){
+				if(!session($phone.'_phone_code')){
+					return json(['code'=>0,'msg'=>'验证码已过期']);
+				}
+	    		if(md5($phone . $code) != session($phone.'_phone_code')){
 	    			return json(['code'=>0,'msg'=>'验证码错误']);
 			  	}else{
+			  		//验证成功删除session
+			  		session($phone.'_phone_code', null);
 			  		return json(['code'=>1,'msg'=>'验证码正确']);
 			  	}
 			}
@@ -226,12 +249,14 @@ class Login extends Controller
 	 */
 	public function sendEmail(){
 		if (request()->isAjax()) {
-			$email   = input('email');          //邮箱
-			$title   = "邮箱验证";          //标题
-    		$content = "验证码【 ".rand_string(6,2)." 】";//内容
+			$email   = input('email');         //邮箱
+			$title   = "邮箱验证";             //标题
+			$rand    = rand_string(6,2);       //随机码
+    		$content = "验证码【 ".$rand." 】";//内容
 			$res = sendEmail($email,$title,$content);
             if ($res) {
                 //成功
+                session($email . '_email_code', md5($email . $rand));
                 return json(['code'=>1,'msg'=>'发送成功']);
             } else {
                 //不成功

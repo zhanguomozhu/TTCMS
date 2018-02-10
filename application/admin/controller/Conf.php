@@ -75,9 +75,9 @@ class Conf extends Base
 	public function del($id)
 	{
 		if($this->model->destroy($id)){
-				$this->success('删除成功','lst');
+				return json(['code'=>1,'msg'=>'删除成功']);
 			}else{
-				$this->error('删除失败');
+				return json(['code'=>0,'msg'=>'删除失败']);
 			}
 		return view();
 	}

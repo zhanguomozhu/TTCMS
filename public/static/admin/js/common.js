@@ -55,6 +55,4 @@
         }
         this.settime(obj);
     },
-
-    
  }

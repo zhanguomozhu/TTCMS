@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:10:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\add.html";i:1518080796;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\page.html";i:1518072545;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\article.html";i:1518080765;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\picture.html";i:1518075105;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\link.html";i:1518072685;s:76:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\download.html";i:1518073786;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:10:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\add.html";i:1518080796;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\page.html";i:1518072545;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\article.html";i:1518249642;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\picture.html";i:1518075105;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\link.html";i:1518072685;s:76:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\download.html";i:1518073786;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,17 +9,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <!--Basic Styles-->
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
 
     <!--Beyond styles-->
-    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/beyond.css" id="beyond-link" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
+
+
+    <!-- js -->
+    <script src="__ADMIN__/js/jquery-1.11.1.js"></script>
+    <!-- bootstrap -->
+    <script src="__ADMIN__/js/bootstrap.js"></script>
+    <!-- layui -->
+    <script src="__OTHER__/layui/layui.js"></script>
+
+
     <style type="text/css">
         tr td{
             vertical-align: middle!important;
@@ -360,8 +367,6 @@
                     })
                     </script>
     </div>
-    <div class="col-sm-3">
-    </div>
     <p class="help-block col-sm-2 red">默认是当前时间</p>
 </div>
 
@@ -434,7 +439,7 @@
 </style>
 
 <!-- 引入html -->
-<div id="upload-5a7c142eb41b4" class="xb-uploader">
+<div id="upload-5a7ea6ac9cba0" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -465,7 +470,7 @@
 jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
 
-        $wrap = $("#upload-5a7c142eb41b4"),
+        $wrap = $("#upload-5a7ea6ac9cba0"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -527,11 +532,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-5a7c142eb41b4 .filePicker",
+            id: "#upload-5a7ea6ac9cba0 .filePicker",
             label: "点击上传图片",
             multiple : true
         },
-        dnd: "#upload-5a7c142eb41b4 .queueList",
+        dnd: "#upload-5a7ea6ac9cba0 .queueList",
         paste: document.body,
         // accept: {
         //     title: 'Images',
@@ -553,7 +558,7 @@ jQuery(function() {
 
     // 添加“添加文件”的按钮，
     uploader.addButton({
-       id: "#upload-5a7c142eb41b4 .filePicker2",
+       id: "#upload-5a7ea6ac9cba0 .filePicker2",
        label: '继续添加'
     });
 
@@ -747,7 +752,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-5a7c142eb41b4 .webuploader-element-invisible').remove();
+                $('#upload-5a7ea6ac9cba0 .webuploader-element-invisible').remove();
             }
         }
 
@@ -790,7 +795,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-5a7c142eb41b4 .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -798,7 +803,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-5a7c142eb41b4 .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;
@@ -1086,7 +1091,7 @@ jQuery(function() {
 </style>
 
 <!-- 引入html -->
-<div id="upload-5a7c142eb459c" class="xb-uploader">
+<div id="upload-5a7ea6ac9cba0" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -1117,7 +1122,7 @@ jQuery(function() {
 jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
 
-        $wrap = $("#upload-5a7c142eb459c"),
+        $wrap = $("#upload-5a7ea6ac9cba0"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -1179,11 +1184,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-5a7c142eb459c .filePicker",
+            id: "#upload-5a7ea6ac9cba0 .filePicker",
             label: "点击上传文件",
             multiple : true
         },
-        dnd: "#upload-5a7c142eb459c .queueList",
+        dnd: "#upload-5a7ea6ac9cba0 .queueList",
         paste: document.body,
         // accept: {
         //     title: 'Images',
@@ -1205,7 +1210,7 @@ jQuery(function() {
 
     // 添加“添加文件”的按钮，
     uploader.addButton({
-       id: "#upload-5a7c142eb459c .filePicker2",
+       id: "#upload-5a7ea6ac9cba0 .filePicker2",
        label: '继续添加'
     });
 
@@ -1399,7 +1404,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-5a7c142eb459c .webuploader-element-invisible').remove();
+                $('#upload-5a7ea6ac9cba0 .webuploader-element-invisible').remove();
             }
         }
 
@@ -1442,7 +1447,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-5a7c142eb459c .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -1450,7 +1455,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-5a7c142eb459c .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;
@@ -1753,8 +1758,6 @@ jQuery(function() {
                     })
                     </script>
     </div>
-    <div class="col-sm-3">
-    </div>
     <p class="help-block col-sm-2 red">默认是当前时间</p>
 </div>
 
@@ -1881,8 +1884,6 @@ jQuery(function() {
                     })
                     </script>
     </div>
-    <div class="col-sm-3">
-    </div>
     <p class="help-block col-sm-2 red">默认是当前时间</p>
 </div>
 
@@ -1965,7 +1966,7 @@ jQuery(function() {
 </style>
 
 <!-- 引入html -->
-<div id="upload-5a7c142eb459c" class="xb-uploader">
+<div id="upload-5a7ea6ac9cba0" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -1996,7 +1997,7 @@ jQuery(function() {
 jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
 
-        $wrap = $("#upload-5a7c142eb459c"),
+        $wrap = $("#upload-5a7ea6ac9cba0"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -2058,11 +2059,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-5a7c142eb459c .filePicker",
+            id: "#upload-5a7ea6ac9cba0 .filePicker",
             label: "点击上传图片",
             multiple : true
         },
-        dnd: "#upload-5a7c142eb459c .queueList",
+        dnd: "#upload-5a7ea6ac9cba0 .queueList",
         paste: document.body,
         // accept: {
         //     title: 'Images',
@@ -2084,7 +2085,7 @@ jQuery(function() {
 
     // 添加“添加文件”的按钮，
     uploader.addButton({
-       id: "#upload-5a7c142eb459c .filePicker2",
+       id: "#upload-5a7ea6ac9cba0 .filePicker2",
        label: '继续添加'
     });
 
@@ -2278,7 +2279,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-5a7c142eb459c .webuploader-element-invisible').remove();
+                $('#upload-5a7ea6ac9cba0 .webuploader-element-invisible').remove();
             }
         }
 
@@ -2321,7 +2322,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-5a7c142eb459c .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -2329,7 +2330,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-5a7c142eb459c .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;
@@ -2479,9 +2480,10 @@ jQuery(function() {
 
 	
 </body>
-    <!--Basic Scripts-->
-<script src="__ADMIN__/style/jquery_002.js"></script>
-<script src="__ADMIN__/style/bootstrap.js"></script>
-<!--Beyond Scripts-->
-<script src="__ADMIN__/style/beyond.js"></script>
+    <!-- Beyond -->
+<script src="__ADMIN__/js/beyond.js"></script>
+<!-- 基于layer的弹窗js -->
+<script src="__ADMIN__/js/dialog.js"></script>
+<!-- common -->
+<script src="__ADMIN__/js/common.js"></script>
 </html>

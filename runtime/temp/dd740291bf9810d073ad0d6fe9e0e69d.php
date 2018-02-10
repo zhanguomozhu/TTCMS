@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\lst.html";i:1518071649;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518139526;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518139256;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\lst.html";i:1518249578;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,29 +9,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <!--Basic Styles-->
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
 
     <!--Beyond styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
     <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/beyond.css" id="beyond-link" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
 
 
     <!-- js -->
-    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
+    <script src="__ADMIN__/js/jquery-1.11.1.js"></script>
     <!-- bootstrap -->
-    <script src="__ADMIN__/style/bootstrap.js"></script>
-    <!-- Beyond -->
-    <script src="__ADMIN__/style/beyond.js"></script>
+    <script src="__ADMIN__/js/bootstrap.js"></script>
     <!-- layui -->
     <script src="__OTHER__/layui/layui.js"></script>
-    <!-- 弹窗js -->
-    <script src="__ADMIN__/style/dialog.js"></script>
+
 
     <style type="text/css">
         tr td{
@@ -212,18 +206,18 @@
                                 <td align="center" style="width: 5%;"><?php echo $vo['author']; ?></td>
                                 <td align="center" style="width: 10%;"><?php echo $vo['update_time']; ?></td>
                                 <td align="center" style="width: 5%;">
-                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['显示','隐藏']); ?>
+                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['隐藏','显示']); ?>
                                 </td>
-                                <td align="center" style="width: 5%;"><?php echo statusStyle($vo['is_recommend'],url('edit_status',array('id'=>$vo['id'],'is_recommend'=>$vo['is_recommend'])),['√','×']); ?>
+                                <td align="center" style="width: 5%;"><?php echo statusStyle($vo['is_recommend'],url('edit_status',array('id'=>$vo['id'],'is_recommend'=>$vo['is_recommend'])),['×','√']); ?>
                                 </td>
                                 <td align="center" style="width: 5%;">
-                                <?php echo statusStyle($vo['is_top'],url('edit_status',array('id'=>$vo['id'],'is_top'=>$vo['is_top'])),['√','×']); ?>
+                                <?php echo statusStyle($vo['is_top'],url('edit_status',array('id'=>$vo['id'],'is_top'=>$vo['is_top'])),['×','√']); ?>
                                 </td>
                                <td align="center" style="width: 15%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="warning('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -257,8 +251,12 @@
 	
 
 </body>
-    <!-- common -->
-<script src="__ADMIN__/style/common.js"></script>
+    <!-- Beyond -->
+<script src="__ADMIN__/js/beyond.js"></script>
+<!-- 基于layer的弹窗js -->
+<script src="__ADMIN__/js/dialog.js"></script>
+<!-- common -->
+<script src="__ADMIN__/js/common.js"></script>
     
     <script type="text/javascript">
         $('.fa-picture-o').mouseover(function(e){
