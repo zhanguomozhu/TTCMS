@@ -46,9 +46,9 @@
 
                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                <li class="dropdown-footer">
-                                   <a href="{:url('admin/loginout')}">
+                                  <a onclick="common.loginout('{:url('admin/loginout')}')">
                                            退出登录
-                                       </a>
+                                  </a>
                                </li>
                                <li class="dropdown-footer">
                                    <a href="{:url('admin/edit',['id'=>$Think.session.admin_info.id])}">

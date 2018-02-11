@@ -50251,3 +50251,191 @@
   8 => 'admin',
 ) ]
 [ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-10T16:58:38+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/sqlbak/index.html
+[ info ] tlcms.com/admin/sqlbak/index.html [运行时间：0.641036s][吞吐率：1.56req/s] [内存消耗：3,097.48kb] [文件加载：79]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'sqlbak',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=5r5ce2n35jjoksj3ur0cbgbu75',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\admin\controller\Sqlbak->index[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Sqlbak.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\sqlbak\index.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-10T16:58:41+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/sqlbak/backup.html
+[ info ] tlcms.com/admin/sqlbak/backup.html [运行时间：0.581033s][吞吐率：1.72req/s] [内存消耗：3,063.92kb] [文件加载：78]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'sqlbak',
+    2 => 'backup',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=5r5ce2n35jjoksj3ur0cbgbu75',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/sqlbak/index.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\admin\controller\Sqlbak->backup[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Sqlbak.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-10T16:58:41+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/sqlbak/index.html
+[ info ] tlcms.com/admin/sqlbak/index.html [运行时间：0.699040s][吞吐率：1.43req/s] [内存消耗：3,098.55kb] [文件加载：79]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'sqlbak',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=5r5ce2n35jjoksj3ur0cbgbu75',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/sqlbak/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\admin\controller\Sqlbak->index[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Sqlbak.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\public/../application/admin\view\sqlbak\index.html [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-02-10T16:58:47+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/sqlbak/dowonload/name/20180210165841.sql
+[ info ] tlcms.com/admin/sqlbak/dowonload/name/20180210165841.sql [运行时间：0.627036s][吞吐率：1.59req/s] [内存消耗：3,052.34kb] [文件加载：80]
+[ info ] [ LANG ] D:\phpStudy\WWW\TLCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'sqlbak',
+    2 => 'dowonload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=5r5ce2n35jjoksj3ur0cbgbu75',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tlcms.com/admin/sqlbak/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'tlcms.com',
+)
+[ info ] [ PARAM ] array (
+  'name' => '20180210165841.sql',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 3600,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\admin\controller\Sqlbak->dowonload[ D:\phpStudy\WWW\TLCMS\application\admin\controller\Sqlbak.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\TLCMS\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'admin_info',
+  1 => 'leftMenus',
+  2 => 'rule_access',
+  3 => 'nongli',
+  4 => 'weather',
+  5 => 'title',
+  6 => 'postion',
+  7 => 'code',
+  8 => 'msg',
+  9 => 'data',
+  10 => 'url',
+  11 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File

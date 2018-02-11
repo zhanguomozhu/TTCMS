@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\sqlbak\index.html";i:1518243584;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\sqlbak\index.html";i:1518243584;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518327970;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -228,6 +228,13 @@
 
 
 </body>
+<script>
+var SCOPE = {
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'listorder_url' : "<?php echo url('setOrder'); ?>",//排序
+}
+</script>
+
 <!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->

@@ -1,5 +1,5 @@
 <?php  
-namespace app\base\controller;
+namespace app\common\controller;
 use think\Controller;
 use think\Auth;
 use think\Request;
@@ -149,9 +149,9 @@ class Base extends Controller
     private  function leftMenu(){
         //查看用户角色权限
         $rule_access = model('AuthGroupAccess')->getAuths(session('admin_info.id'));
-        //dump($rule_access);
+        //dump($rule_access);die;
         //菜单数据
-        $rules = obj_to_arr(model('AuthRule')->order('sort asc')->cache(true,60)->select());
+        $rules = obj_to_arr(model('AuthRule')->order('sort asc')->select());
         //子排序
         $menus = getTree($rules,2,$rule_access);
         //dump(obj_to_arr($rules));die;
@@ -208,6 +208,97 @@ class Base extends Controller
         }
         return json_encode($return_data);
 	}
+
+
+
+    /**
+     * 删除
+     * @return [type] [description]
+     */
+    public function del()
+    {
+        $url = $_SERVER['HTTP_REFERER'];
+        if($this->model->destroy(input('id'))){
+            return show(1,'删除成功',[],$url);
+        }else{
+            return show(0,'删除失败',[],$url);
+        }
+    }
+
+
+    /**
+     * 修改状态
+     * @return [type] [description]
+     */
+    public function setStatus()
+    {
+        try {
+            if(request()->isPost()){
+                $data = request()->param();
+                if(!$data['id']){
+                    return show(0, 'ID不存在');
+                }
+                //提交数据
+                if($this->model->allowField(true)->save($data,['id'=>$data['id']])){
+                    return show(1, '操作成功');
+                }else{
+                    return show(0, '操作失败');
+                }
+            }
+        }catch(Exception $e) {
+            return show(0, $e->getMessage());
+        }
+    }
+
+
+    /**
+     * 排序
+     */
+    public function setOrder(){
+        try {
+            if(request()->isPost()){
+                $url  = $_SERVER['HTTP_REFERER'];
+                $data = input('post.');
+                $list = array();
+                foreach ($data as $key => $value) {
+                    $list[] = ['id' => $key, 'sort' => $value];
+                }
+                //批量更新
+                if($this->model->saveAll($list)){
+                    return show(1, '操作成功',[],$url);
+                }else{
+                    return show(0, '操作失败');
+                }
+            }
+        }catch(Exception $e) {
+            return show(0, $e->getMessage());
+        }
+    }
+
+
+    /**
+     * 获取登录用户信息
+     * @return array
+     */
+    public function getLoginUser() {
+        return session("admin_info");
+    }
+
+
+    /**
+     * 判定是否登录
+     * @return boolean 
+     */
+    public function isLogin() {
+        $user = $this->getLoginUser();
+        if($user && is_array($user)) {
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 
 

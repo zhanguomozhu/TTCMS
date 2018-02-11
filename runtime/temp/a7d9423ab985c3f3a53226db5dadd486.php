@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:68:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\conf\lst.html";i:1518244605;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:68:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\conf\lst.html";i:1518244605;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518321784;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -243,6 +243,15 @@
 	</div>
 
 </body>
+<script>
+var SCOPE = {
+    'add_url'       : "<?php echo url('add'); ?>", //添加
+    'edit_url'      : "<?php echo url('edit'); ?>",//修改
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'index_url'     : '/',//首页
+}
+</script>
+
 <!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->

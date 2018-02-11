@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html";i:1518249336;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\admin\lst.html";i:1518324534;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1518328733;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518327988;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +86,9 @@
 
                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                <li class="dropdown-footer">
-                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                  <a onclick="common.loginout('<?php echo url('admin/loginout'); ?>')">
                                            退出登录
-                                       </a>
+                                  </a>
                                </li>
                                <li class="dropdown-footer">
                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
@@ -202,7 +202,7 @@
                                 <td align="center" style="width: 10%;"><?php echo date("Y-m-d H:i:s",$vo['logintime']); ?></td>
                                 <td align="center" style="width: 10%;"><?php echo $vo['loginip']; ?></td>
                                 <td align="center" style="width: 5%;"><?php echo $vo['num']; ?></td>
-                                <td align="center" style="width: 10%;"><?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status']))); ?></td>
+                                <td align="center" style="width: 10%;"><?php echo statusStyle($vo['id'],'',$vo['status'],['隐藏','显示']); ?></td>
                                 <td align="center" style="width: 10%;">
                                     <?php if(is_array($vo['auth_group']) || $vo['auth_group'] instanceof \think\Collection || $vo['auth_group'] instanceof \think\Paginator): $i = 0; $__LIST__ = $vo['auth_group'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
                                         <?php echo levelStyle($key+1,[$key=>$v['title']]); endforeach; endif; else: echo "" ;endif; ?>
@@ -211,7 +211,7 @@
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗','<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                    <a onClick="dialog.toconfirm('确实要删除吗','<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -236,6 +236,13 @@
 	</div>
 
 </body>
+<script>
+var SCOPE = {
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'listorder_url' : "<?php echo url('setOrder'); ?>",//排序
+}
+</script>
+
 <!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->

@@ -46,14 +46,12 @@
                             <tr>
                                 <td align="center" style="width: 10%;">{$vo.id}</td>
                                 <td align="center" style="width: 20%;">{$vo.title}</td>
-                                <td align="center" style="width: 20%;">
-                                    {$vo.status|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'status'=>###))}
-                                </td>
+                                <td align="center" style="width: 10%;">{$vo.status|statusStyle=$vo.id,'',###}</td>
                                <td align="center" style="width: 20%;">
                                     <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
+                                    <a onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>

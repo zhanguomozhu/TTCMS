@@ -1,7 +1,7 @@
 <?php 
 namespace app\common\model;
 
-use app\base\model\Base;
+use app\common\model\Base;
 
 class Admin extends Base
 {
@@ -117,7 +117,7 @@ class Admin extends Base
 	 */
 	public function del(){
 		$id = input('id');
-
+		
 		$admin = $this->find($id);
         $admin_trans =  $this;
         $auth_trans  =  model('AuthGroupAccess');
@@ -178,12 +178,12 @@ class Admin extends Base
 				];
 				//修改数据
 				$this->save($param,['id'=>$res['id']]);
-				return json(['code'=>1,'msg'=>'登陆成功']);
+				return show(1,'登陆成功');
 			}else{
-				return json(['code'=>0,'msg'=>'密码错误']);
+				return show(0,'密码错误');
 			}
 		}else{
-			return json(['code'=>0,'msg'=>'用户不存在']);
+			return show(0,'用户不存在');
 		}
 		
 	}
@@ -256,18 +256,18 @@ class Admin extends Base
 			if(time()>$res['token_exptime']){
 				//删除用户信息
 				$this->delete($res['id']);
-				return ['code'=>2,'msg'=>'激活时间已过期!请重新登录发送激活邮件！'];
+				return ['code'=>0,'msg'=>'激活时间已过期!请重新登录发送激活邮件！'];
 			}else{
 				//修改状态
 				$data['status'] = 0;
 				if($this->save($data,["id"=>$res['id']])){
 					return ['code'=>1,'msg'=>'激活成功!请登录'];
 				}else{
-					return ['code'=>3,'msg'=>'激活失败！请联系管理员！'];
+					return ['code'=>0,'msg'=>'激活失败！请联系管理员！'];
 				}
 			}
 		}else{
-			return ['code'=>4,'msg'=>'获取数据失败！请联系管理员！'];
+			return ['code'=>0,'msg'=>'获取数据失败！请联系管理员！'];
 		}
 	}
 

@@ -225,7 +225,7 @@ class Baksql {
             catch (PDOException $e)
             {
                 $this->error = $e->getMessage();
-                return ['code' => 0,'msg' =>'还原失败'];
+                return ['code' => 0,'msg' =>$e->getMessage()];
             }
         }
     }

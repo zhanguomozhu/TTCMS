@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\edit.html";i:1518075613;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518080012;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518058023;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\edit.html";i:1518075613;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +9,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <!--Basic Styles-->
-    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
-    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
-    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
 
     <!--Beyond styles-->
-    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/beyond.css" id="beyond-link" rel="stylesheet" type="text/css">
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
-    <script src="__ADMIN__/style/jquery-1.11.1.js"></script>
+
+
+    <!-- js -->
+    <script src="__ADMIN__/js/jquery-1.11.1.js"></script>
+    <!-- bootstrap -->
+    <script src="__ADMIN__/js/bootstrap.js"></script>
+    <!-- layui -->
+    <script src="__OTHER__/layui/layui.js"></script>
+
+
     <style type="text/css">
         tr td{
             vertical-align: middle!important;
@@ -293,9 +300,10 @@
 
 
 </body>
-<!--Basic Scripts-->
-<script src="__ADMIN__/style/jquery_002.js"></script>
-<script src="__ADMIN__/style/bootstrap.js"></script>
-<!--Beyond Scripts-->
-<script src="__ADMIN__/style/beyond.js"></script>
+<!-- Beyond -->
+<script src="__ADMIN__/js/beyond.js"></script>
+<!-- 基于layer的弹窗js -->
+<script src="__ADMIN__/js/dialog.js"></script>
+<!-- common -->
+<script src="__ADMIN__/js/common.js"></script>
 </html>

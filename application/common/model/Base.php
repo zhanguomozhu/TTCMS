@@ -1,5 +1,5 @@
 <?php  
-namespace app\base\model;
+namespace app\common\model;
 use think\Model;
 
 /**
@@ -41,47 +41,6 @@ class Base extends Model
         //验证
         if (!$validate->scene($type)->check($data)){
             return $validate->getError();
-        }
-    }
-
-
-    /**
-     * 排序
-     */
-    public function setOrder(){
-        $data = input('post.');
-        $list = array();
-        foreach ($data as $key => $value) {
-            $list[] = ['id' => $key, 'sort' => $value];
-        }
-        //批量更新
-        if($this->saveAll($list)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
-
-    /**
-     * 修改状态
-     * @return [type] [description]
-     */
-    public function setStatus()
-    {
-         if(request()->isGet()){
-            
-            $data = request()->param();
-            $id = $data['id'];//获取id
-            unset($data['id']);//删除id
-            $data[key($data)] = $data[key($data)] ? 0 : 1;
-            //提交数据
-            if($this->allowField(true)->save($data,['id'=>$id])){
-                return true;
-            }else{
-               return false;
-            }
         }
     }
 

@@ -42,7 +42,7 @@
         <!-- 声明使用 TagLib -->
          {taglib name="TT" /}
          <!-- 在需要使用 标签的地方插入 -->
-         {TT:webuploader src="__OTHER__/webuploader" name="avatar" url="<?php echo url('add'); ?>" filenum='5' max='5' click_txt="点击上传图片"/}
+         {TT:webuploader src="__OTHER__/webuploader" name="images" url="<?php echo url('add'); ?>" filenum='5' max='5' click_txt="点击上传图片"/}
     </div>
     <p class="help-block col-sm-4 red">默认第一张为主图</p>
 </div>
@@ -61,8 +61,11 @@
 
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">添加时间</label>
-    <div class="col-sm-2">
-        <input class="form-control" id="create_time" placeholder="{:date('Y-m-d H:i:s')}" value="{:date('Y-m-d H:i:s')}" name="create_time" required="" type="text">
+    <div class="col-sm-6">
+        <!-- 声明使用 TagLib -->
+         {taglib name="TT" /}
+        <!-- 在需要使用时间插件 标签的地方插入 -->
+        {TT:laydate src="__OTHER__/layui" id="create_time" name="create_time" value="<?php echo date('Y-m-d H:i:s');?>"/}
     </div>
     <div class="col-sm-4">
     </div>
@@ -72,7 +75,7 @@
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">点击量</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+        <input class="form-control" placeholder="" name="clicks" type="text" value="50">
     </div>
     <p class="help-block col-sm-4 red">请输入数字</p>
 </div>
@@ -80,7 +83,7 @@
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">链接地址</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="url" required="" type="text">
+        <input class="form-control" placeholder="" name="url" type="text">
     </div>
     <p class="help-block col-sm-4 red">请输入url</p>
 </div>

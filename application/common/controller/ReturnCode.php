@@ -1,5 +1,5 @@
 <?php 
-namespace app\base\controller;
+namespace app\common\controller;
 
 class ReturnCode
 {

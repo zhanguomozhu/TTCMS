@@ -1,6 +1,6 @@
 <?php 
 namespace app\admin\controller;
-use app\base\controller\Base;
+use app\common\controller\Base;
 
 class Featured extends Base
 {
@@ -13,16 +13,6 @@ class Featured extends Base
 	 */
 	public function lst()
 	{
-		//排序
-		if(request()->isPost()){
-			if($this->model->setOrder()){
-				$this->redirect($_SERVER['HTTP_REFERER']);
-			}else{
-				$this->error('排序失败');
-			}
-			return;
-		}
-
 		//推荐位列表
 		$featureds = $this->model->with('category')->order('sort')->paginate('',false,['query' => request()->param()]);
 		return $this->fetch('',['featureds'=>$featureds]);
@@ -75,18 +65,5 @@ class Featured extends Base
 	}
 
 
-
-	/**
-	 * 删除
-	 * @return [type] [description]
-	 */
-	public function del($id)
-	{
-		if($this->model->destroy($id)){
-			return json(['code'=>1,'msg'=>'删除成功']);
-		}else{
-			return json(['code'=>0,'msg'=>'删除失败']);
-		}
-	}
 
 }

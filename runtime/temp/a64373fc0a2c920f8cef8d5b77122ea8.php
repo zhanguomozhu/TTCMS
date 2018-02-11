@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:10:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\add.html";i:1518080796;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\page.html";i:1518072545;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\article.html";i:1518249642;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\picture.html";i:1518075105;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\link.html";i:1518072685;s:76:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\download.html";i:1518073786;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:10:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\add.html";i:1518334617;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1518328733;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\page.html";i:1518334815;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\article.html";i:1518334425;s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\picture.html";i:1518335152;s:72:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\link.html";i:1518335269;s:76:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\download.html";i:1518335240;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518327988;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -86,9 +86,9 @@
 
                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                <li class="dropdown-footer">
-                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                  <a onclick="common.loginout('<?php echo url('admin/loginout'); ?>')">
                                            退出登录
-                                       </a>
+                                  </a>
                                </li>
                                <li class="dropdown-footer">
                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
@@ -182,7 +182,8 @@
                          <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">所属栏目</label>
                             <div class="col-sm-6">
-                               <select name="category_id">
+                               <select name="category_id" id="select_cate">
+                                    <option>请选择栏目</option>
                                     <?php if(is_array($categorys) || $categorys instanceof \think\Collection || $categorys instanceof \think\Paginator): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                                     <option value="<?php echo $vo['id']; ?>" <?php if($vo['id'] == input('category_id')): ?>selected<?php endif; ?>><?php echo $vo['name']; ?></option>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -209,14 +210,6 @@
         <?php echo uploadImg(['image_url']); ?>
     </div>
     <p class="help-block col-sm-4 red">* 必填</p>
-</div>
-
-<div class="form-group">
-    <label class="col-sm-1 control-label no-padding-right">关键词</label>
-    <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="keywords" required="" type="text">
-    </div>
-    <p class="help-block col-sm-4 red">关键词以英文逗号隔开</p>
 </div>
 
 <div class="form-group">
@@ -259,6 +252,32 @@
     <p class="help-block col-sm-4 red">* 必填</p>
 </div>
 
+<div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right">添加时间</label>
+    <div class="col-sm-6">
+        <!-- 声明使用 TagLib -->
+         
+        <!-- 在需要使用时间插件 标签的地方插入 -->
+        <!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/layui.css'><!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/modules/laydate/default/laydate.css'><!-- js文件 --><script type='text/javascript' src='__OTHER__/layui/layui.js'></script><input class='form-control' id='create_time' placeholder='create_time' name='create_time' value='<?php echo date('Y-m-d H:i:s');?>'  type='text' /><!-- 实例化编辑器 -->
+                    <script>
+                    $(function(){
+                        layui.use('laydate', function(){
+                            var laydate = layui.laydate;
+                              
+                            //创建时间
+                            laydate.render({
+                                elem: '#create_time'
+                                ,type: 'datetime'
+                                ,theme: 'grid'
+                            });
+                        });
+                    })
+                    </script>
+    </div>
+    <div class="col-sm-4">
+    </div>
+    <p class="help-block col-sm-4 red">默认是当前时间</p>
+</div>
                             <?php elseif($model == 2): ?>
                                 <!-- 文章模型 -->
                                 <div class="form-group">
@@ -373,7 +392,7 @@
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">点击量</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+        <input class="form-control" placeholder="" name="clicks" type="text" value="50">
     </div>
     <p class="help-block col-sm-4 red">请输入数字</p>
 </div>
@@ -381,9 +400,17 @@
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">链接地址</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="url" required="" type="text">
+        <input class="form-control" placeholder="" name="url" type="text">
     </div>
     <p class="help-block col-sm-4 red">请输入url</p>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right">来源</label>
+    <div class="col-sm-6">
+        <input class="form-control" placeholder="" name="source" type="text">
+    </div>
+    <p class="help-block col-sm-4 red">请输入来源</p>
 </div>
                             <?php elseif($model == 3): ?>
                                 <!-- 图集模型 -->
@@ -439,7 +466,7 @@
 </style>
 
 <!-- 引入html -->
-<div id="upload-5a7ea6ac9cba0" class="xb-uploader">
+<div id="upload-5a7ff5937f20e" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -470,7 +497,7 @@
 jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
 
-        $wrap = $("#upload-5a7ea6ac9cba0"),
+        $wrap = $("#upload-5a7ff5937f20e"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -532,11 +559,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-5a7ea6ac9cba0 .filePicker",
+            id: "#upload-5a7ff5937f20e .filePicker",
             label: "点击上传图片",
             multiple : true
         },
-        dnd: "#upload-5a7ea6ac9cba0 .queueList",
+        dnd: "#upload-5a7ff5937f20e .queueList",
         paste: document.body,
         // accept: {
         //     title: 'Images',
@@ -558,7 +585,7 @@ jQuery(function() {
 
     // 添加“添加文件”的按钮，
     uploader.addButton({
-       id: "#upload-5a7ea6ac9cba0 .filePicker2",
+       id: "#upload-5a7ff5937f20e .filePicker2",
        label: '继续添加'
     });
 
@@ -568,7 +595,7 @@ jQuery(function() {
                 '<p class="title">' + file.name + '</p>' +
                 '<p class="imgWrap"></p>'+
                 '<p class="progress"><span></span></p>' +
-                '<input class="bjy-filename" type="hidden" name="avatar[]">'+
+                '<input class="bjy-filename" type="hidden" name="images[]">'+
                 '</li>' ),
 
             $btns = $('<div class="file-panel">' +
@@ -752,7 +779,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-5a7ea6ac9cba0 .webuploader-element-invisible').remove();
+                $('#upload-5a7ff5937f20e .webuploader-element-invisible').remove();
             }
         }
 
@@ -795,7 +822,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-5a7ff5937f20e .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -803,7 +830,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-5a7ff5937f20e .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;
@@ -966,8 +993,25 @@ jQuery(function() {
 
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">添加时间</label>
-    <div class="col-sm-2">
-        <input class="form-control" id="create_time" placeholder="<?php echo date('Y-m-d H:i:s'); ?>" value="<?php echo date('Y-m-d H:i:s'); ?>" name="create_time" required="" type="text">
+    <div class="col-sm-6">
+        <!-- 声明使用 TagLib -->
+         
+        <!-- 在需要使用时间插件 标签的地方插入 -->
+        <!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/layui.css'><!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/modules/laydate/default/laydate.css'><!-- js文件 --><script type='text/javascript' src='__OTHER__/layui/layui.js'></script><input class='form-control' id='create_time' placeholder='create_time' name='create_time' value='<?php echo date('Y-m-d H:i:s');?>'  type='text' /><!-- 实例化编辑器 -->
+                    <script>
+                    $(function(){
+                        layui.use('laydate', function(){
+                            var laydate = layui.laydate;
+                              
+                            //创建时间
+                            laydate.render({
+                                elem: '#create_time'
+                                ,type: 'datetime'
+                                ,theme: 'grid'
+                            });
+                        });
+                    })
+                    </script>
     </div>
     <div class="col-sm-4">
     </div>
@@ -977,7 +1021,7 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">点击量</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+        <input class="form-control" placeholder="" name="clicks" type="text" value="50">
     </div>
     <p class="help-block col-sm-4 red">请输入数字</p>
 </div>
@@ -985,7 +1029,7 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">链接地址</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="url" required="" type="text">
+        <input class="form-control" placeholder="" name="url" type="text">
     </div>
     <p class="help-block col-sm-4 red">请输入url</p>
 </div>
@@ -1049,8 +1093,25 @@ jQuery(function() {
 
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">添加时间</label>
-    <div class="col-sm-2">
-        <input class="form-control" id="create_time" placeholder="<?php echo date('Y-m-d H:i:s'); ?>" value="<?php echo date('Y-m-d H:i:s'); ?>" name="create_time" required="" type="text">
+    <div class="col-sm-6">
+        <!-- 声明使用 TagLib -->
+         
+        <!-- 在需要使用时间插件 标签的地方插入 -->
+        <!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/layui.css'><!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/modules/laydate/default/laydate.css'><!-- js文件 --><script type='text/javascript' src='__OTHER__/layui/layui.js'></script><input class='form-control' id='create_time' placeholder='create_time' name='create_time' value='<?php echo date('Y-m-d H:i:s');?>'  type='text' /><!-- 实例化编辑器 -->
+                    <script>
+                    $(function(){
+                        layui.use('laydate', function(){
+                            var laydate = layui.laydate;
+                              
+                            //创建时间
+                            laydate.render({
+                                elem: '#create_time'
+                                ,type: 'datetime'
+                                ,theme: 'grid'
+                            });
+                        });
+                    })
+                    </script>
     </div>
     <div class="col-sm-4">
     </div>
@@ -1091,7 +1152,7 @@ jQuery(function() {
 </style>
 
 <!-- 引入html -->
-<div id="upload-5a7ea6ac9cba0" class="xb-uploader">
+<div id="upload-5a7ff5937f20e" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -1122,7 +1183,7 @@ jQuery(function() {
 jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
 
-        $wrap = $("#upload-5a7ea6ac9cba0"),
+        $wrap = $("#upload-5a7ff5937f20e"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -1184,11 +1245,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-5a7ea6ac9cba0 .filePicker",
+            id: "#upload-5a7ff5937f20e .filePicker",
             label: "点击上传文件",
             multiple : true
         },
-        dnd: "#upload-5a7ea6ac9cba0 .queueList",
+        dnd: "#upload-5a7ff5937f20e .queueList",
         paste: document.body,
         // accept: {
         //     title: 'Images',
@@ -1210,7 +1271,7 @@ jQuery(function() {
 
     // 添加“添加文件”的按钮，
     uploader.addButton({
-       id: "#upload-5a7ea6ac9cba0 .filePicker2",
+       id: "#upload-5a7ff5937f20e .filePicker2",
        label: '继续添加'
     });
 
@@ -1220,7 +1281,7 @@ jQuery(function() {
                 '<p class="title">' + file.name + '</p>' +
                 '<p class="imgWrap"></p>'+
                 '<p class="progress"><span></span></p>' +
-                '<input class="bjy-filename" type="hidden" name="avatar[]">'+
+                '<input class="bjy-filename" type="hidden" name="file_url[]">'+
                 '</li>' ),
 
             $btns = $('<div class="file-panel">' +
@@ -1404,7 +1465,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-5a7ea6ac9cba0 .webuploader-element-invisible').remove();
+                $('#upload-5a7ff5937f20e .webuploader-element-invisible').remove();
             }
         }
 
@@ -1447,7 +1508,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-5a7ff5937f20e .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -1455,7 +1516,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-5a7ff5937f20e .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;
@@ -1586,7 +1647,7 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">文件名</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="keywords" required="" type="text">
+        <input class="form-control" placeholder="" name="filename" required="" type="text">
     </div>
     <p class="help-block col-sm-4 red"></p>
 </div>
@@ -1594,7 +1655,7 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">演示地址</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="http://或者https://开头" name="keywords" required="" type="text">
+        <input class="form-control" placeholder="http://或者https://开头" name="demo_url" required="" type="text">
     </div>
     <p class="help-block col-sm-4 red"></p>
 </div>
@@ -1604,8 +1665,25 @@ jQuery(function() {
 
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">添加时间</label>
-    <div class="col-sm-2">
-        <input class="form-control" id="create_time" placeholder="<?php echo date('Y-m-d H:i:s'); ?>" value="<?php echo date('Y-m-d H:i:s'); ?>" name="create_time" required="" type="text">
+    <div class="col-sm-6">
+        <!-- 声明使用 TagLib -->
+         
+        <!-- 在需要使用时间插件 标签的地方插入 -->
+        <!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/layui.css'><!-- 样式 --><link rel='stylesheet' href='__OTHER__/layui/css/modules/laydate/default/laydate.css'><!-- js文件 --><script type='text/javascript' src='__OTHER__/layui/layui.js'></script><input class='form-control' id='create_time' placeholder='create_time' name='create_time' value='<?php echo date('Y-m-d H:i:s');?>'  type='text' /><!-- 实例化编辑器 -->
+                    <script>
+                    $(function(){
+                        layui.use('laydate', function(){
+                            var laydate = layui.laydate;
+                              
+                            //创建时间
+                            laydate.render({
+                                elem: '#create_time'
+                                ,type: 'datetime'
+                                ,theme: 'grid'
+                            });
+                        });
+                    })
+                    </script>
     </div>
     <div class="col-sm-4">
     </div>
@@ -1764,7 +1842,7 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">点击量</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+        <input class="form-control" placeholder="" name="clicks" type="text" value="50">
     </div>
     <p class="help-block col-sm-4 red">请输入数字</p>
 </div>
@@ -1772,9 +1850,17 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">链接地址</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="url" required="" type="text">
+        <input class="form-control" placeholder="" name="url" type="text">
     </div>
     <p class="help-block col-sm-4 red">请输入url</p>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right">来源</label>
+    <div class="col-sm-6">
+        <input class="form-control" placeholder="" name="source" type="text">
+    </div>
+    <p class="help-block col-sm-4 red">请输入来源</p>
 </div>
                             <?php endif; else: ?>
                             <!-- 默认文章模型 -->
@@ -1890,7 +1976,7 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">点击量</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="clicks" required="" type="text" value="50">
+        <input class="form-control" placeholder="" name="clicks" type="text" value="50">
     </div>
     <p class="help-block col-sm-4 red">请输入数字</p>
 </div>
@@ -1898,9 +1984,17 @@ jQuery(function() {
 <div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">链接地址</label>
     <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="url" required="" type="text">
+        <input class="form-control" placeholder="" name="url" type="text">
     </div>
     <p class="help-block col-sm-4 red">请输入url</p>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right">来源</label>
+    <div class="col-sm-6">
+        <input class="form-control" placeholder="" name="source" type="text">
+    </div>
+    <p class="help-block col-sm-4 red">请输入来源</p>
 </div>
                         <?php endif; ?>
                         <!-- 附加字段或者不是系统自带模型 -->
@@ -1966,7 +2060,7 @@ jQuery(function() {
 </style>
 
 <!-- 引入html -->
-<div id="upload-5a7ea6ac9cba0" class="xb-uploader">
+<div id="upload-5a7ff5937f20e" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -1997,7 +2091,7 @@ jQuery(function() {
 jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
 
-        $wrap = $("#upload-5a7ea6ac9cba0"),
+        $wrap = $("#upload-5a7ff5937f20e"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -2059,11 +2153,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-5a7ea6ac9cba0 .filePicker",
+            id: "#upload-5a7ff5937f20e .filePicker",
             label: "点击上传图片",
             multiple : true
         },
-        dnd: "#upload-5a7ea6ac9cba0 .queueList",
+        dnd: "#upload-5a7ff5937f20e .queueList",
         paste: document.body,
         // accept: {
         //     title: 'Images',
@@ -2085,7 +2179,7 @@ jQuery(function() {
 
     // 添加“添加文件”的按钮，
     uploader.addButton({
-       id: "#upload-5a7ea6ac9cba0 .filePicker2",
+       id: "#upload-5a7ff5937f20e .filePicker2",
        label: '继续添加'
     });
 
@@ -2279,7 +2373,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-5a7ea6ac9cba0 .webuploader-element-invisible').remove();
+                $('#upload-5a7ff5937f20e .webuploader-element-invisible').remove();
             }
         }
 
@@ -2322,7 +2416,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-5a7ff5937f20e .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -2330,7 +2424,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-5a7ea6ac9cba0 .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-5a7ff5937f20e .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;
@@ -2480,7 +2574,14 @@ jQuery(function() {
 
 	
 </body>
-    <!-- Beyond -->
+    <script>
+var SCOPE = {
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'listorder_url' : "<?php echo url('setOrder'); ?>",//排序
+}
+</script>
+
+<!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->
 <script src="__ADMIN__/js/dialog.js"></script>

@@ -1,6 +1,6 @@
 <?php 
 namespace app\common\model;
-use app\base\model\Base;
+use app\common\model\Base;
 class AuthGroupAccess extends Base
 {
 
@@ -13,24 +13,13 @@ class AuthGroupAccess extends Base
         return $this->belongsTo('AuthGroup','group_id','id');
     }
 
-
-    /**
-	 * 一对一关联查询用户表
-	 * @return [type] [description]
-	 */
-	public function admins()
-    {
-        return $this->belongsTo('Admin','admin_id','id');
-    }
-
     /**
      * 获取角色权限
      * @return [type] [description]
      */
     public function getAuths($id){
     	//获取权限id
-    	$data = $this->with(['admins', 'groups'])->where(['admin_id'=>$id])->find()->visible(['groups.rules'])->toArray();
-    	$res = explode(',',$data['groups']['rules']);
-    	return $res;
+    	$data = $this->with('groups')->where(['admin_id'=>$id])->find();
+    	return explode(',',$data['groups']['rules']);
     }
 }

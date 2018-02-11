@@ -1,6 +1,6 @@
 <?php
 namespace app\admin\controller;
-use app\base\controller\Base;
+use app\common\controller\Base;
 /**
 * 模型字段控制器
 */
@@ -12,15 +12,6 @@ class ModelField extends Base
 	 */
 	public function lst()
 	{
-		//排序
-		if(request()->isPost()){
-			if($this->model->setOrder()){
-				$this->redirect($_SERVER['HTTP_REFERER']);
-			}else{
-				$this->error('排序失败');
-			}
-			return;
-		}
 		//列表
 		$fields = $this->model->with('model')->where('model_id',input('model_id'))->order('sort')->select();
 		return $this->fetch('',['fields'=>$fields]);
@@ -63,22 +54,6 @@ class ModelField extends Base
 		$field = $this->model->find($id);
 
 		return $this->fetch('',['field'=>$field]);
-	}
-
-
-
-	/**
-	 * 删除
-	 * @return [type] [description]
-	 */
-	public function del($id)
-	{
-		if($this->model->destroy($id)){
-			//$this->success('删除成功',url('lst',array('model_id'=>input('model_id'))));
-			return json(['code'=>1,'msg'=>'删除成功','url'=>url('lst',array('model_id'=>input('model_id'))]);
-		}else{
-			return json(['code'=>0,'msg'=>'删除失败']);
-		}
 	}
 
 }

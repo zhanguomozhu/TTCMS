@@ -31,7 +31,7 @@
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
+                    <form> 
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
@@ -52,14 +52,12 @@
                                 </td>
                                 <td align="left" style="width: 20%;"><a href="{:url('admin/article/lst',array('category_id'=>$vo['id']))}">{$vo.name}</a></td>
                                 <td align="center" style="width: 20%;">{$vo.model.name|array_search=###,$model|levelStyle=###+1,$model}</td>
-                                <td align="center" style="width: 10%;">
-                                {$vo.is_menu|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'is_menu'=>###)),['隐藏','显示']}
-                                </td>
+                                <td align="center" style="width: 10%;">{$vo.is_menu|statusStyle=$vo.id,'is_menu',###,['隐藏','显示']}</td>
                                <td align="center" style="width: 15%;">
                                     <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
+                                    <a onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -68,7 +66,7 @@
                             <tr>
                                 <td></td>
                                 <td style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
+                                    <input type="button"  class="btn btn-primary btn-sm shiny" name="" value="排序" id="button-listorder" onclick="common.setOrder(this)">
                                 </td>
                                 <td colspan="5"></td>
                             </tr>

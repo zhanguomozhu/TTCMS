@@ -67,7 +67,7 @@ var dialog = {
                         that.msg(res.msg,1,1000,0);
                         //刷新当前页面
                         if(res.url) {
-                            location.href = url;
+                            location.href = res.url;
                         }else{
                             location.reload();
                         }

@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-use app\base\controller\Base;
+use app\common\controller\Base;
 
 class Admin extends Base
 {
@@ -83,9 +83,9 @@ class Admin extends Base
     public function del()
     {
         if($this->model->del()){
-            return json(['code'=>1,'msg'=>'删除成功']);
+            return show(1,'删除成功');
         }else{
-            return json(['code'=>0,'msg'=>'删除失败']);
+            return show(0,'删除失败');
         }
     }
 
@@ -96,7 +96,7 @@ class Admin extends Base
     public function loginout()
     {
         session(null);
-        $this->success('退出成功', 'Login/login');
+        return show(1,'退出成功',[],url('admin/Login/login'));
     }
 
 
@@ -147,20 +147,4 @@ class Admin extends Base
         }
     }
 
-
-
-    /**
-     * 修改状态
-     * @return [type] [description]
-     */
-    public function edit_status()
-    {
-        if(request()->isGet()){
-            if($this->model->setStatus()){
-                $this->redirect($_SERVER['HTTP_REFERER']);
-            }else{
-                $this->error('修改失败');
-            }
-        }
-    }
 }

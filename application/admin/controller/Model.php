@@ -1,6 +1,6 @@
 <?php
 namespace app\admin\controller;
-use app\base\controller\Base;
+use app\common\controller\Base;
 /**
 * 模型控制器
 */
@@ -59,18 +59,5 @@ class Model extends Base
 	}
 
 
-
-	/**
-	 * 删除
-	 * @return [type] [description]
-	 */
-	public function del($id)
-	{
-		if($this->model->destroy($id)){
-			return json(['code'=>1,'msg'=>'删除成功']);
-		}else{
-			return json(['code'=>0,'msg'=>'删除失败']);
-		}
-	}
 
 }

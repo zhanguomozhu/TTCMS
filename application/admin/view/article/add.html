@@ -37,7 +37,8 @@
                          <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">所属栏目</label>
                             <div class="col-sm-6">
-                               <select name="category_id">
+                               <select name="category_id" id="select_cate">
+                                    <option>请选择栏目</option>
                                     {volist name="categorys" id='vo'}
                                     <option value="{$vo.id}" {if condition="$vo.id eq input('category_id')"}selected{/if}>{$vo.name}</option>
                                     {/volist}

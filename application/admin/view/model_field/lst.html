@@ -31,7 +31,7 @@
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
+                    <form> 
                     <input type="hidden" name="model_id" value="{:input('model_id')}">
                     <table class="table table-bordered table-hover">
                         <thead class="">
@@ -64,7 +64,7 @@
                                     <a href="{:url('edit',array('id'=>$vo['id'],'model_id'=>$vo['model_id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
+                                    <a onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -72,7 +72,7 @@
                         {/volist}
                         <tr>
                             <td style="text-align: center;">
-                                <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
+                               <input type="button"  class="btn btn-primary btn-sm shiny" name="" value="排序" id="button-listorder" onclick="common.setOrder(this)">
                             </td>
                             <td colspan="7"></td>
                         </tr>

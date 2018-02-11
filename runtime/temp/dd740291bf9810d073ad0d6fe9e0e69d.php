@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\lst.html";i:1518249578;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\lst.html";i:1518339438;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1518328733;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:77:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\article\page_list.html";i:1518338680;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518327988;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +86,9 @@
 
                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                <li class="dropdown-footer">
-                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                  <a onclick="common.loginout('<?php echo url('admin/loginout'); ?>')">
                                            退出登录
-                                       </a>
+                                  </a>
                                </li>
                                <li class="dropdown-footer">
                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
@@ -176,7 +176,55 @@
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
+                    <form>
+                    <?php if($model_id == 1): ?>
+                        <thead class="">
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">排序</th>
+            <th class="text-center">标题</th>
+            <th class="text-center">所属栏目</th>
+            <th class="text-center">点击量</th>
+            <th class="text-center">发布人</th>
+            <th class="text-center">添加时间</th>
+            <th class="text-center">状态</th>
+            <th class="text-center">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <tr>
+            <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
+            <td align="center" style="width: 5%;">
+                <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
+            </td>
+            <td align="left" style="width: 30%;"><?php echo $vo['title']; if($vo['image_url'] != ''): ?>   <i class="fa fa-picture-o" style="position:relative;"></i><?php endif; ?><img src='/<?php echo $vo['image_url']; ?>' style="display:none;width:150px;" id='imm'></td>
+            <td align="center" style="width: 10%;"><?php echo $vo['category']['name']; ?></td>
+            <td align="center" style="width: 5%;"><?php echo $vo['clicks']; ?></td>
+            <td align="center" style="width: 5%;"><?php echo $vo['author']; ?></td>
+            <td align="center" style="width: 10%;"><?php echo $vo['create_time']; ?></td>
+
+            <td align="center" style="width: 5%;"><?php echo statusStyle($vo['id'],'',$vo['status'],['隐藏','显示']); ?></td>
+           <td align="center" style="width: 15%;">
+                <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
+                    <i class="fa fa-edit"></i> 编辑
+                </a>
+                <a onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                    <i class="fa fa-trash-o"></i> 删除
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; endif; else: echo "" ;endif; ?>
+        <tr>
+            <td></td>
+            <td style="text-align: center;">
+                <input type="button"  class="btn btn-primary btn-sm shiny" name="" value="排序" id="button-listorder" onclick="common.setOrder(this)">
+            </td>
+            <td colspan="9"></td>
+        </tr>
+    </tbody>
+</table>
+                    <?php else: ?>
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
@@ -186,7 +234,7 @@
                                 <th class="text-center">所属栏目</th>
                                 <th class="text-center">点击量</th>
                                 <th class="text-center">发布人</th>
-                                <th class="text-center">更新时间</th>
+                                <th class="text-center">添加时间</th>
                                 <th class="text-center">是否推荐</th>
                                 <th class="text-center">是否置顶</th>
                                 <th class="text-center">状态</th>
@@ -204,20 +252,17 @@
                                 <td align="center" style="width: 10%;"><?php echo $vo['category']['name']; ?></td>
                                 <td align="center" style="width: 5%;"><?php echo $vo['clicks']; ?></td>
                                 <td align="center" style="width: 5%;"><?php echo $vo['author']; ?></td>
-                                <td align="center" style="width: 10%;"><?php echo $vo['update_time']; ?></td>
-                                <td align="center" style="width: 5%;">
-                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['隐藏','显示']); ?>
-                                </td>
-                                <td align="center" style="width: 5%;"><?php echo statusStyle($vo['is_recommend'],url('edit_status',array('id'=>$vo['id'],'is_recommend'=>$vo['is_recommend'])),['×','√']); ?>
-                                </td>
-                                <td align="center" style="width: 5%;">
-                                <?php echo statusStyle($vo['is_top'],url('edit_status',array('id'=>$vo['id'],'is_top'=>$vo['is_top'])),['×','√']); ?>
-                                </td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['create_time']; ?></td>
+
+                                
+                                <td align="center" style="width: 5%;"><?php echo statusStyle($vo['id'],'is_recommend',$vo['is_recommend'],['×','√']); ?></td>
+                                <td align="center" style="width: 5%;"><?php echo statusStyle($vo['id'],'is_top',$vo['is_top'],['×','√']); ?></td>
+                                <td align="center" style="width: 5%;"><?php echo statusStyle($vo['id'],'',$vo['status'],['隐藏','显示']); ?></td>
                                <td align="center" style="width: 15%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                    <a onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -226,12 +271,13 @@
                             <tr>
                                 <td></td>
                                 <td style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
+                                    <input type="button"  class="btn btn-primary btn-sm shiny" name="" value="排序" id="button-listorder" onclick="common.setOrder(this)">
                                 </td>
                                 <td colspan="9"></td>
                             </tr>
                         </tbody>
                     </table>
+                    <?php endif; ?>
                 </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">
@@ -251,7 +297,14 @@
 	
 
 </body>
-    <!-- Beyond -->
+    <script>
+var SCOPE = {
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'listorder_url' : "<?php echo url('setOrder'); ?>",//排序
+}
+</script>
+
+<!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->
 <script src="__ADMIN__/js/dialog.js"></script>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\banner\lst.html";i:1518249406;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\banner\lst.html";i:1518325354;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518321784;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -199,9 +199,7 @@
                                 <td align="center" style="width: 10%;"><?php echo $vo['ad']['name']; ?></td>
                                 <td align="center" style="width: 10%;"><?php echo $vo['ad']['type']; ?></td>
                                 <td align="center" style="width: 40%;"><img src="/<?php echo $vo['img_url']; ?>" height="100"></td>
-                                <td align="center" style="width: 10%;">
-                                <?php echo statusStyle($vo['status'],url('edit_status',array('id'=>$vo['id'],'status'=>$vo['status'])),['隐藏','显示']); ?>
-                                </td>
+                                <td align="center" style="width: 10%;"><?php echo statusStyle($vo['id'],'',$vo['status'],['隐藏','显示']); ?></td>
                                <td align="center" style="width: 20%;">
                                     <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
@@ -239,6 +237,15 @@
 
 
 </body>
+<script>
+var SCOPE = {
+    'add_url'       : "<?php echo url('add'); ?>", //添加
+    'edit_url'      : "<?php echo url('edit'); ?>",//修改
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'index_url'     : '/',//首页
+}
+</script>
+
 <!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->

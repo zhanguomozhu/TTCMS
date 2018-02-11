@@ -31,7 +31,7 @@
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
+                    <form> 
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
@@ -52,9 +52,7 @@
                                 </td>
                                 <td align="center" style="width: 30%;">{$vo.name}</td>
                                 <td align="center" style="width: 30%;">{$vo.url}</td>
-                                <td align="center" style="width: 10%;">
-                                {$vo.status|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'status'=>###)),['隐藏','显示']}
-                                </td>
+                                <td align="center" style="width: 10%;">{$vo.status|statusStyle=$vo.id,'',###,['隐藏','显示']}</td>
                                <td align="center" style="width: 15%;">
                                     <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
@@ -68,7 +66,7 @@
                             <tr>
                                 <td></td>
                                 <td style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
+                                    <input type="button"  class="btn btn-primary btn-sm shiny" name="" value="排序" id="button-listorder" onclick="common.setOrder(this)">
                                 </td>
                                 <td colspan="5"></td>
                             </tr>

@@ -1,6 +1,6 @@
 <?php 
 namespace app\admin\controller;
-use app\base\controller\Base;
+use app\common\controller\Base;
 
 class Ad extends Base
 {
@@ -11,16 +11,6 @@ class Ad extends Base
 	 */
 	public function lst()
 	{
-		//排序
-		if(request()->isPost()){
-			if($this->model->setOrder()){
-
-				$this->redirect($_SERVER['HTTP_REFERER']);
-			}else{
-				$this->error('排序失败');
-			}
-			return;
-		}
 		//列表
 		$ads = $this->model->with('category')->order('sort')->paginate('',false,['query' => request()->param()]);
 		return $this->fetch('',['ads'=>$ads]);
@@ -74,34 +64,21 @@ class Ad extends Base
 
 
 
-	/**
-	 * 删除
-	 * @return [type] [description]
-	 */
-	public function del($id)
-	{
-		if($this->model->destroy($id)){
-			return json(['code'=>1,'msg'=>'删除成功']);
-		}else{
-			return json(['code'=>0,'msg'=>'删除失败']);
-		}
-	}
 
 
-
-	/**
-	 * 修改状态
-	 * @return [type] [description]
-	 */
-	public function edit_status()
-	{
-		 if(request()->isGet()){
-            if($this->model->setStatus()){
-                $this->redirect($_SERVER['HTTP_REFERER']);
-            }else{
-                $this->error('修改失败');
-            }
-        }
-	}
+	// /**
+	//  * 修改状态
+	//  * @return [type] [description]
+	//  */
+	// public function edit_status()
+	// {
+	// 	 if(request()->isGet()){
+ //            if($this->model->setStatus()){
+ //                $this->redirect($_SERVER['HTTP_REFERER']);
+ //            }else{
+ //                $this->error('修改失败');
+ //            }
+ //        }
+	// }
 
 }

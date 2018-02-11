@@ -1,7 +1,7 @@
 <?php 
 namespace app\admin\controller;
-use app\base\controller\Base;
-use think\Loader;
+use app\common\controller\Base;
+
 class AuthGroup extends Base
 {
 
@@ -68,11 +68,7 @@ class AuthGroup extends Base
 	 */
 	public function del()
 	{
-		if($this->model->del()){
-            return json(['code'=>1,'msg'=>'删除成功']);
-        }else{
-            return json(['code'=>0,'msg'=>'删除失败']);
-        }
+		return $this->model->del();
 	}
 
 

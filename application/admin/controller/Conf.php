@@ -1,6 +1,6 @@
 <?php 
 namespace app\admin\controller;
-use app\base\controller\Base;
+use app\common\controller\Base;
 
 class Conf extends Base
 {
@@ -10,16 +10,6 @@ class Conf extends Base
 	 */
 	public function lst()
 	{
-		//排序
-		if(request()->isPost()){
-			if($this->model->setOrder()){
-				$this->redirect($_SERVER['HTTP_REFERER']);
-			}else{
-				$this->error('排序失败');
-			}
-			return;
-		}
-
 		//配置列表
 		$confs = $this->model->getConfList();
 		return $this->fetch('',['confs'=>$confs]);
@@ -67,20 +57,6 @@ class Conf extends Base
 		return $this->fetch('',['conf'=>obj_to_arr($conf),'cates'=>$cates]);
 	}
 
-
-	/**
-	 * 删除配置
-	 * @return [type] [description]
-	 */
-	public function del($id)
-	{
-		if($this->model->destroy($id)){
-				return json(['code'=>1,'msg'=>'删除成功']);
-			}else{
-				return json(['code'=>0,'msg'=>'删除失败']);
-			}
-		return view();
-	}
 
 
 

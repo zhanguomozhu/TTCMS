@@ -1,6 +1,6 @@
 <?php 
 namespace app\admin\controller;
-use app\base\controller\Base;
+use app\common\controller\Base;
 
 class ConfCate extends Base
 {
@@ -10,16 +10,6 @@ class ConfCate extends Base
 	 */
 	public function lst()
 	{
-		//排序
-		if(request()->isPost()){
-			if($this->model->setOrder()){
-				$this->redirect($_SERVER['HTTP_REFERER']);
-			}else{
-				$this->error('排序失败');
-			}
-			return;
-		}
-
 		//分类列表
 		$cates = $this->model->getList(0,'sort');
 		return $this->fetch('',['cates'=>$cates]);
@@ -67,20 +57,6 @@ class ConfCate extends Base
 		return $this->fetch('',['cates'=>$cates]);
 	}
 
-
-
-	/**
-	 * 删除
-	 * @return [type] [description]
-	 */
-	public function del($id)
-	{
-		if($this->model->destroy($id)){
-			return json(['code'=>1,'msg'=>'删除成功']);
-		}else{
-			return json(['code'=>0,'msg'=>'删除失败']);
-		}
-	}
 
 
 

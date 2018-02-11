@@ -15,14 +15,6 @@
 </div>
 
 <div class="form-group">
-    <label class="col-sm-1 control-label no-padding-right">关键词</label>
-    <div class="col-sm-6">
-        <input class="form-control" placeholder="" name="keywords" required="" type="text">
-    </div>
-    <p class="help-block col-sm-4 red">关键词以英文逗号隔开</p>
-</div>
-
-<div class="form-group">
     <label class="col-sm-1 control-label no-padding-right">摘要</label>
     <div class="col-sm-6">
         <textarea  class="form-control" rows="6" name="description" placeholder=""></textarea>
@@ -39,4 +31,17 @@
          {TT:ueditor src="__OTHER__/ueditor" id='content' name="content" width="100%" height="300"/}
     </div>
     <p class="help-block col-sm-4 red">* 必填</p>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right">添加时间</label>
+    <div class="col-sm-6">
+        <!-- 声明使用 TagLib -->
+         {taglib name="TT" /}
+        <!-- 在需要使用时间插件 标签的地方插入 -->
+        {TT:laydate src="__OTHER__/layui" id="create_time" name="create_time" value="<?php echo date('Y-m-d H:i:s');?>"/}
+    </div>
+    <div class="col-sm-4">
+    </div>
+    <p class="help-block col-sm-4 red">默认是当前时间</p>
 </div>

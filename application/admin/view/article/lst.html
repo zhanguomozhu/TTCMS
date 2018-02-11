@@ -31,7 +31,10 @@
         <div class="widget">
             <div class="widget-body">
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
+                    <form>
+                    {if condition="$model_id eq 1"}
+                        {include file="article/page_list"}
+                    {else/}
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
@@ -41,7 +44,7 @@
                                 <th class="text-center">所属栏目</th>
                                 <th class="text-center">点击量</th>
                                 <th class="text-center">发布人</th>
-                                <th class="text-center">更新时间</th>
+                                <th class="text-center">添加时间</th>
                                 <th class="text-center">是否推荐</th>
                                 <th class="text-center">是否置顶</th>
                                 <th class="text-center">状态</th>
@@ -59,20 +62,17 @@
                                 <td align="center" style="width: 10%;">{$vo.category.name}</td>
                                 <td align="center" style="width: 5%;">{$vo.clicks}</td>
                                 <td align="center" style="width: 5%;">{$vo.author}</td>
-                                <td align="center" style="width: 10%;">{$vo.update_time}</td>
-                                <td align="center" style="width: 5%;">
-                                {$vo.status|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'status'=>###)),['隐藏','显示']}
-                                </td>
-                                <td align="center" style="width: 5%;">{$vo.is_recommend|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'is_recommend'=>###)),['×','√']}
-                                </td>
-                                <td align="center" style="width: 5%;">
-                                {$vo.is_top|statusStyle=###,url('edit_status',array('id'=>$vo['id'],'is_top'=>###)),['×','√']}
-                                </td>
+                                <td align="center" style="width: 10%;">{$vo.create_time}</td>
+
+                                
+                                <td align="center" style="width: 5%;">{$vo.is_recommend|statusStyle=$vo.id,'is_recommend',###,['×','√']}</td>
+                                <td align="center" style="width: 5%;">{$vo.is_top|statusStyle=$vo.id,'is_top',###,['×','√']}</td>
+                                <td align="center" style="width: 5%;">{$vo.status|statusStyle=$vo.id,'',###,['隐藏','显示']}</td>
                                <td align="center" style="width: 15%;">
                                     <a href="{:url('edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
+                                    <a onClick="dialog.toconfirm('确实要删除吗', '{:url('del',array('id'=>$vo['id']))}')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
@@ -81,12 +81,13 @@
                             <tr>
                                 <td></td>
                                 <td style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
+                                    <input type="button"  class="btn btn-primary btn-sm shiny" name="" value="排序" id="button-listorder" onclick="common.setOrder(this)">
                                 </td>
                                 <td colspan="9"></td>
                             </tr>
                         </tbody>
                     </table>
+                    {/if}
                 </form>
                 </div>
                 <div style="padding-top:10px;text-align: center;">

@@ -1,6 +1,6 @@
 <?php 
 namespace app\common\model;
-use app\base\model\Base;
+use app\common\model\Base;
 
 class Banner extends Base
 {

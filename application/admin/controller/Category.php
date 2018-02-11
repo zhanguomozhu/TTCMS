@@ -1,6 +1,6 @@
 <?php
 namespace app\admin\controller;
-use app\base\controller\Base;
+use app\common\controller\Base;
 /**
 * 栏目控制器
 */
@@ -14,16 +14,6 @@ class Category extends Base
 	 */
 	public function lst()
 	{
-		//排序
-		if(request()->isPost()){
-			if($this->model->setOrder()){
-				$this->redirect($_SERVER['HTTP_REFERER']);
-			}else{
-				$this->error('排序失败');
-			}
-			return;
-		}
-
 		//栏目列表
 		$categorys = $this->model->getCate();
 		//模型列表
@@ -108,18 +98,17 @@ class Category extends Base
 
 
 
+
 	/**
 	 * 删除
 	 * @return [type] [description]
 	 */
-	public function del($id)
+	public function del()
 	{
-		if($this->model->del()){
-			return json(['code'=>1,'msg'=>'删除成功']);
-		}else{
-			return json(['code'=>0,'msg'=>'删除失败']);
-		}
+        return $this->model->del();
 	}
+
+
 
 
 	/**

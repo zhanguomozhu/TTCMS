@@ -20,6 +20,27 @@ function obj_to_arr($res){
 }
 
 
+
+/**
+ * 返回友好json数据
+ * @param  [type] $code [description]
+ * @param  string $msg  [description]
+ * @param  array  $data [description]
+ * @return [type]       [description]
+ */
+function show($code,$msg='',$data=[],$url=null){
+    return json([
+        'code' => $code,
+        'msg'  => $msg,
+        'data' => $data,
+        'url'  => $url
+    ]);
+}
+
+
+
+
+
 /**
  * 新浪接口，通过ip获取所在城市
  * @return [type] [description]
@@ -284,10 +305,10 @@ function sendPhone1($phone)
     $arr = $ucpaas->templateSMS($appId, $phone, $templateId, $param);
     if (substr($arr, 21, 6) == 000000) {
         //如果成功就，这里只是测试样式，可根据自己的需求进行调节
-        return ['code'=>1,'msg'=>'发送成功'];
+        return true;
     } else {
         //如果不成功
-        return ['code'=>0,'msg'=>'发送失败'];
+        return false;
     }
 }
 
