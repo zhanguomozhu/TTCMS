@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\lst.html";i:1518244627;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:69:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model\lst.html";i:1518422619;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1518328733;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518327988;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +86,9 @@
 
                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                <li class="dropdown-footer">
-                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                  <a onclick="common.loginout('<?php echo url('admin/loginout'); ?>')">
                                            退出登录
-                                       </a>
+                                  </a>
                                </li>
                                <li class="dropdown-footer">
                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
@@ -183,6 +183,7 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">模型名称</th>
                                 <th class="text-center">模型表名</th>
+                                <th class="text-center">是否系统模型</th>
                                 <th class="text-center">首页模板</th>
                                 <th class="text-center">列表页模板</th>
                                 <th class="text-center">详情页模板</th>
@@ -193,18 +194,31 @@
                         <?php if(is_array($models) || $models instanceof \think\Collection || $models instanceof \think\Paginator): $i = 0; $__LIST__ = $models;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
                                 <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
-                                <td align="center" style="width: 20%;"><?php echo $vo['name']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['name']; ?></td>
                                 <td align="center" style="width: 10%;"><?php echo $vo['tablename']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo statusStyle1($vo['is_sys'],['×','√']); ?></td>
                                 <td align="center" style="width: 15%;"><?php echo $vo['index_template']; ?></td>
                                 <td align="center" style="width: 15%;"><?php echo $vo['list_template']; ?></td>
                                 <td align="center" style="width: 15%;"><?php echo $vo['show_template']; ?></td>
                                 <td align="center" style="width: 20%;">
-                                    <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
-                                        <i class="fa fa-edit"></i> 编辑
+                                    <a href="<?php echo url('admin/ModelField/lst',array('id'=>$vo['id'],'tablename'=>$vo['tablename'])); ?>" class="btn btn btn-purple btn-sm shiny">
+                                        <i class="fa fa-eye"></i> 字段配置
                                     </a>
-                                    <a href="#" onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
-                                        <i class="fa fa-trash-o"></i> 删除
-                                    </a>
+                                    <?php if($vo['is_sys'] == 1): ?>
+                                        <a href="javascript:void(0);" disabled class="btn btn-primary btn-sm shiny">
+                                            <i class="fa fa-edit"></i> 编辑
+                                        </a>
+                                        <a href="javascript:void(0);" disabled class="btn btn-danger btn-sm shiny">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="<?php echo url('edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-sm shiny">
+                                            <i class="fa fa-edit"></i> 编辑
+                                        </a>
+                                        <a href="#" onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                        </a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                             <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -228,6 +242,13 @@
 
 
 </body>
+<script>
+var SCOPE = {
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'listorder_url' : "<?php echo url('setOrder'); ?>",//排序
+}
+</script>
+
 <!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->

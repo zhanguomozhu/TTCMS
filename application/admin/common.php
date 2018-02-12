@@ -3,20 +3,20 @@
 
 
 
-// /**
-//  * 状态样式
-//  * @param  [type] $status [状态值]
-//  * @param  [type] $url    [提交地址]
-//  * @return [type]         [字符串]
-//  */
-// function statusStyle($status,$url='javascript:void(0);',$data=array('锁定','开启')){
-// 	if($status ==1 ){
-// 		$str = '<a href="'.$url.'" class="btn btn-sm btn-success" title="点击修改状态">'.$data[1].'</a>';
-// 	}elseif($status == 0){
-// 		$str = '<a href="'.$url.'" class="btn btn-sm btn-danger" title="点击修改状态">'.$data[0].'</a>';
-// 	}
-// 	return $str;
-// }
+/**
+ * 状态样式
+ * @param  [type] $status [状态值]
+ * @param  [type] $url    [提交地址]
+ * @return [type]         [字符串]
+ */
+function statusStyle1($status,$data=array('锁定','开启'),$url='javascript:void(0);'){
+	if($status ==1 ){
+		$str = '<a href="'.$url.'" class="btn btn-sm btn-success" title="点击修改状态">'.$data[1].'</a>';
+	}elseif($status == 0){
+		$str = '<a href="'.$url.'" class="btn btn-sm btn-danger" title="点击修改状态">'.$data[0].'</a>';
+	}
+	return $str;
+}
 
 
 /**

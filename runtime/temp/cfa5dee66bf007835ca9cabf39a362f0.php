@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\add.html";i:1518075513;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\add.html";i:1518425977;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1518328733;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518327988;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +86,9 @@
 
                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                <li class="dropdown-footer">
-                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                  <a onclick="common.loginout('<?php echo url('admin/loginout'); ?>')">
                                            退出登录
-                                       </a>
+                                  </a>
                                </li>
                                <li class="dropdown-footer">
                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
@@ -178,20 +178,38 @@
             <div class="widget-body">
                 <div id="horizontal-form">
                     <form class="form-horizontal" role="form" action="<?php echo url('add'); ?>" method="post">
-                        <input type="hidden" name="model_id" value="<?php echo input('model_id'); ?>">
+
+                        <input type="hidden" name="tablename" value="<?php echo input('tablename'); ?>">
                         <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">字段名称</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="只能用英文字母或数字" name="enname"  type="text">
+                                <input class="form-control" placeholder="只能用英文字母或数字" name="name"  type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">表单名称</label>
+                            <label class="col-sm-1 control-label no-padding-right">字段类型</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="发布内容时显示的提示文字" name="cnname"  type="text">
+                                <select name='type'>
+                                    <option value="char">(char)固定长度</option>
+                                    <option value="varchar">(varchar)不固定长度</option>
+                                    <option value="tinyint">(tinyint)</option>
+                                    <option value="text">(text)大文本</option>
+                                    <option value="int">(int)整数</option>
+                                    <option value="float">(float)浮点数</option>
+                                </select>
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">字段长度</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" placeholder="0-255" name="length"  type="text">
+                            </div>
+                            <div class="col-sm-3">
+                                
+                            </div>
+                            <p class="help-block col-sm-4 red"></p>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">表单类型</label>
@@ -208,20 +226,39 @@
                                     <option value="9">上传插件</option>
                                 </select>
                             </div>
-                            <p class="help-block col-sm-4 red">* 必填</p>
+                            <p class="help-block col-sm-4 red">用于表单显示类型</p>
                         </div>
-                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">表单提示</label>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">是否为空</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="tips"  type="text">
+                                <div style="float: left;padding-right: 20px;margin-top: 5px;">
+                                    <label>
+                                        <input name="isNull" value="1" type="radio">
+                                        <span class="text">是</span>
+                                    </label>
+                                </div>
+                                <div style="float: left;padding-right: 20px;margin-top: 5px;">
+                                    <label>
+                                        <input name="isNull" value="0" checked type="radio">
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
                             </div>
-                            <p class="help-block col-sm-4 red">* 必填</p>
+                            <p class="help-block col-sm-4 red"></p>
                         </div>
-                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">可选值</label>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">字段注释</label>
                             <div class="col-sm-6">
-                                <textarea class="form-control" rows="6" name="values" placeholder="多个值以（，）分割，如1小时,2小时,3小时，只有单选框，多选框，下拉框可填写"></textarea>
+                                <input class="form-control" placeholder="发布内容时显示的提示文字" name="comment"  type="text">
                             </div>
+                            <p class="help-block col-sm-4 red">用于表单显示名称</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">默认值</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" placeholder="" name="default"  type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red"></p>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-1 col-sm-10">
@@ -244,6 +281,13 @@
 
 
 </body>
+<script>
+var SCOPE = {
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'listorder_url' : "<?php echo url('setOrder'); ?>",//排序
+}
+</script>
+
 <!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->

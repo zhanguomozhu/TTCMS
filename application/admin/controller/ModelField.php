@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 use app\common\controller\Base;
+use think\Model;
 /**
 * 模型字段控制器
 */
@@ -12,9 +13,18 @@ class ModelField extends Base
 	 */
 	public function lst()
 	{
+		
+		//模型表数据
+		$data = db('model')->find(input('id'));
+		//表英文名
+		$enname = input('tablename');
+		//表全名
+		$table = config('database.prefix').$enname;
+		$db = new \org\MysqlManage();
 		//列表
-		$fields = $this->model->with('model')->where('model_id',input('model_id'))->order('sort')->select();
-		return $this->fetch('',['fields'=>$fields]);
+		$fields = $db->checkTable($table);
+		// $fields = $this->model->with('model')->where('model_id',input('model_id'))->order('sort')->select();
+		return $this->fetch('',['fields'=>$fields,'table'=>$data]);
 	}
 
 
@@ -54,6 +64,15 @@ class ModelField extends Base
 		$field = $this->model->find($id);
 
 		return $this->fetch('',['field'=>$field]);
+	}
+
+
+	/**
+	 * 删除
+	 * @return [type] [description]
+	 */
+	public function del(){
+		return $this->model->del();
 	}
 
 }

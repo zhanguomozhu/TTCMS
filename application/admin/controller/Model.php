@@ -58,6 +58,13 @@ class Model extends Base
 		return $this->fetch('',['model'=>$models,'fields'=>$fields]);
 	}
 
+	/**
+	 * 删除
+	 * @return [type] [description]
+	 */
+	public function del(){
+		return $this->model->del();
+	}
 
 
 }

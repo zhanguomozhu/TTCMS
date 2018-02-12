@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\lst.html";i:1518315522;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1516609361;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518144509;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:75:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\model_field\lst.html";i:1518424245;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\head.html";i:1518231672;s:70:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\top.html";i:1518328733;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\left.html";i:1515654260;s:71:"D:\phpStudy\WWW\TLCMS\public/../application/admin\view\public\foot.html";i:1518327988;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +86,9 @@
 
                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                <li class="dropdown-footer">
-                                   <a href="<?php echo url('admin/loginout'); ?>">
+                                  <a onclick="common.loginout('<?php echo url('admin/loginout'); ?>')">
                                            退出登录
-                                       </a>
+                                  </a>
                                </li>
                                <li class="dropdown-footer">
                                    <a href="<?php echo url('admin/edit',['id'=>\think\Session::get('admin_info.id')]); ?>">
@@ -169,58 +169,51 @@
                 <!-- Page Body -->
                 <div class="page-body">
                     
-<button type="button" tooltip="添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add',array('model_id'=>input('model_id'))); ?>'"> <i class="fa fa-plus"></i> 添加
+<button type="button" tooltip="添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '<?php echo url('add',array('tablename'=>$table['tablename'])); ?>'"> <i class="fa fa-plus"></i> 添加字段
 </button>
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
+
             <div class="widget-body">
+                <div class="alert alert-info fade in alert-radius-bordered" style="text-align: center;font-size: 20px;">
+                    <strong><?php echo $table['name']; ?></strong>
+                </div>
                 <div class="flip-scroll">
-                    <form action="" method="post"> 
-                    <input type="hidden" name="model_id" value="<?php echo input('model_id'); ?>">
+                    <form> 
                     <table class="table table-bordered table-hover">
                         <thead class="">
                             <tr>
-                                <th class="text-center">排序</th>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">所属模型</th>
-                                <th class="text-center">表单提示</th>
-                                <th class="text-center">字段名</th>
-                                <th class="text-center">表单类型</th>
-                                <th class="text-center">可选值</th>
+                                <th class="text-center">字段名称</th>
+                                <th class="text-center">字段注释</th>
+                                <th class="text-center">类型</th>
+                                <th class="text-center">是否为空</th>
+                                <th class="text-center">索引</th>
+                                <th class="text-center">默认值</th>
+                                <th class="text-center">其他选项</th>
                                 <th class="text-center">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php if(is_array($fields) || $fields instanceof \think\Collection || $fields instanceof \think\Paginator): $i = 0; $__LIST__ = $fields;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <tr>
-                                <td align="center" style="width: 5%;">
-                                    <input type="text" style="width: 50%;text-align: center;" name="<?php echo $vo['id']; ?>" value="<?php echo $vo['sort']; ?>">
-                                </td>
-                                <td align="center" style="width: 5%;"><?php echo $vo['id']; ?></td>
-                                <td align="center" style="width: 10%;"><?php echo $vo['model']['name']; ?></td>
-                                <td align="center" style="width: 15%;"><?php echo $vo['cnname']; ?></td>
-                                <td align="center" style="width: 10%;"><?php echo $vo['enname']; ?></td>
-                                <td align="center" style="width: 10%;"><?php echo levelStyle($vo['formtype'],['单行文本','多行文本','单选按钮','复选按钮','下拉菜单','上传按钮','编辑器','时间','上传插件']); ?></td>
-                                <td align="left" style="width: 25%;">
-                                    <?php if($vo['values'] == false): ?>无可选值<?php else: ?><?php echo $vo['values']; endif; ?>
-                                </td>
+                                <td align="center" style="width: 15%;"><?php echo $vo['Field']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['Comment']; ?></td>
+                                <td align="center" style="width: 15%;"><?php echo $vo['Type']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['Null']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['Key']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['Default']; ?></td>
+                                <td align="center" style="width: 10%;"><?php echo $vo['Extra']; ?></td>
                                 <td align="center" style="width: 20%;">
-                                    <a href="<?php echo url('edit',array('id'=>$vo['id'],'model_id'=>$vo['model_id'])); ?>" class="btn btn-primary btn-sm shiny">
+                                    <a href="" class="btn btn-primary btn-sm shiny">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('id'=>$vo['id'])); ?>')" class="btn btn-danger btn-sm shiny">
+                                    <a onClick="dialog.toconfirm('确实要删除吗', '<?php echo url('del',array('tablename'=>$table['tablename'],'field'=>$vo['Field'])); ?>')" class="btn btn-danger btn-sm shiny">
                                         <i class="fa fa-trash-o"></i> 删除
                                     </a>
                                 </td>
                             </tr>
                         <?php endforeach; endif; else: echo "" ;endif; ?>
-                        <tr>
-                            <td style="text-align: center;">
-                                <input type="submit" class="btn btn-primary btn-sm shiny" name="" value="排序">
-                            </td>
-                            <td colspan="7"></td>
-                        </tr>
                         </tbody>
                     </table>
                 </form>
@@ -241,6 +234,13 @@
 
 
 </body>
+<script>
+var SCOPE = {
+    'set_status_url': "<?php echo url('setStatus'); ?>",//改变状态
+    'listorder_url' : "<?php echo url('setOrder'); ?>",//排序
+}
+</script>
+
 <!-- Beyond -->
 <script src="__ADMIN__/js/beyond.js"></script>
 <!-- 基于layer的弹窗js -->

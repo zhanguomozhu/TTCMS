@@ -37,4 +37,25 @@ class ModelField extends Base
 		return $this->allowField(true)->save($data,['id'=>$data['id']]);
 	}
 
+
+	/**
+	 * 删除
+	 * @return [type] [description]
+	 */
+	public function del(){
+		$data = input();
+		$db = new \org\MysqlManage();
+		//表名
+		$table = config('database.prefix').trim($data['tablename']);
+		//字段名
+		$field = trim($data['field']);
+		//删除
+		$res = $db->dropField($table,$field);
+		if($res){
+			return show(0,'删除失败');
+		}else{
+			return show(1,'删除成功');
+		}
+	}
+
 }

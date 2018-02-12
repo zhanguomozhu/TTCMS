@@ -33,20 +33,38 @@
             <div class="widget-body">
                 <div id="horizontal-form">
                     <form class="form-horizontal" role="form" action="{:url('add')}" method="post">
-                        <input type="hidden" name="model_id" value="{:input('model_id')}">
+
+                        <input type="hidden" name="tablename" value="{:input('tablename')}">
                         <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">字段名称</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="只能用英文字母或数字" name="enname"  type="text">
+                                <input class="form-control" placeholder="只能用英文字母或数字" name="name"  type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">表单名称</label>
+                            <label class="col-sm-1 control-label no-padding-right">字段类型</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="发布内容时显示的提示文字" name="cnname"  type="text">
+                                <select name='type'>
+                                    <option value="char">(char)固定长度字符串</option>
+                                    <option value="varchar">(varchar)不固定长度字符串</option>
+                                    <option value="tinyint">(tinyint)更小整数</option>
+                                    <option value="text">(text)大文本</option>
+                                    <option value="int">(int)整数</option>
+                                    <option value="float">(float)浮点数</option>
+                                </select>
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">字段长度</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" placeholder="0-255" name="length"  type="text">
+                            </div>
+                            <div class="col-sm-3">
+                                
+                            </div>
+                            <p class="help-block col-sm-4 red"></p>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-1 control-label no-padding-right">表单类型</label>
@@ -63,20 +81,39 @@
                                     <option value="9">上传插件</option>
                                 </select>
                             </div>
-                            <p class="help-block col-sm-4 red">* 必填</p>
+                            <p class="help-block col-sm-4 red">用于表单显示类型</p>
                         </div>
-                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">表单提示</label>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">是否为空</label>
                             <div class="col-sm-6">
-                                <input class="form-control" placeholder="" name="tips"  type="text">
+                                <div style="float: left;padding-right: 20px;margin-top: 5px;">
+                                    <label>
+                                        <input name="isNull" value="1" type="radio">
+                                        <span class="text">是</span>
+                                    </label>
+                                </div>
+                                <div style="float: left;padding-right: 20px;margin-top: 5px;">
+                                    <label>
+                                        <input name="isNull" value="0" checked type="radio">
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
                             </div>
-                            <p class="help-block col-sm-4 red">* 必填</p>
+                            <p class="help-block col-sm-4 red"></p>
                         </div>
-                         <div class="form-group">
-                            <label class="col-sm-1 control-label no-padding-right">可选值</label>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">字段注释</label>
                             <div class="col-sm-6">
-                                <textarea class="form-control" rows="6" name="values" placeholder="多个值以（，）分割，如1小时,2小时,3小时，只有单选框，多选框，下拉框可填写"></textarea>
+                                <input class="form-control" placeholder="发布内容时显示的提示文字" name="comment"  type="text">
                             </div>
+                            <p class="help-block col-sm-4 red">用于表单显示名称</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label no-padding-right">默认值</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" placeholder="" name="default"  type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red"></p>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-1 col-sm-10">
